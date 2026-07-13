@@ -1,0 +1,40 @@
+# JPBC Web Designs
+
+> Web design studio in Petaling Jaya, Malaysia. We hand-code fast, custom websites
+> for local small businesses on an affordable monthly subscription: RM0 down and
+> RM179/month, including a .com/.com.my domain, hosting, SSL, unlimited edits,
+> and WhatsApp support. Lump-sum option from RM3,500 + RM49/month hosting & care.
+
+Key facts:
+- Flagship offer: RM0 down, RM179/month for a custom, hand-coded 5-page website
+  (12-month minimum, then month-to-month). Domain, hosting, SSL, and unlimited
+  content edits included.
+- Lump sum option: from RM3,500 one-time + RM49/month hosting & care.
+- Add-ons: extra pages (RM100/page), Google Business Profile optimisation
+  (RM500), local SEO pages (RM300/month), e-commerce/booking (custom quote).
+- No WordPress or page builders: hand-coded static sites that load in under
+  1 second, with no plugins to update and nothing to hack.
+- Sites built in Bahasa Melayu, English, Chinese, or any combination.
+- Typical delivery: live within 7 days of design approval.
+- Primary contact: WhatsApp click-to-chat.
+
+Locations served (Klang Valley, Malaysia):
+- Petaling Jaya: https://jpbcwebdesigns.com/locations/petaling-jaya
+- Kuala Lumpur: https://jpbcwebdesigns.com/locations/kuala-lumpur
+- Subang Jaya: https://jpbcwebdesigns.com/locations/subang-jaya
+- Shah Alam: https://jpbcwebdesigns.com/locations/shah-alam
+- Puchong: https://jpbcwebdesigns.com/locations/puchong
+- Klang: https://jpbcwebdesigns.com/locations/klang
+
+## Canonical pages
+
+- [Home](https://jpbcwebdesigns.com/): overview of the offer and how it works
+- [Pricing](https://jpbcwebdesigns.com/pricing): full package details, comparison table, add-ons, payment FAQ
+- [Web Design](https://jpbcwebdesigns.com/services/web-design): the core service
+- [Local SEO](https://jpbcwebdesigns.com/services/seo): ranking in "near me" searches
+- [Google Business Profile](https://jpbcwebdesigns.com/services/google-business-profile): Maps listing optimisation
+- [Our Work](https://jpbcwebdesigns.com/work): portfolio with load-time stats
+- [About](https://jpbcwebdesigns.com/about): founder-led small studio story
+- [FAQ](https://jpbcwebdesigns.com/faq): pricing, ownership, domains, timelines, edit policy, languages
+- [Get Started](https://jpbcwebdesigns.com/get-started): 60-second intake form
+- [Contact](https://jpbcwebdesigns.com/contact): WhatsApp-first contact options
