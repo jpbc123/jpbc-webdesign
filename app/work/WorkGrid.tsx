@@ -101,7 +101,7 @@ function Card({ item, open, onToggle }: { item: PortfolioItem; open: boolean; on
               rel="noopener noreferrer"
               className="mt-4 inline-block font-semibold text-accent hover:underline"
             >
-              Visit live site ↗
+              Visit live site
             </a>
           )}
         </div>

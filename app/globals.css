@@ -268,17 +268,17 @@ body {
  * warm-up replays every time dark mode is toggled on, because the tag going
  * display:none -> inline restarts its CSS animations — no JS needed. One
  * letter uses the flicker variant, like a tube that takes two tries to catch.
+ * Once all letters are lit (~1.4s), each one blinks off/on on its own
+ * --fdur/--fdel cycle (also set in Nav.tsx), so the sign twinkles out of sync.
  */
 .neon-letter {
-  animation: neon-on 0.4s ease-out var(--d, 0s) both;
+  animation:
+    neon-on 0.4s ease-out var(--d, 0s) both,
+    neon-idle var(--fdur, 5s) step-end calc(1.6s + var(--fdel, 0s)) infinite;
 }
 .neon-letter--flicker {
-  animation-name: neon-on-flicker;
-  animation-duration: 0.8s;
-}
-/* After the warm-up, the whole tag breathes very slowly */
-.neon-tag {
-  animation: neon-pulse 7s ease-in-out 2.5s infinite;
+  animation-name: neon-on-flicker, neon-idle;
+  animation-duration: 0.8s, var(--fdur, 5s);
 }
 @keyframes neon-on {
   from {
@@ -314,9 +314,20 @@ body {
     text-shadow: none;
   }
 }
-@keyframes neon-pulse {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0.84; }
+/* Idle blink: lit for most of the cycle, then a quick double-blink off.
+   step-end makes it a hard tube-style cut instead of a fade. */
+@keyframes neon-idle {
+  0%, 91%, 94.5% {
+    opacity: 1;
+    text-shadow:
+      0 0 4px color-mix(in srgb, var(--accent) 85%, transparent),
+      0 0 12px color-mix(in srgb, var(--accent) 55%, transparent),
+      0 0 28px color-mix(in srgb, var(--accent) 35%, transparent);
+  }
+  88%, 93% {
+    opacity: 0.18;
+    text-shadow: none;
+  }
 }
 
 /* ---------- Shooting stars (dark hero only, see NightSkyFx.tsx) ---------- */

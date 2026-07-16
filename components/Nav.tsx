@@ -16,6 +16,13 @@ const navLinks = [
   { href: "/contact", label: "Contact" },
 ];
 
+/* Per-letter idle-blink timing [duration, delay] in seconds — deliberately
+   uneven so the neon letters flick off and back on out of sync. */
+const neonBlink: [number, number][] = [
+  [4.7, 0.4], [6.1, 2.3], [3.9, 1.1], [5.3, 2.9], [4.1, 0.2], [5.9, 1.7],
+  [3.6, 2.6], [6.7, 0.8], [4.4, 1.9], [5.1, 3.1], [3.3, 0.6],
+];
+
 const serviceLinks = [
   { href: "/services/web-design", label: "Web Design" },
   { href: "/services/seo", label: "Local SEO" },
@@ -41,8 +48,9 @@ export default function Nav() {
           </span>
           {/* "Lepas Kerja" tag appears under the logo in dark mode only.
               Letters warm up neon-sign style each time dark mode switches on
-              (display:none -> inline restarts the CSS animations). */}
-          <span className="neon-tag hidden font-script text-sm leading-none text-accent dark:inline" aria-hidden>
+              (display:none -> inline restarts the CSS animations), then keep
+              blinking off/on individually per the neonBlink timings. */}
+          <span className="neon-tag hidden font-script text-base leading-none text-accent dark:inline" aria-hidden>
             {"lepas kerja".split("").map((ch, i) =>
               ch === " " ? (
                 <span key={i}>{" "}</span>
@@ -50,7 +58,13 @@ export default function Nav() {
                 <span
                   key={i}
                   className={i === 2 ? "neon-letter neon-letter--flicker" : "neon-letter"}
-                  style={{ "--d": `${i * 0.1}s` } as CSSProperties}
+                  style={
+                    {
+                      "--d": `${i * 0.1}s`,
+                      "--fdur": `${neonBlink[i % neonBlink.length][0]}s`,
+                      "--fdel": `${neonBlink[i % neonBlink.length][1]}s`,
+                    } as CSSProperties
+                  }
                 >
                   {ch}
                 </span>
