@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import IntakeForm from "./IntakeForm";
 
 export const metadata: Metadata = {
-  title: "Get Started — Tell Us About Your Business",
+  title: "Get Started - Tell Us About Your Business",
   description:
     "Start your website with JPBC in 60 seconds: five quick questions about your business, then we take it from there on WhatsApp. RM0 down.",
   alternates: { canonical: "/get-started" },

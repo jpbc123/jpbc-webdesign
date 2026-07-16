@@ -1,146 +1,99 @@
-// TODO: Replace these 6 placeholders with real client projects as they launch.
-// Each item drives a card on /work and the home page portfolio grid.
+// All items are real, launched projects. Add new client projects here as
+// they launch — each item drives a card on /work and the home page
+// portfolio grid. Screenshots live in /public/work/<slug>.jpg.
 
 export type PortfolioItem = {
   slug: string;
   name: string;
   industry: string;
   /** Filter category on /work */
-  category: "services" | "food" | "health" | "education";
+  category: "apps" | "lifestyle" | "services" | "food" | "health" | "education";
   location: string;
-  /** Measured mobile load time to show on the case card */
-  loadTime: string;
+  /** Live site URL — renders a "Visit site" link on the case card */
+  url?: string;
+  /** Measured mobile load time; omit to hide the badge until measured */
+  loadTime?: string;
   /** One-line summary shown on the card */
   blurb: string;
   /** "What we built" bullets for the case card */
   built: string[];
   /** Before → after story for the case card */
   beforeAfter: { before: string; after: string };
-  /** Tailwind gradient classes for the placeholder visual */
+  /** Screenshot of the live site, shown as the card thumbnail */
+  image?: string;
+  /** Tailwind gradient classes for the fallback visual when no screenshot yet */
   gradient: string;
 };
 
 export const portfolio: PortfolioItem[] = [
   {
-    slug: "chillmaster-aircon",
-    name: "ChillMaster Aircon Services",
-    industry: "Aircon Service",
+    slug: "swift-audit",
+    name: "Swift Audit",
+    industry: "Audit / Fintech",
+    category: "apps",
+    location: "Malaysia",
+    url: "https://myswiftaudit.com",
+    // TODO: add measured mobile load time (loadTime: "0.Xs")
+    blurb: "Web app that automates financial audit report preparation for Malaysian firms.",
+    built: [
+      "Brand-new build — designed and developed from zero, not a redesign",
+      "Automates the preparation of financial audit reports to Malaysian requirements",
+      "Full web application, not a brochure site: data in, formatted report out",
+    ],
+    beforeAfter: {
+      before: "Audit reports drafted by hand — repetitive, slow, and easy to get wrong.",
+      after: "Enter the engagement figures and the app generates the formatted report — drafting time cut from hours to minutes.",
+    },
+    image: "/work/swift-audit.jpg",
+    gradient: "from-indigo-500 to-blue-800",
+  },
+  {
+    slug: "fengshui-and-beyond",
+    name: "Feng Shui & Beyond",
+    industry: "Lifestyle / Infotainment",
+    category: "lifestyle",
+    location: "Online",
+    url: "https://fengshuiandbeyond.com",
+    // TODO: add measured mobile load time (loadTime: "0.Xs")
+    blurb: "Infotainment portal with daily horoscopes, articles, and feng shui calculators.",
+    built: [
+      "Daily Chinese and Western horoscope lookup",
+      "Feng shui calculators: Kua number, personal element, and Visiber",
+      "Article section for feng shui and astrology content",
+    ],
+    beforeAfter: {
+      before: "Horoscope and feng shui content scattered across the web, mostly in clunky old sites.",
+      after: "One clean portal where readers check their daily horoscope and run their own calculations — built to keep them coming back.",
+    },
+    image: "/work/fengshui-and-beyond.jpg",
+    gradient: "from-red-500 to-amber-600",
+  },
+  {
+    slug: "setia-alam-garden-services",
+    name: "Setia Alam Garden Services",
+    industry: "Landscaping / Home Services",
     category: "services",
-    location: "Petaling Jaya",
-    loadTime: "0.6s",
-    blurb: "Service booking site for a two-van aircon team covering PJ and Subang.",
+    location: "Setia Alam, Shah Alam",
+    url: "https://setiaalamgardenservices.com",
+    // TODO: add measured mobile load time (loadTime: "0.Xs")
+    blurb: "Local-first site for garden maintenance and landscaping around Setia Alam.",
     built: [
-      "5-page site with service-area pages for PJ, Subang, and Sunway",
-      "WhatsApp booking flow with pre-filled service request message",
-      "Google Business Profile optimisation — now in the local 3-pack for 'aircon service PJ'",
+      "Dedicated service pages: garden maintenance, landscaping, artificial grass, and tree care",
+      "Area coverage for Setia Alam, Alam Impian, Bukit Raja, and Eco Ardence",
+      "WhatsApp quote flow and click-to-call, with bilingual (EN/BM) copy for local search",
     ],
     beforeAfter: {
-      before: "A Facebook page and a phone number written on the van.",
-      after: "Ranks page 1 for 'aircon service Petaling Jaya'; bookings come in via WhatsApp daily.",
+      before: "No web presence — homeowners searching for garden services in Setia Alam couldn't find them.",
+      after: "A page for every service and area they cover, with quote requests arriving straight on WhatsApp.",
     },
-    gradient: "from-sky-500 to-blue-700",
-  },
-  {
-    slug: "klinik-pergigian-senyum",
-    name: "Klinik Pergigian Senyum",
-    industry: "Klinik",
-    category: "health",
-    location: "Shah Alam",
-    loadTime: "0.7s",
-    blurb: "Bilingual (BM/English) clinic site with treatment pages and panel info.",
-    built: [
-      "Treatment pages with clear pricing ranges — no more 'PM for price'",
-      "Bilingual content: BM-first with English toggle",
-      "FAQ schema so common questions appear directly in Google results",
-    ],
-    beforeAfter: {
-      before: "An outdated site from 2016 that didn't work on phones.",
-      after: "Mobile-first, loads in 0.7s, and new patient enquiries doubled in three months.",
-    },
-    gradient: "from-teal-400 to-emerald-600",
-  },
-  {
-    slug: "restoran-kak-yam",
-    name: "Restoran Kak Yam",
-    industry: "Restoran",
-    category: "food",
-    location: "Klang",
-    loadTime: "0.5s",
-    blurb: "Menu-first restaurant site with daily specials the owner updates via WhatsApp.",
-    built: [
-      "Full photo menu with prices — customers decide before they arrive",
-      "'Today's special' section we update whenever Kak Yam WhatsApps us",
-      "Waze/Google Maps deep links and opening hours schema",
-    ],
-    beforeAfter: {
-      before: "Menu photos scattered across old Facebook posts.",
-      after: "One link for everything — menu, location, hours. Regulars share it in family groups.",
-    },
-    gradient: "from-orange-400 to-red-600",
-  },
-  {
-    slug: "reno-tech-builders",
-    name: "RenoTech Builders",
-    industry: "Renovation",
-    category: "services",
-    location: "Kuala Lumpur",
-    loadTime: "0.8s",
-    blurb: "Portfolio-heavy renovation site built to win trust before the first call.",
-    built: [
-      "Project gallery organised by room and budget range",
-      "Before/after sliders for their best transformations",
-      "Lead form that qualifies budget and timeline before the WhatsApp chat",
-    ],
-    beforeAfter: {
-      before: "Sending prospects a Google Drive folder of unsorted photos.",
-      after: "A portfolio that closes deals — clients arrive already convinced.",
-    },
-    gradient: "from-amber-500 to-yellow-700",
-  },
-  {
-    slug: "bright-minds-tuition",
-    name: "Bright Minds Tuition Centre",
-    industry: "Tuition Centre",
-    category: "education",
-    location: "Subang Jaya",
-    loadTime: "0.6s",
-    blurb: "Enrolment site with class schedules, fees, and teacher profiles.",
-    built: [
-      "Subject and level pages (UPSR-era to SPM) parents actually search for",
-      "Transparent fee table — the #1 thing parents asked about",
-      "Trial class booking via WhatsApp with pre-filled student details",
-    ],
-    beforeAfter: {
-      before: "Parents had to call during office hours to ask about fees.",
-      after: "Fees, schedules, and trial booking online — enquiries come in at 11pm.",
-    },
-    gradient: "from-violet-500 to-purple-700",
-  },
-  {
-    slug: "ah-seng-motor-workshop",
-    name: "Ah Seng Motor Workshop",
-    industry: "Workshop",
-    category: "services",
-    location: "Puchong",
-    loadTime: "0.6s",
-    blurb: "No-nonsense workshop site: services, honest pricing, and a map that works.",
-    built: [
-      "Service list with from-prices for common jobs (service, brakes, aircon)",
-      "Click-to-call and WhatsApp buttons pinned on mobile",
-      "Local SEO pages for Puchong and Bandar Kinrara",
-    ],
-    beforeAfter: {
-      before: "Word of mouth only — invisible to anyone new to the area.",
-      after: "Steady stream of first-time customers who found them on Google.",
-    },
-    gradient: "from-slate-500 to-gray-700",
+    image: "/work/setia-alam-garden-services.jpg",
+    gradient: "from-green-500 to-emerald-700",
   },
 ];
 
 export const portfolioCategories = [
   { key: "all", label: "All" },
+  { key: "apps", label: "Web Apps" },
+  { key: "lifestyle", label: "Lifestyle & Media" },
   { key: "services", label: "Services & Trades" },
-  { key: "food", label: "Food & Beverage" },
-  { key: "health", label: "Health" },
-  { key: "education", label: "Education" },
 ] as const;

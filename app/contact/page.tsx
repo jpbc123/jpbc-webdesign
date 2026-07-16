@@ -4,7 +4,7 @@ import ContactForm from "./ContactForm";
 import { BUSINESS_EMAIL } from "@/lib/site";
 
 export const metadata: Metadata = {
-  title: "Contact — WhatsApp Us or Send a Message",
+  title: "Contact - WhatsApp Us or Send a Message",
   description:
     "Contact JPBC Web Designs in Petaling Jaya. WhatsApp is fastest — a real person replies. Serving the whole Klang Valley: PJ, KL, Subang, Shah Alam, Puchong, Klang.",
   alternates: { canonical: "/contact" },
@@ -35,7 +35,7 @@ export default function ContactPage() {
             </div>
           </div>
 
-          <div className="mt-6 rounded-3xl border border-line bg-surface p-8 text-sm text-muted">
+          <div className="glow-card mt-6 rounded-3xl border border-line bg-surface p-8 text-sm text-muted">
             <h2 className="font-bold text-ink">Business hours</h2>
             <p className="mt-2">Monday–Friday, 9am–6pm (MYT)</p>
             <p>WhatsApp anytime — we reply after hours more often than we should.</p>
@@ -51,7 +51,7 @@ export default function ContactPage() {
           </div>
         </div>
 
-        <div className="rounded-3xl border border-line bg-surface p-8">
+        <div className="glow-card rounded-3xl border border-line bg-surface p-8">
           <h2 className="display text-2xl text-ink">Or send a message</h2>
           <p className="mt-2 text-sm text-muted">We&apos;ll reply on WhatsApp or email within one business day.</p>
           <ContactForm />

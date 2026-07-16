@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import CtaBand from "@/components/CtaBand";
 
 export const metadata: Metadata = {
-  title: "Blog — Web & Local SEO Tips for Malaysian Small Businesses",
+  title: "Blog - Web & Local SEO Tips for Malaysian Small Businesses",
   description:
     "Practical articles on websites, Google rankings, and getting customers online — written for Malaysian small business owners, not tech people.",
   alternates: { canonical: "/blog" },
@@ -35,7 +35,7 @@ export default function BlogPage() {
         ) : (
           <ul className="space-y-6">
             {posts.map((p) => (
-              <li key={p.slug} className="rounded-3xl border border-line bg-surface p-8">
+              <li key={p.slug} className="glow-card rounded-3xl border border-line bg-surface p-8">
                 <p className="text-sm text-muted">{p.date}</p>
                 <h2 className="mt-1 text-xl font-bold text-ink">{p.title}</h2>
                 <p className="mt-2 text-muted">{p.excerpt}</p>

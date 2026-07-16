@@ -3,6 +3,8 @@ import Link from "next/link";
 import WhatsAppButton from "@/components/WhatsAppButton";
 import DeviceMockup from "@/components/DeviceMockup";
 import CurveDivider from "@/components/CurveDivider";
+import NightSilhouette from "@/components/NightSilhouette";
+import NightSkyFx from "@/components/NightSkyFx";
 import CtaBand from "@/components/CtaBand";
 import FaqAccordion from "@/components/FaqAccordion";
 import JsonLd from "@/components/JsonLd";
@@ -12,12 +14,12 @@ import { locations } from "@/data/locations";
 import { SITE_URL, WHATSAPP_NUMBER } from "@/lib/site";
 
 export const metadata: Metadata = {
-  title: "JPBC Web Designs — Small Business Web Design, Malaysian Prices",
+  title: "JPBC Web Designs - Small Business Web Design, Malaysian Prices",
   description:
     "Hand-coded custom websites for Malaysian small businesses. RM0 down, RM179/month — domain, hosting, SSL, unlimited edits included. No WordPress, no RM10,000 agency quotes.",
   alternates: { canonical: "/" },
   openGraph: {
-    title: "JPBC Web Designs — Small Business Web Design, Malaysian Prices",
+    title: "JPBC Web Designs - Small Business Web Design, Malaysian Prices",
     description: "RM0 down, RM179/month. Hand-coded websites that load in under 1 second.",
     url: "/",
   },
@@ -94,6 +96,8 @@ export default function HomePage() {
 
       {/* ---------- HERO ---------- */}
       <section className="starfield relative -mt-16 overflow-hidden bg-hero pb-4 pt-32 text-hero-ink">
+        <NightSilhouette />
+        <NightSkyFx />
         <div className="relative mx-auto grid max-w-6xl items-center gap-12 px-6 lg:grid-cols-2">
           <div>
             <p className="mb-4 inline-block rounded-full border border-accent/40 px-4 py-1 text-sm font-semibold text-accent">
@@ -123,8 +127,8 @@ export default function HomePage() {
           </div>
           <DeviceMockup />
         </div>
-        {/* Sweeping curve into the light content below */}
-        <CurveDivider className="mt-16 text-bg" />
+        {/* Sweeping curve into the light content below (relative: paints over the silhouette) */}
+        <CurveDivider className="relative mt-16 text-bg" />
       </section>
 
       {/* ---------- WHAT WE DO ---------- */}
@@ -138,7 +142,7 @@ export default function HomePage() {
             <Link
               key={item.title}
               href={item.href}
-              className="group rounded-3xl border border-line bg-surface p-6 transition-all hover:-translate-y-1 hover:border-accent hover:shadow-lg"
+              className="glow-card group rounded-3xl border border-line bg-surface p-6 transition-all hover:-translate-y-1 hover:border-accent hover:shadow-lg"
             >
               <h3 className="display text-xl text-ink">{item.title}</h3>
               <p className="mt-3 text-sm text-muted">{item.body}</p>
@@ -201,7 +205,7 @@ export default function HomePage() {
         <p className="mt-3 text-muted">From first WhatsApp to live website in about a week.</p>
         <ol className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
           {steps.map((s) => (
-            <li key={s.n} className="rounded-3xl border border-line bg-surface p-6">
+            <li key={s.n} className="glow-card rounded-3xl border border-line bg-surface p-6">
               <span className="display flex h-12 w-12 items-center justify-center rounded-full bg-accent text-xl text-accent-ink">
                 {s.n}
               </span>
@@ -217,28 +221,39 @@ export default function HomePage() {
         <div className="flex flex-wrap items-end justify-between gap-4">
           <div>
             <h2 className="display text-4xl text-ink sm:text-5xl">Recent work</h2>
-            <p className="mt-3 text-muted">Real businesses, real load times.</p>
+            <p className="mt-3 text-muted">Real projects, all live — click through and see.</p>
           </div>
           <Link href="/work" className="font-semibold text-accent hover:underline">
             See all work →
           </Link>
         </div>
         <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {portfolio.map((p) => (
+          {portfolio.slice(0, 6).map((p) => (
             <Link
               key={p.slug}
               href="/work"
-              className="group overflow-hidden rounded-3xl border border-line bg-surface transition-all hover:-translate-y-1 hover:shadow-lg"
+              className="glow-card group overflow-hidden rounded-3xl border border-line bg-surface transition-all hover:-translate-y-1 hover:shadow-lg"
             >
-              <div className={`flex h-40 items-end bg-gradient-to-br ${p.gradient} p-4`}>
-                <span className="rounded-full bg-black/40 px-3 py-1 text-xs font-semibold text-white">
+              <div className="relative h-40">
+                {p.image ? (
+                  <img
+                    src={p.image}
+                    alt={`Screenshot of the ${p.name} website`}
+                    loading="lazy"
+                    className="absolute inset-0 h-full w-full object-cover object-top"
+                  />
+                ) : (
+                  <div className={`absolute inset-0 bg-gradient-to-br ${p.gradient}`} aria-hidden />
+                )}
+                <span className="absolute bottom-4 left-4 rounded-full bg-black/60 px-3 py-1 text-xs font-semibold text-white">
                   {p.industry}
                 </span>
               </div>
               <div className="p-5">
                 <h3 className="font-bold text-ink">{p.name}</h3>
                 <p className="mt-1 text-sm text-muted">
-                  {p.location} · loads in {p.loadTime}
+                  {p.location}
+                  {p.loadTime && ` · loads in ${p.loadTime}`}
                 </p>
               </div>
             </Link>
@@ -267,41 +282,6 @@ export default function HomePage() {
               Ask us anything
             </WhatsAppButton>
           </div>
-        </div>
-      </section>
-
-      {/* ---------- TESTIMONIALS (placeholder) ---------- */}
-      <section className="mx-auto max-w-6xl px-6 py-20">
-        <h2 className="display text-4xl text-ink sm:text-5xl">What clients say</h2>
-        {/* TODO: Replace placeholder testimonials with real client quotes */}
-        <div className="mt-10 grid gap-6 lg:grid-cols-3">
-          {[
-            {
-              quote:
-                "I WhatsApped a menu change at 9pm expecting a reply the next day. It was live before I finished my teh tarik.",
-              name: "Kak Yam",
-              role: "Restoran Kak Yam, Klang",
-            },
-            {
-              quote:
-                "The agency quoted me RM12,000. JPBC built something faster and nicer for RM179 a month. Senang cerita.",
-              name: "Mr. Tan",
-              role: "Ah Seng Motor Workshop, Puchong",
-            },
-            {
-              quote:
-                "Parents used to call asking about fees. Now they check the website and WhatsApp us ready to enrol.",
-              name: "Ms. Priya",
-              role: "Bright Minds Tuition, Subang Jaya",
-            },
-          ].map((t) => (
-            <figure key={t.name} className="rounded-3xl border border-line bg-surface p-8">
-              <blockquote className="text-ink">&ldquo;{t.quote}&rdquo;</blockquote>
-              <figcaption className="mt-4 text-sm text-muted">
-                <span className="font-semibold text-ink">{t.name}</span> · {t.role}
-              </figcaption>
-            </figure>
-          ))}
         </div>
       </section>
 

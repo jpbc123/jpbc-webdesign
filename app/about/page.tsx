@@ -3,7 +3,7 @@ import CtaBand from "@/components/CtaBand";
 import WhatsAppButton from "@/components/WhatsAppButton";
 
 export const metadata: Metadata = {
-  title: "About — A Small Studio in Petaling Jaya",
+  title: "About - A Small Studio in Petaling Jaya",
   description:
     "JPBC Web Designs is a founder-led web design studio in Petaling Jaya. You WhatsApp us, the person who built your site replies. No account managers, no ticket systems.",
   alternates: { canonical: "/about" },

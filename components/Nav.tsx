@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { useState } from "react";
+import type { CSSProperties } from "react";
 import ThemeToggle from "./ThemeToggle";
 import { locations } from "@/data/locations";
 import { waLink } from "@/lib/site";
@@ -33,14 +34,28 @@ export default function Nav() {
   return (
     <header className="sticky top-3 z-50 px-3">
       {/* Rounded pill nav bar floating over the hero */}
-      <nav className="mx-auto flex max-w-5xl items-center justify-between rounded-full border border-line bg-surface/90 px-4 py-2 shadow-lg shadow-navy/5 backdrop-blur sm:px-6">
+      <nav className="glow-card mx-auto flex max-w-5xl items-center justify-between rounded-full border border-line bg-surface/90 px-4 py-2 shadow-lg shadow-navy/5 backdrop-blur sm:px-6">
         <Link href="/" className="group flex flex-col leading-none" onClick={close}>
           <span className="display text-lg tracking-wide text-ink">
             JPBC <span className="text-accent">Web Designs</span>
           </span>
-          {/* "Lepas Kerja" tag appears under the logo in dark mode only */}
-          <span className="hidden font-script text-sm leading-none text-accent dark:inline">
-            lepas kerja
+          {/* "Lepas Kerja" tag appears under the logo in dark mode only.
+              Letters warm up neon-sign style each time dark mode switches on
+              (display:none -> inline restarts the CSS animations). */}
+          <span className="neon-tag hidden font-script text-sm leading-none text-accent dark:inline" aria-hidden>
+            {"lepas kerja".split("").map((ch, i) =>
+              ch === " " ? (
+                <span key={i}>{" "}</span>
+              ) : (
+                <span
+                  key={i}
+                  className={i === 2 ? "neon-letter neon-letter--flicker" : "neon-letter"}
+                  style={{ "--d": `${i * 0.1}s` } as CSSProperties}
+                >
+                  {ch}
+                </span>
+              )
+            )}
           </span>
         </Link>
 
@@ -55,7 +70,7 @@ export default function Nav() {
               Services ▾
             </button>
             <div className="invisible absolute left-0 top-full pt-2 opacity-0 transition-opacity group-focus-within:visible group-focus-within:opacity-100 group-hover:visible group-hover:opacity-100">
-              <div className="w-64 rounded-2xl border border-line bg-surface p-2 shadow-xl">
+              <div className="glow-card w-64 rounded-2xl border border-line bg-surface p-2 shadow-xl">
                 {serviceLinks.map((s) => (
                   <Link key={s.href} href={s.href} className="block rounded-xl px-3 py-2 text-sm text-muted hover:bg-surface-2 hover:text-ink">
                     {s.label}
@@ -74,7 +89,7 @@ export default function Nav() {
               Top Locations ▾
             </button>
             <div className="invisible absolute left-0 top-full pt-2 opacity-0 transition-opacity group-focus-within:visible group-focus-within:opacity-100 group-hover:visible group-hover:opacity-100">
-              <div className="w-56 rounded-2xl border border-line bg-surface p-2 shadow-xl">
+              <div className="glow-card w-56 rounded-2xl border border-line bg-surface p-2 shadow-xl">
                 {locations.map((l) => (
                   <Link key={l.slug} href={`/locations/${l.slug}`} className="block rounded-xl px-3 py-2 text-sm text-muted hover:bg-surface-2 hover:text-ink">
                     {l.name}
@@ -115,7 +130,7 @@ export default function Nav() {
 
       {/* Mobile menu */}
       {open && (
-        <div className="mx-auto mt-2 max-w-5xl rounded-3xl border border-line bg-surface p-4 shadow-xl lg:hidden">
+        <div className="glow-card mx-auto mt-2 max-w-5xl rounded-3xl border border-line bg-surface p-4 shadow-xl lg:hidden">
           <button
             type="button"
             className="flex w-full items-center justify-between rounded-xl px-3 py-2 text-left font-medium text-ink"

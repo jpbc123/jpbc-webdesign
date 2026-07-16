@@ -4,7 +4,7 @@ import { waLink, BUSINESS_EMAIL } from "@/lib/site";
 
 export default function Footer() {
   return (
-    <footer className="starfield mt-20 bg-hero text-hero-ink">
+    <footer className="starfield mt-20 overflow-hidden bg-hero text-hero-ink">
       <div className="relative mx-auto grid max-w-6xl gap-10 px-6 py-14 sm:grid-cols-2 lg:grid-cols-4">
         <div>
           <p className="display text-xl">

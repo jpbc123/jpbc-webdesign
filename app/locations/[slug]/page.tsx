@@ -27,7 +27,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const loc = getLocation(slug);
   if (!loc) return {};
   return {
-    title: `Web Designer in ${loc.name} — RM0 Down, RM179/month`,
+    title: `Web Designer in ${loc.name} - RM0 Down, RM179/month`,
     description: `Hand-coded custom websites for ${loc.name} small businesses. RM0 down, RM179/month including domain, hosting, and unlimited edits. Serving ${loc.areas.slice(0, 3).join(", ")} and beyond.`,
     alternates: { canonical: `/locations/${loc.slug}` },
   };

@@ -97,7 +97,7 @@ export default function IntakeForm() {
   }
 
   return (
-    <div className="rounded-3xl border border-line bg-surface p-8">
+    <div className="glow-card rounded-3xl border border-line bg-surface p-8">
       {/* Progress */}
       <div className="mb-8 flex items-center gap-2" aria-hidden>
         {Array.from({ length: STEPS }).map((_, i) => (
@@ -118,7 +118,7 @@ export default function IntakeForm() {
             onKeyDown={(e) => e.key === "Enter" && next()}
             maxLength={150}
             className="mt-4 w-full rounded-2xl border border-line bg-bg px-4 py-3 text-ink placeholder:text-muted/60 focus:border-accent"
-            placeholder="e.g. Klinik Pergigian Senyum"
+            placeholder="e.g. Setia Alam Garden Services"
             aria-label="Business name"
           />
         </fieldset>

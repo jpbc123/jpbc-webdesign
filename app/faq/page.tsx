@@ -5,7 +5,7 @@ import JsonLd from "@/components/JsonLd";
 import { allFaqs } from "@/data/faqs";
 
 export const metadata: Metadata = {
-  title: "FAQ — Pricing, Ownership, Timelines & Edits",
+  title: "FAQ - Pricing, Ownership, Timelines & Edits",
   description:
     "Answers to the 12 most common questions about JPBC Web Designs: what RM179/month includes, who owns the domain, how fast we build, unlimited edits, receipts, and languages.",
   alternates: { canonical: "/faq" },

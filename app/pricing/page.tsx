@@ -7,7 +7,7 @@ import WhatsAppButton from "@/components/WhatsAppButton";
 import { pricingFaqs } from "@/data/faqs";
 
 export const metadata: Metadata = {
-  title: "Website Pricing Malaysia — RM179/month or RM3,500 Lump Sum",
+  title: "Website Pricing Malaysia - RM179/month or RM3,500 Lump Sum",
   description:
     "Honest website pricing for Malaysian small businesses: RM0 down RM179/month (domain, hosting, unlimited edits included) or lump sum from RM3,500 + RM49/month care.",
   alternates: { canonical: "/pricing" },
@@ -93,7 +93,7 @@ export default function PricingPage() {
           Honest answer: monthly is cheaper to start and includes unlimited edits; lump sum works out cheaper from
           around year three. Here&apos;s the math, no spin.
         </p>
-        <div className="mt-8 overflow-x-auto rounded-3xl border border-line">
+        <div className="glow-card mt-8 overflow-x-auto rounded-3xl border border-line">
           <table className="w-full min-w-[560px] bg-surface text-left text-sm">
             <thead>
               <tr className="border-b border-line">
@@ -120,7 +120,7 @@ export default function PricingPage() {
         <h2 className="display text-3xl text-ink sm:text-4xl">Add-ons</h2>
         <div className="mt-8 grid gap-6 sm:grid-cols-2">
           {addons.map((a) => (
-            <div key={a.name} className="rounded-3xl border border-line bg-surface p-6">
+            <div key={a.name} className="glow-card rounded-3xl border border-line bg-surface p-6">
               <div className="flex items-start justify-between gap-4">
                 <h3 className="font-bold text-ink">{a.name}</h3>
                 <span className="shrink-0 rounded-full bg-surface-2 px-3 py-1 text-xs font-semibold text-accent">

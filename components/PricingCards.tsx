@@ -50,7 +50,7 @@ export default function PricingCards() {
       </div>
 
       {/* Lump sum */}
-      <div className="rounded-3xl border border-line bg-surface p-8">
+      <div className="glow-card rounded-3xl border border-line bg-surface p-8">
         <h3 className="display text-2xl text-ink">Lump Sum</h3>
         <p className="mt-1 text-sm text-muted">Best long-term cost — own everything outright.</p>
         <p className="mt-6">

@@ -43,11 +43,25 @@ export default function WorkGrid() {
 
 function Card({ item, open, onToggle }: { item: PortfolioItem; open: boolean; onToggle: () => void }) {
   return (
-    <article className={`overflow-hidden rounded-3xl border bg-surface transition-all ${open ? "border-accent shadow-xl" : "border-line"}`}>
+    <article className={`overflow-hidden rounded-3xl border bg-surface transition-all ${open ? "border-accent shadow-xl" : "glow-card border-line"}`}>
       <button type="button" onClick={onToggle} aria-expanded={open} className="block w-full text-left">
-        <div className={`flex h-40 items-end justify-between bg-gradient-to-br ${item.gradient} p-4`}>
-          <span className="rounded-full bg-black/40 px-3 py-1 text-xs font-semibold text-white">{item.industry}</span>
-          <span className="rounded-full bg-black/40 px-3 py-1 text-xs font-bold text-white">⚡ {item.loadTime}</span>
+        <div className="relative h-40">
+          {item.image ? (
+            <img
+              src={item.image}
+              alt={`Screenshot of the ${item.name} website`}
+              loading="lazy"
+              className="absolute inset-0 h-full w-full object-cover object-top"
+            />
+          ) : (
+            <div className={`absolute inset-0 bg-gradient-to-br ${item.gradient}`} aria-hidden />
+          )}
+          <div className="absolute inset-x-0 bottom-0 flex items-end justify-between p-4">
+            <span className="rounded-full bg-black/60 px-3 py-1 text-xs font-semibold text-white">{item.industry}</span>
+            {item.loadTime && (
+              <span className="rounded-full bg-black/60 px-3 py-1 text-xs font-bold text-white">⚡ {item.loadTime}</span>
+            )}
+          </div>
         </div>
         <div className="p-5">
           <h2 className="font-bold text-ink">{item.name}</h2>
@@ -80,6 +94,16 @@ function Card({ item, open, onToggle }: { item: PortfolioItem; open: boolean; on
               </li>
             ))}
           </ul>
+          {item.url && (
+            <a
+              href={item.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="mt-4 inline-block font-semibold text-accent hover:underline"
+            >
+              Visit live site ↗
+            </a>
+          )}
         </div>
       )}
     </article>

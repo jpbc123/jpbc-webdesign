@@ -17,8 +17,8 @@
   --color-accent-ink: var(--accent-ink);
   --color-line: var(--line);
   --font-display: var(--font-oswald), "Arial Narrow", sans-serif;
-  --font-body: var(--font-inter), system-ui, sans-serif;
-  --font-script: var(--font-caveat), cursive;
+  --font-body: var(--font-source-sans), system-ui, sans-serif;
+  --font-script: var(--font-yellowtail), cursive;
 }
 
 /* ---------- Light mode: daytime studio ---------- */
@@ -39,7 +39,8 @@
 
 /* ---------- Dark mode: "Lepas Kerja" (after-hours) ---------- */
 .dark {
-  --bg: #050a15;
+  /* Matches the midpoint of the night-sky body gradient below */
+  --bg: #0a1830;
   --surface: #0b1424;
   --surface-2: #101c31;
   --ink: #e6edf8;
@@ -64,6 +65,12 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
+/* Lepas Kerja night sky: deep-navy gradient pinned to the viewport */
+.dark body {
+  background: linear-gradient(180deg, #050b18 0%, #0a1830 55%, #0d2240 100%);
+  background-attachment: fixed;
+}
+
 /* Display headline utility */
 .display {
   font-family: var(--font-display);
@@ -81,33 +88,158 @@ body {
 }
 
 /* ---------- Lepas Kerja starfield (dark hero only) ---------- */
+/*
+ * ~120 stars drawn as box-shadows of a 1px dot: ::before holds the static
+ * field, ::after holds the handful that twinkle. Positions span 2400x860px;
+ * the host section's overflow-hidden clips whatever falls outside it.
+ */
 .starfield {
   position: relative;
 }
-.dark .starfield::before {
+.dark .starfield::before,
+.dark .starfield::after {
   content: "";
   position: absolute;
-  inset: 0;
+  top: 0;
+  left: 0;
+  width: 1px;
+  height: 1px;
+  border-radius: 50%;
+  background: transparent;
   pointer-events: none;
-  background-image:
-    radial-gradient(1px 1px at 12% 22%, rgba(255, 255, 255, 0.9) 50%, transparent 51%),
-    radial-gradient(1px 1px at 28% 68%, rgba(255, 255, 255, 0.6) 50%, transparent 51%),
-    radial-gradient(1.5px 1.5px at 41% 15%, rgba(180, 225, 255, 0.9) 50%, transparent 51%),
-    radial-gradient(1px 1px at 55% 45%, rgba(255, 255, 255, 0.5) 50%, transparent 51%),
-    radial-gradient(1.5px 1.5px at 67% 78%, rgba(255, 255, 255, 0.7) 50%, transparent 51%),
-    radial-gradient(1px 1px at 74% 28%, rgba(180, 225, 255, 0.8) 50%, transparent 51%),
-    radial-gradient(1px 1px at 86% 58%, rgba(255, 255, 255, 0.6) 50%, transparent 51%),
-    radial-gradient(1.5px 1.5px at 93% 12%, rgba(255, 255, 255, 0.85) 50%, transparent 51%),
-    radial-gradient(1px 1px at 6% 82%, rgba(255, 255, 255, 0.55) 50%, transparent 51%),
-    radial-gradient(1px 1px at 48% 90%, rgba(180, 225, 255, 0.6) 50%, transparent 51%),
-    radial-gradient(1.2px 1.2px at 20% 42%, rgba(255, 255, 255, 0.7) 50%, transparent 51%),
-    radial-gradient(1px 1px at 63% 8%, rgba(255, 255, 255, 0.65) 50%, transparent 51%);
-  animation: twinkle 6s ease-in-out infinite alternate;
+}
+.dark .starfield::before {
+  box-shadow:
+    500px 471px 0 rgba(255, 255, 255, 0.69),
+    681px 345px 0 rgba(255, 255, 255, 0.46),
+    499px 464px 0 rgba(255, 255, 255, 0.63),
+    1643px 222px 0 rgba(186, 224, 255, 0.48),
+    104px 552px 0 0.5px rgba(255, 255, 255, 0.49),
+    2293px 559px 0 rgba(255, 255, 255, 0.55),
+    1338px 768px 0 0.5px rgba(255, 255, 255, 0.67),
+    1559px 838px 0 rgba(186, 224, 255, 0.63),
+    1056px 229px 0 0.5px rgba(255, 255, 255, 0.51),
+    2212px 656px 0 rgba(255, 255, 255, 0.69),
+    2110px 79px 0 rgba(255, 255, 255, 0.55),
+    2234px 459px 0 rgba(186, 224, 255, 0.42),
+    1623px 633px 0 rgba(255, 255, 255, 0.53),
+    220px 448px 0 rgba(255, 255, 255, 0.54),
+    1200px 313px 0 rgba(186, 224, 255, 0.65),
+    415px 629px 0 0.5px rgba(255, 255, 255, 0.59),
+    244px 288px 0 0.5px rgba(186, 224, 255, 0.42),
+    1233px 30px 0 rgba(255, 255, 255, 0.45),
+    2230px 95px 0 rgba(186, 224, 255, 0.64),
+    1510px 560px 0 rgba(255, 255, 255, 0.53),
+    599px 37px 0 rgba(255, 255, 255, 0.63),
+    2046px 172px 0 rgba(186, 224, 255, 0.55),
+    1478px 33px 0 rgba(255, 255, 255, 0.5),
+    59px 527px 0 rgba(255, 255, 255, 0.47),
+    1368px 772px 0 rgba(255, 255, 255, 0.67),
+    1969px 36px 0 0.5px rgba(186, 224, 255, 0.69),
+    911px 95px 0 0.5px rgba(255, 255, 255, 0.5),
+    2125px 90px 0 0.5px rgba(186, 224, 255, 0.55),
+    1144px 230px 0 rgba(186, 224, 255, 0.52),
+    2108px 347px 0 rgba(186, 224, 255, 0.55),
+    310px 95px 0 rgba(186, 224, 255, 0.67),
+    2179px 495px 0 rgba(255, 255, 255, 0.62),
+    1859px 9px 0 0.5px rgba(186, 224, 255, 0.53),
+    1459px 523px 0 0.5px rgba(255, 255, 255, 0.42),
+    892px 849px 0 rgba(255, 255, 255, 0.52),
+    1223px 695px 0 rgba(255, 255, 255, 0.41),
+    2036px 47px 0 rgba(255, 255, 255, 0.56),
+    541px 268px 0 rgba(255, 255, 255, 0.66),
+    1714px 699px 0 rgba(255, 255, 255, 0.7),
+    1008px 408px 0 rgba(255, 255, 255, 0.46),
+    2119px 624px 0 rgba(255, 255, 255, 0.67),
+    1281px 858px 0 0.5px rgba(255, 255, 255, 0.55),
+    2154px 764px 0 0.5px rgba(255, 255, 255, 0.43),
+    770px 669px 0 0.5px rgba(186, 224, 255, 0.42),
+    510px 529px 0 rgba(255, 255, 255, 0.45),
+    708px 208px 0 0.5px rgba(255, 255, 255, 0.58),
+    1532px 495px 0 0.5px rgba(186, 224, 255, 0.54),
+    532px 244px 0 0.5px rgba(255, 255, 255, 0.61),
+    2081px 360px 0 rgba(255, 255, 255, 0.41),
+    1804px 726px 0 0.5px rgba(255, 255, 255, 0.67),
+    242px 525px 0 rgba(255, 255, 255, 0.56),
+    2315px 484px 0 rgba(186, 224, 255, 0.6),
+    1382px 826px 0 rgba(186, 224, 255, 0.45),
+    2301px 25px 0 rgba(255, 255, 255, 0.69),
+    423px 15px 0 rgba(255, 255, 255, 0.63),
+    1380px 388px 0 0.5px rgba(255, 255, 255, 0.65),
+    2221px 156px 0 0.5px rgba(255, 255, 255, 0.55),
+    1629px 376px 0 rgba(255, 255, 255, 0.41),
+    2382px 681px 0 rgba(255, 255, 255, 0.68),
+    2226px 201px 0 rgba(255, 255, 255, 0.45),
+    1443px 177px 0 rgba(186, 224, 255, 0.62),
+    1018px 453px 0 rgba(255, 255, 255, 0.52),
+    234px 113px 0 rgba(255, 255, 255, 0.44),
+    171px 148px 0 rgba(255, 255, 255, 0.45),
+    1666px 263px 0 0.5px rgba(186, 224, 255, 0.58),
+    355px 208px 0 rgba(255, 255, 255, 0.68),
+    2322px 729px 0 rgba(255, 255, 255, 0.46),
+    2133px 262px 0 rgba(255, 255, 255, 0.53),
+    110px 750px 0 rgba(186, 224, 255, 0.48),
+    1339px 448px 0 rgba(255, 255, 255, 0.56),
+    559px 358px 0 rgba(255, 255, 255, 0.41),
+    655px 275px 0 rgba(255, 255, 255, 0.43),
+    1319px 364px 0 rgba(255, 255, 255, 0.66),
+    803px 138px 0 rgba(255, 255, 255, 0.47),
+    1597px 567px 0 0.5px rgba(255, 255, 255, 0.68),
+    2008px 411px 0 rgba(255, 255, 255, 0.54),
+    274px 374px 0 0.5px rgba(255, 255, 255, 0.63),
+    588px 821px 0 rgba(186, 224, 255, 0.51),
+    2062px 492px 0 0.5px rgba(255, 255, 255, 0.5),
+    1451px 749px 0 0.5px rgba(255, 255, 255, 0.65),
+    1089px 330px 0 rgba(255, 255, 255, 0.67),
+    1414px 648px 0 rgba(186, 224, 255, 0.48),
+    244px 824px 0 rgba(255, 255, 255, 0.6),
+    606px 339px 0 rgba(255, 255, 255, 0.54),
+    2145px 475px 0 rgba(255, 255, 255, 0.47),
+    2367px 747px 0 rgba(186, 224, 255, 0.44),
+    552px 217px 0 rgba(255, 255, 255, 0.63),
+    1628px 188px 0 0.5px rgba(255, 255, 255, 0.67),
+    145px 165px 0 rgba(255, 255, 255, 0.47),
+    56px 286px 0 0.5px rgba(255, 255, 255, 0.41),
+    920px 732px 0 rgba(186, 224, 255, 0.41),
+    1506px 92px 0 rgba(255, 255, 255, 0.55),
+    1787px 651px 0 rgba(255, 255, 255, 0.46),
+    858px 667px 0 rgba(186, 224, 255, 0.67),
+    657px 189px 0 rgba(255, 255, 255, 0.55),
+    903px 363px 0 0.5px rgba(255, 255, 255, 0.62),
+    944px 56px 0 0.5px rgba(186, 224, 255, 0.62),
+    1652px 136px 0 rgba(255, 255, 255, 0.46),
+    1184px 787px 0 rgba(255, 255, 255, 0.57),
+    589px 537px 0 0.5px rgba(255, 255, 255, 0.6),
+    993px 30px 0 0.5px rgba(255, 255, 255, 0.46),
+    1104px 786px 0 0.5px rgba(255, 255, 255, 0.54),
+    750px 176px 0 rgba(255, 255, 255, 0.6),
+    128px 426px 0 rgba(186, 224, 255, 0.63),
+    1296px 839px 0 0.5px rgba(255, 255, 255, 0.65),
+    818px 385px 0 rgba(186, 224, 255, 0.63),
+    1195px 808px 0 rgba(255, 255, 255, 0.54),
+    2280px 689px 0 rgba(186, 224, 255, 0.44),
+    2124px 805px 0 rgba(255, 255, 255, 0.66),
+    1366px 324px 0 rgba(186, 224, 255, 0.4),
+    2041px 696px 0 rgba(186, 224, 255, 0.68);
+}
+/* The nine stars that twinkle */
+.dark .starfield::after {
+  box-shadow:
+    382px 518px 0 0.5px rgba(255, 255, 255, 0.57),
+    719px 836px 0 0.5px rgba(255, 255, 255, 0.43),
+    1097px 213px 0 0.5px rgba(186, 224, 255, 0.51),
+    1093px 251px 0 0.5px rgba(186, 224, 255, 0.65),
+    1903px 647px 0 0.5px rgba(186, 224, 255, 0.48),
+    810px 295px 0 0.5px rgba(255, 255, 255, 0.44),
+    585px 214px 0 0.5px rgba(255, 255, 255, 0.57),
+    382px 136px 0 0.5px rgba(255, 255, 255, 0.64),
+    1632px 546px 0 0.5px rgba(186, 224, 255, 0.57);
+  animation: twinkle 7s ease-in-out infinite alternate;
 }
 
 @keyframes twinkle {
-  from { opacity: 0.55; }
-  to { opacity: 1; }
+  from { opacity: 1; }
+  to { opacity: 0.25; }
 }
 
 /* Glowing accent treatment for dark mode CTAs */
@@ -115,9 +247,171 @@ body {
   box-shadow: 0 0 24px rgba(34, 211, 238, 0.35);
 }
 
+/* Dark mode: nav pill and cards trade flat borders for a soft accent glow */
+.dark .glow-card {
+  border-color: color-mix(in srgb, var(--accent) 30%, transparent);
+  box-shadow:
+    0 0 0 1px color-mix(in srgb, var(--accent) 8%, transparent),
+    0 0 20px -2px color-mix(in srgb, var(--accent) 25%, transparent);
+}
+/* Linked cards brighten on hover (replaces their light-mode hover border) */
+.dark a.glow-card:hover {
+  border-color: color-mix(in srgb, var(--accent) 70%, transparent);
+  box-shadow:
+    0 0 0 1px color-mix(in srgb, var(--accent) 20%, transparent),
+    0 0 28px -2px color-mix(in srgb, var(--accent) 40%, transparent);
+}
+
+/* ---------- Neon "lepas kerja" tag: letters warm up like a neon sign ---------- */
+/*
+ * Each letter is a span with a staggered --d delay (set in Nav.tsx). The
+ * warm-up replays every time dark mode is toggled on, because the tag going
+ * display:none -> inline restarts its CSS animations — no JS needed. One
+ * letter uses the flicker variant, like a tube that takes two tries to catch.
+ */
+.neon-letter {
+  animation: neon-on 0.4s ease-out var(--d, 0s) both;
+}
+.neon-letter--flicker {
+  animation-name: neon-on-flicker;
+  animation-duration: 0.8s;
+}
+/* After the warm-up, the whole tag breathes very slowly */
+.neon-tag {
+  animation: neon-pulse 7s ease-in-out 2.5s infinite;
+}
+@keyframes neon-on {
+  from {
+    opacity: 0.18;
+    text-shadow: none;
+  }
+  to {
+    opacity: 1;
+    text-shadow:
+      0 0 4px color-mix(in srgb, var(--accent) 85%, transparent),
+      0 0 12px color-mix(in srgb, var(--accent) 55%, transparent),
+      0 0 28px color-mix(in srgb, var(--accent) 35%, transparent);
+  }
+}
+@keyframes neon-on-flicker {
+  0% {
+    opacity: 0.18;
+    text-shadow: none;
+  }
+  30%, 48%, 72%, 100% {
+    opacity: 1;
+    text-shadow:
+      0 0 4px color-mix(in srgb, var(--accent) 85%, transparent),
+      0 0 12px color-mix(in srgb, var(--accent) 55%, transparent),
+      0 0 28px color-mix(in srgb, var(--accent) 35%, transparent);
+  }
+  38% {
+    opacity: 0.12;
+    text-shadow: none;
+  }
+  56% {
+    opacity: 0.2;
+    text-shadow: none;
+  }
+}
+@keyframes neon-pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.84; }
+}
+
+/* ---------- Shooting stars (dark hero only, see NightSkyFx.tsx) ---------- */
+/*
+ * Each star repeats on its own long cycle (--dur) and is visible for only the
+ * first ~3.5% of it, so a streak is a lucky sighting rather than wallpaper.
+ */
+.shooting-star {
+  position: absolute;
+  top: var(--top);
+  left: var(--left);
+  width: 110px;
+  height: 2px;
+  border-radius: 999px;
+  /* bright leading head, faint blue tail */
+  background: linear-gradient(90deg, transparent, rgba(186, 224, 255, 0.4) 55%, rgba(255, 255, 255, 0.9));
+  opacity: 0;
+  transform: rotate(var(--angle)) translateX(0);
+  animation: shoot var(--dur) linear var(--delay, 0s) infinite;
+}
+@keyframes shoot {
+  0% {
+    opacity: 0;
+    transform: rotate(var(--angle)) translateX(0);
+  }
+  0.5% { opacity: 0.9; }
+  3.5%, 100% {
+    opacity: 0;
+    transform: rotate(var(--angle)) translateX(360px);
+  }
+}
+
+/* ---------- UFO easter egg (see NightSkyFx.tsx) ---------- */
+.ufo {
+  position: absolute;
+  top: 84px;
+  left: 0;
+  width: 44px;
+  opacity: 0;
+  pointer-events: none;
+}
+.ufo-flying {
+  pointer-events: auto;
+  cursor: pointer;
+  animation: ufo-flight 14s linear both; /* duration mirrored as FLIGHT_MS in NightSkyFx.tsx */
+}
+.ufo-inner {
+  animation: ufo-bob 2.8s ease-in-out infinite;
+}
+.ufo-zap .ufo-inner {
+  animation: ufo-wobble 0.7s ease-in-out;
+}
+.ufo-beam {
+  opacity: 0;
+}
+.ufo-zap .ufo-beam {
+  animation: ufo-beam-flash 0.8s ease-out;
+}
+/* Slow drift most of the way, then a quick accelerating zip off-screen */
+@keyframes ufo-flight {
+  0% {
+    transform: translateX(-60px) rotate(2deg);
+    opacity: 0;
+  }
+  4% { opacity: 1; }
+  80% {
+    transform: translateX(60vw) rotate(-3deg);
+    opacity: 1;
+  }
+  88% { transform: translateX(70vw) rotate(-6deg); }
+  99% { opacity: 1; }
+  100% {
+    transform: translateX(115vw) rotate(-9deg);
+    opacity: 0;
+  }
+}
+@keyframes ufo-bob {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  50% { transform: translateY(6px) rotate(-2deg); }
+}
+@keyframes ufo-wobble {
+  0%, 100% { transform: rotate(0deg); }
+  20% { transform: rotate(10deg); }
+  45% { transform: rotate(-9deg); }
+  70% { transform: rotate(5deg); }
+}
+@keyframes ufo-beam-flash {
+  0% { opacity: 0; }
+  25% { opacity: 0.85; }
+  100% { opacity: 0; }
+}
+
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
-  .dark .starfield::before { animation: none; }
+  .dark .starfield::after { animation: none; }
   *, *::before, *::after {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;

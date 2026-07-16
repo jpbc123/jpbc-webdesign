@@ -3,9 +3,9 @@ import WorkGrid from "./WorkGrid";
 import CtaBand from "@/components/CtaBand";
 
 export const metadata: Metadata = {
-  title: "Our Work — Websites for Malaysian Small Businesses",
+  title: "Our Work - Websites for Malaysian Small Businesses",
   description:
-    "Hand-coded websites we've built for Malaysian small businesses — aircon services, klinik, restoran, renovation, tuition centres, and workshops. Every one loads in under a second.",
+    "Hand-coded websites and web apps for Malaysian businesses — aircon services, klinik, restoran, renovation, tuition centres, workshops, and more. Every project is live.",
   alternates: { canonical: "/work" },
 };
 
@@ -16,9 +16,9 @@ export default function WorkPage() {
         <h1 className="display text-5xl text-ink sm:text-6xl">Our work</h1>
         {/* Answer-first for SEO/AEO */}
         <p className="mt-4 max-w-3xl text-lg text-muted">
-          What kind of websites does JPBC build? Fast, hand-coded sites for everyday Malaysian businesses — aircon
-          teams, klinik, restoran, renovation contractors, tuition centres, workshops. Every site below loads in under
-          a second on mobile.
+          What kind of websites does JPBC build? Fast, hand-coded sites and web apps for everyday Malaysian
+          businesses — aircon teams, klinik, restoran, renovation contractors, tuition centres, workshops. Every
+          project below is live; click through and see for yourself.
         </p>
       </section>
 

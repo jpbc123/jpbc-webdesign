@@ -33,7 +33,7 @@ export const pricingFaqs: Faq[] = [
 export const generalFaqs: Faq[] = [
   {
     q: "Who owns the website and the domain?",
-    a: "The domain is always registered in your name — you own it, full stop. On the lump-sum plan you also own the site code outright. On the monthly plan the site is part of the ongoing service, which is how we keep it at RM0 down.",
+    a: "The domain is registered under your own name, so it stays yours even if you stop working with us. On the lump-sum plan you also own the site code outright. On the monthly plan the site is part of the ongoing service, which is how we keep it at RM0 down.",
   },
   {
     q: "How long does it take to build my website?",
