@@ -4,6 +4,7 @@ import "./globals.css";
 import Nav from "@/components/Nav";
 import Footer from "@/components/Footer";
 import { SITE_URL, SITE_NAME } from "@/lib/site";
+import { Analytics } from "@vercel/analytics/next";
 
 const sourceSans = Source_Sans_3({ subsets: ["latin"], variable: "--font-source-sans" });
 const oswald = Oswald({ subsets: ["latin"], variable: "--font-oswald" });
@@ -42,6 +43,7 @@ export default function RootLayout({
         <Nav />
         <main id="main">{children}</main>
         <Footer />
+        <Analytics />
       </body>
     </html>
   );
