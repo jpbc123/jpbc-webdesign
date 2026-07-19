@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import type { CSSProperties } from "react";
 import ThemeToggle from "./ThemeToggle";
 import { locations } from "@/data/locations";
@@ -32,6 +32,18 @@ const serviceLinks = [
 export default function Nav() {
   const [open, setOpen] = useState(false);
   const [mobileGroup, setMobileGroup] = useState<"services" | "locations" | null>(null);
+  const [expanded, setExpanded] = useState(false);
+  const sentinelRef = useRef<HTMLDivElement>(null);
+
+  // Expand the pill into a full-width bar once the top-of-page sentinel
+  // scrolls out of view (no per-scroll-event work; the morph is pure CSS).
+  useEffect(() => {
+    const sentinel = sentinelRef.current;
+    if (!sentinel) return;
+    const observer = new IntersectionObserver(([entry]) => setExpanded(!entry.isIntersecting));
+    observer.observe(sentinel);
+    return () => observer.disconnect();
+  }, []);
 
   const close = () => {
     setOpen(false);
@@ -39,9 +51,11 @@ export default function Nav() {
   };
 
   return (
-    <header className="sticky top-3 z-50 px-3">
+    <>
+      <div ref={sentinelRef} aria-hidden className="pointer-events-none absolute top-0 h-[60px] w-px" />
+      <header className={"site-header sticky z-50 " + (expanded ? "site-header--expanded" : "")}>
       {/* Rounded pill nav bar floating over the hero */}
-      <nav className="glow-card mx-auto flex max-w-5xl items-center justify-between rounded-full border border-line bg-surface/90 px-4 py-2 shadow-lg shadow-navy/5 backdrop-blur sm:px-6">
+      <nav className="site-header-bar glow-card mx-auto flex max-w-5xl items-center justify-between rounded-full border border-line bg-surface/90 px-4 py-2 shadow-lg shadow-navy/5 backdrop-blur sm:px-6">
         <Link href="/" className="group flex flex-col leading-none" onClick={close}>
           <span className="display text-lg tracking-wide text-ink">
             JPBC <span className="text-accent">Web Designs</span>
@@ -50,8 +64,8 @@ export default function Nav() {
               Letters warm up neon-sign style each time dark mode switches on
               (display:none -> inline restarts the CSS animations), then keep
               blinking off/on individually per the neonBlink timings. */}
-          <span className="neon-tag hidden font-script text-base leading-none text-accent dark:inline" aria-hidden>
-            {"lepas kerja".split("").map((ch, i) =>
+          <span className="neon-tag hidden self-end font-script text-base leading-none text-accent dark:inline" aria-hidden>
+            {"after hours".split("").map((ch, i) =>
               ch === " " ? (
                 <span key={i}>{" "}</span>
               ) : (
@@ -144,7 +158,7 @@ export default function Nav() {
 
       {/* Mobile menu */}
       {open && (
-        <div className="glow-card mx-auto mt-2 max-w-5xl rounded-3xl border border-line bg-surface p-4 shadow-xl lg:hidden">
+        <div className="site-mobile-menu glow-card mx-auto mt-2 max-w-5xl rounded-3xl border border-line bg-surface p-4 shadow-xl lg:hidden">
           <button
             type="button"
             className="flex w-full items-center justify-between rounded-xl px-3 py-2 text-left font-medium text-ink"
@@ -189,6 +203,7 @@ export default function Nav() {
           </Link>
         </div>
       )}
-    </header>
+      </header>
+    </>
   );
 }

@@ -10,7 +10,7 @@ export default function Footer() {
           <p className="display text-xl">
             JPBC <span className="text-accent">Web Designs</span>
           </p>
-          <p className="mt-1 hidden font-script text-lg text-accent dark:block">lepas kerja mode aktif ✦</p>
+          <p className="mt-1 hidden font-script text-lg text-accent dark:block">after hours</p>
           <p className="mt-3 max-w-xs text-sm text-hero-muted">
             Hand-coded websites for Malaysian small businesses. RM0 down, RM179/month. Based in Petaling Jaya, serving the whole Klang Valley.
           </p>
