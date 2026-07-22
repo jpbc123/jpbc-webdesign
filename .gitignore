@@ -22,5 +22,6 @@ yarn-debug.log*
 yarn-error.log*
 
 jpbc-webdesigns-scaffold-prompt.md
+*-claude-code-prompt.md
 
 instructions.txt
