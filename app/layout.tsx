@@ -1,8 +1,6 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Source_Sans_3, Oswald, Yellowtail } from "next/font/google";
 import "./globals.css";
-import Nav from "@/components/Nav";
-import Footer from "@/components/Footer";
 import { SITE_URL, SITE_NAME } from "@/lib/site";
 import { Analytics } from "@vercel/analytics/next";
 
@@ -25,6 +23,24 @@ export const metadata: Metadata = {
     url: SITE_URL,
   },
   twitter: { card: "summary_large_image" },
+  // SVG first for crisp tabs (and its own dark-scheme variant), .ico as the
+  // fallback for browsers that don't take SVG favicons.
+  icons: {
+    icon: [
+      { url: "/favicon.svg", type: "image/svg+xml" },
+      { url: "/favicon.ico", sizes: "32x32" },
+    ],
+    apple: [{ url: "/apple-touch-icon.png", sizes: "180x180" }],
+  },
+  manifest: "/site.webmanifest",
+};
+
+// Tints mobile browser chrome to match whichever palette is showing.
+export const viewport: Viewport = {
+  themeColor: [
+    { media: "(prefers-color-scheme: light)", color: "#f5f7fb" },
+    { media: "(prefers-color-scheme: dark)", color: "#0b1f3a" },
+  ],
 };
 
 // Runs before paint: applies saved theme (or system preference) to avoid a flash.
@@ -39,10 +55,10 @@ export default function RootLayout({
         <script dangerouslySetInnerHTML={{ __html: themeInit }} />
         {/* TODO: Paste your analytics snippet here (e.g. Plausible/GA4) */}
       </head>
+      {/* Nav/main/footer come from the market layouts (components/MarketShell),
+          so every page renders the chrome for the market it belongs to. */}
       <body className={`${sourceSans.variable} ${oswald.variable} ${yellowtail.variable} font-body`}>
-        <Nav />
-        <main id="main">{children}</main>
-        <Footer />
+        {children}
         <Analytics />
       </body>
     </html>

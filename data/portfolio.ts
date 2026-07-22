@@ -1,6 +1,11 @@
 // All items are real, launched projects. Add new client projects here as
 // they launch — each item drives a card on /work and the home page
 // portfolio grid. Screenshots live in /public/work/<slug>.jpg.
+//
+// Which items a market shows is set by `workExamples.portfolioSlugs` in
+// config/markets/<code>.ts.
+
+import type { Market } from "@/config/markets/types";
 
 export type PortfolioItem = {
   slug: string;
@@ -97,3 +102,19 @@ export const portfolioCategories = [
   { key: "lifestyle", label: "Lifestyle & Media" },
   { key: "services", label: "Services & Trades" },
 ] as const;
+
+export type PortfolioCategory = (typeof portfolioCategories)[number];
+
+/** The client work a market shows, in the order listed in its config. */
+export function portfolioFor(market: Market): PortfolioItem[] {
+  return market.workExamples.portfolioSlugs
+    .map((slug) => portfolio.find((p) => p.slug === slug))
+    .filter((item): item is PortfolioItem => Boolean(item));
+}
+
+/** Only the filter buttons that have work behind them. */
+export function categoriesFor(items: PortfolioItem[]): PortfolioCategory[] {
+  return portfolioCategories.filter(
+    (c) => c.key === "all" || items.some((item) => item.category === c.key)
+  );
+}

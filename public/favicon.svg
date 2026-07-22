@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="JPBC Web Designs">
+  <!--
+    Filled badge (not a transparent glyph) so the mark reads on light and dark
+    tab strips alike. Geometry is deliberately fat-stroked and gradient-free:
+    the 9-unit stroke is 2.25px at 16x16, which survives downscaling.
+    The dark-scheme block only brightens the cyan and adds a faint rim so the
+    navy badge doesn't melt into a dark browser chrome.
+  -->
+  <style>
+    .badge { fill: #0b1f3a; }
+    .rim { fill: none; stroke: #22d3ee; stroke-opacity: 0; stroke-width: 2; }
+    .mark { fill: none; stroke: #06b6d4; stroke-width: 9; stroke-linecap: round; stroke-linejoin: round; }
+    @media (prefers-color-scheme: dark) {
+      .badge { fill: #0a1830; }
+      .rim { stroke-opacity: 0.4; }
+      .mark { stroke: #22d3ee; }
+    }
+  </style>
+  <rect class="badge" width="64" height="64" rx="14" />
+  <rect class="rim" x="1" y="1" width="62" height="62" rx="13" />
+  <path class="mark" d="M22 20H44M38 20V35A9 9 0 0 1 20 35" />
+</svg>

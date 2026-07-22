@@ -1,11 +1,16 @@
 import { NextRequest, NextResponse } from "next/server";
 import { appendFile, mkdir } from "fs/promises";
 import path from "path";
-import { isValidMalaysianPhone, normalisePhone } from "@/lib/site";
+import { markets, DEFAULT_MARKET_CODE } from "@/config/markets";
+import type { MarketCode } from "@/config/markets/types";
+import { isValidPhone, normalisePhone } from "@/lib/market";
 
 // Lead capture: stores every submission as a JSON line in .data/leads.jsonl
 // AND forwards it to the webhook in LEAD_WEBHOOK_URL (if set) so leads pipe
 // to WhatsApp/Sheets/Zapier. Swap the file store for Supabase later if needed.
+//
+// Forms post the market they were submitted from, so the phone number is
+// validated against that market's rule and stored in international format.
 
 const STORE_DIR = path.join(process.cwd(), ".data");
 const STORE_FILE = path.join(STORE_DIR, "leads.jsonl");
@@ -18,16 +23,20 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: "Invalid JSON" }, { status: 400 });
   }
 
+  const code = (typeof body.market === "string" ? body.market : DEFAULT_MARKET_CODE) as MarketCode;
+  const market = markets[code] ?? markets[DEFAULT_MARKET_CODE];
+
   const phone = typeof body.phone === "string" ? body.phone : "";
-  if (!isValidMalaysianPhone(phone)) {
-    return NextResponse.json({ error: "Invalid Malaysian phone number" }, { status: 400 });
+  if (!isValidPhone(market, phone)) {
+    return NextResponse.json({ error: `Invalid ${market.label} phone number` }, { status: 400 });
   }
 
   // Keep only expected string fields, capped in length — never store raw junk.
   const allowed = ["type", "name", "business", "industry", "website", "package", "need"] as const;
   const lead: Record<string, string> = {
     receivedAt: new Date().toISOString(),
-    phone: normalisePhone(phone),
+    market: market.code,
+    phone: normalisePhone(market, phone),
   };
   for (const key of allowed) {
     const val = body[key];

@@ -58,6 +58,13 @@ html {
   scroll-behavior: smooth;
 }
 
+:root {
+  /* Height of the floating nav pill. Constant across themes and scroll states;
+     .under-header below pulls the hero up by this much, so raising it keeps
+     the hero tucked behind the pill instead of leaving a band of page bg. */
+  --header-bar-height: 5rem;
+}
+
 body {
   background: var(--bg);
   color: var(--ink);
@@ -262,6 +269,48 @@ body {
     0 0 28px -2px color-mix(in srgb, var(--accent) 40%, transparent);
 }
 
+/* ---------- Stacked wordmark, right of the bracket mark (see Nav.tsx) ---------- */
+/*
+ * Two lines read as one block: JPBC in the accent over WEB DESIGNS in ink.
+ * The lockup is a flex column sized by the brand name, and the descriptor is a
+ * flex row with space-between, so its two words spread to exactly the width of
+ * the name above. That shared edge is what makes the stack look intentional —
+ * tune it with the three custom properties, keeping the descriptor's natural
+ * width a little under the name's so the word gap stays deliberate.
+ */
+.brand-lockup {
+  --brand-name-size: 2.25rem;
+  --brand-desc-size: 0.72rem;
+  --brand-desc-track: 0.07em;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+}
+.brand-name {
+  font-size: var(--brand-name-size);
+  font-weight: 700;
+  letter-spacing: -0.005em;
+  /* Below 1 on purpose: Oswald's caps are ~0.73em, so the line box hugs them
+     and the two lines read as one block. */
+  line-height: 0.75;
+  color: var(--accent);
+}
+.brand-desc {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 0.15em;
+  font-size: var(--brand-desc-size);
+  font-weight: 500;
+  letter-spacing: var(--brand-desc-track);
+  line-height: 1;
+  color: var(--ink);
+}
+/* Letter-spacing leaves a trailing gap after the final glyph; pull it back so
+   the descriptor's right edge lines up with the brand name's. */
+.brand-desc > span:last-child {
+  margin-right: calc(var(--brand-desc-track) * -1);
+}
+
 /* ---------- Neon "lepas kerja" tag: letters warm up like a neon sign ---------- */
 /*
  * Each letter is a span with a staggered --d delay (set in Nav.tsx). The
@@ -420,6 +469,13 @@ body {
   100% { opacity: 0; }
 }
 
+/* Pulls a full-bleed hero up behind the floating nav pill, far enough that it
+   still covers the top edge of the viewport. Tracks the pill height, so the
+   two never drift apart. */
+.under-header {
+  margin-top: calc(-1 * (var(--header-bar-height) + 1rem));
+}
+
 /* ---------- Expanding sticky header (state toggled in Nav.tsx) ---------- */
 /*
  * At the top of the page the nav is a floating pill (inset from the edges,
@@ -436,6 +492,11 @@ body {
     padding 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 .site-header-bar {
+  /* One constant pill height in both themes and in both the floating and
+     expanded states. Dark mode's extra "after hours" line is reserved in light
+     mode too (see the spacer in Nav.tsx), so toggling the theme never resizes
+     the header. Raise this to give the lockup more breathing room. */
+  min-height: var(--header-bar-height);
   transition:
     max-width 0.3s cubic-bezier(0.4, 0, 0.2, 1),
     border-radius 0.3s cubic-bezier(0.4, 0, 0.2, 1),
