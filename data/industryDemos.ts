@@ -18,13 +18,10 @@ export type IndustryDemo = {
 
 export const industryDemos: IndustryDemo[] = [
   {
-    slug: "dental",
-    name: "Dental Clinics",
-    url: "https://dental.jpbcwebdesigns.com",
-    blurb: "Appointment-focused sites for clinics — services, doctors, and WhatsApp booking front and centre.",
-    blurbByMarket: {
-      my: "Appointment-focused sites for kliniks — services, doctors, and WhatsApp booking front and centre.",
-    },
+    slug: "construction",
+    name: "Construction",
+    url: "https://construction.jpbcwebdesigns.com/demo",
+    blurb: "Project-focused sites for builders and contractors — services, past work, and WhatsApp quote requests front and centre.",
   },
   {
     slug: "fitness",
