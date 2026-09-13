@@ -26,8 +26,8 @@ export const my: Market = {
   },
 
   contact: {
-    whatsapp: "60122947847",
-    phoneDisplay: "+60 12-294 7847",
+    whatsapp: "60195513944",
+    phoneDisplay: "+60 19-551 3944",
     email: "hello@jpbcwebdesigns.com", // TODO: confirm email
     serviceArea: "Klang Valley, Malaysia",
     serviceAreaBody:

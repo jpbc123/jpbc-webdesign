@@ -9,7 +9,7 @@ import type { Market } from "./types";
 // TODO: confirm the lump-sum and add-on numbers before flipping `enabled`.
 
 const AU_WHATSAPP =
-  process.env.NEXT_PUBLIC_AU_WHATSAPP || process.env.AU_WHATSAPP || "60122947847";
+  process.env.NEXT_PUBLIC_AU_WHATSAPP || process.env.AU_WHATSAPP || "60195513944";
 
 export const au: Market = {
   code: "au",

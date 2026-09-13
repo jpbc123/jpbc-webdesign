@@ -8,7 +8,7 @@ import type { Market } from "./types";
 // TODO: confirm the lump-sum and add-on numbers before promoting /ph.
 
 const PH_WHATSAPP =
-  process.env.NEXT_PUBLIC_PH_WHATSAPP || process.env.PH_WHATSAPP || "60122947847";
+  process.env.NEXT_PUBLIC_PH_WHATSAPP || process.env.PH_WHATSAPP || "60195513944";
 
 export const ph: Market = {
   code: "ph",
