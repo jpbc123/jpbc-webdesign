@@ -33,21 +33,21 @@ export type PortfolioItem = {
 export const portfolio: PortfolioItem[] = [
   {
     slug: "swift-audit",
-    name: "Swift Audit",
-    industry: "Audit / Fintech",
+    name: "MY Swift Audit",
+    industry: "Web App / Fintech",
     category: "apps",
     location: "Malaysia",
     url: "https://myswiftaudit.com",
     // TODO: add measured mobile load time (loadTime: "0.Xs")
-    blurb: "Web app that automates financial audit report preparation for Malaysian firms.",
+    blurb: "Web app that turns a company's trial balance into full MPERS financial statements and audit working papers, for Malaysian accounting and audit firms.",
     built: [
       "Brand-new build — designed and developed from zero, not a redesign",
-      "Automates the preparation of financial audit reports to Malaysian requirements",
-      "Full web application, not a brochure site: data in, formatted report out",
+      "Generates the full MPERS statutory set from a trial balance: statements, notes and directors' report",
+      "Full web application, not a brochure site: trial balance in, statements and working papers out",
     ],
     beforeAfter: {
-      before: "Audit reports drafted by hand — repetitive, slow, and easy to get wrong.",
-      after: "Enter the engagement figures and the app generates the formatted report — drafting time cut from hours to minutes.",
+      before: "Year-end accounts built by hand in Excel and Word: slow, repetitive and easy to get wrong.",
+      after: "Upload the trial balance and the app produces the statements, notes, directors' report and working papers, checked against a real signed set of accounts.",
     },
     image: "/work/swift-audit.jpg",
     gradient: "from-indigo-500 to-blue-800",
