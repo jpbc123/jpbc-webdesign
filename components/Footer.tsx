@@ -80,9 +80,14 @@ export default function Footer({ market }: { market: Market }) {
       </div>
       <div className="relative border-t border-white/10 py-5 text-xs text-hero-muted">
         <div className="mx-auto flex max-w-6xl flex-col items-center gap-3 px-6 sm:flex-row sm:justify-between">
-          <p>
-            © {new Date().getFullYear()} JPBC Web Designs · {market.voice.footerLegalLine}
-          </p>
+          <div className="text-center sm:text-left">
+            <p>
+              © {new Date().getFullYear()} JPBC Web Designs · {market.voice.footerLegalLine}
+            </p>
+            <p className="mt-1">
+              JPBC Web Designs is operated by RYC Software and Web Solutions (202603276004)
+            </p>
+          </div>
           <MarketSwitcher
             markets={switcherMarkets}
             current={market.code}
