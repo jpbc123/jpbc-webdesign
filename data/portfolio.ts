@@ -39,10 +39,10 @@ export const portfolio: PortfolioItem[] = [
     location: "Malaysia",
     url: "https://myswiftaudit.com",
     // TODO: add measured mobile load time (loadTime: "0.Xs")
-    blurb: "Web app that turns a company's trial balance into full MPERS financial statements and audit working papers, for Malaysian accounting and audit firms.",
+    blurb: "Web app that turns a company's trial balance into full MPERS financial statements, audit working papers and the MBRS file for SSM, for Malaysian accounting and audit firms.",
     built: [
       "Brand-new build — designed and developed from zero, not a redesign",
-      "Generates the full MPERS statutory set from a trial balance: statements, notes and directors' report",
+      "Generates the full MPERS statutory set from a trial balance: statements, notes and directors' report, plus the MBRS file ready to lodge with SSM",
       "Full web application, not a brochure site: trial balance in, statements and working papers out",
     ],
     beforeAfter: {
