@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import WorkGrid from "@/components/WorkGrid";
 import CtaBand from "@/components/CtaBand";
+import ProductsSection from "@/components/ProductsSection";
 import { industryDemosFor } from "@/data/industryDemos";
 import { portfolioFor } from "@/data/portfolio";
 import type { Market } from "@/config/markets/types";
@@ -22,9 +23,14 @@ export default function WorkPage({ market }: { market: Market }) {
         <p className="mt-4 max-w-3xl text-lg text-muted">{market.voice.workAnswerFirst}</p>
       </section>
 
+      <ProductsSection market={market} />
+
       {projects.length > 0 && (
         <section className="mx-auto max-w-6xl px-6 py-10">
-          <WorkGrid projects={projects} />
+          <h2 className="display text-4xl text-ink sm:text-5xl">Recent work</h2>
+          <div className="mt-8">
+            <WorkGrid projects={projects} />
+          </div>
         </section>
       )}
 
