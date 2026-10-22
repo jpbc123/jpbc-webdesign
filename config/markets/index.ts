@@ -58,6 +58,8 @@ export const SHARED_PAGE_PATHS = [
   "/blog",
   "/contact",
   "/get-started",
+  "/terms",
+  "/privacy",
 ] as const;
 
 export function getMarket(code: MarketCode): Market {

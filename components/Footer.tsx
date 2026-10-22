@@ -3,6 +3,7 @@ import { locations } from "@/data/locations";
 import type { Market } from "@/config/markets/types";
 import { enabledMarkets, SHARED_PAGE_PATHS } from "@/config/markets";
 import { mpath, waLink } from "@/lib/market";
+import { OPERATOR, OPERATOR_REG_NO } from "@/lib/legal";
 import MarketSwitcher from "./MarketSwitcher";
 
 export default function Footer({ market }: { market: Market }) {
@@ -74,6 +75,8 @@ export default function Footer({ market }: { market: Market }) {
             <li><Link href={mpath(market, "/get-started")} className="hover:text-accent">Get started</Link></li>
             <li><Link href={mpath(market, "/contact")} className="hover:text-accent">Contact</Link></li>
             <li><Link href={mpath(market, "/faq")} className="hover:text-accent">FAQ</Link></li>
+            <li><Link href={mpath(market, "/terms")} className="hover:text-accent">Terms of Service</Link></li>
+            <li><Link href={mpath(market, "/privacy")} className="hover:text-accent">Privacy Policy</Link></li>
           </ul>
           <p className="mt-4 text-xs text-hero-muted">{market.voice.footerHoursNote}</p>
         </div>
@@ -85,7 +88,7 @@ export default function Footer({ market }: { market: Market }) {
               © {new Date().getFullYear()} JPBC Web Designs · {market.voice.footerLegalLine}
             </p>
             <p className="mt-1">
-              JPBC Web Designs is operated by RYC Software and Web Solutions (202603276004)
+              JPBC Web Designs is operated by {OPERATOR} ({OPERATOR_REG_NO})
             </p>
           </div>
           <MarketSwitcher
