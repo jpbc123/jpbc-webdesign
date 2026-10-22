@@ -20,7 +20,20 @@ export default function WorkPage({ market }: { market: Market }) {
       <section className="mx-auto max-w-6xl px-6 pb-4 pt-16">
         <h1 className="display text-5xl text-ink sm:text-6xl">Our work</h1>
         {/* Answer-first for SEO/AEO */}
-        <p className="mt-4 max-w-3xl text-lg text-muted">{market.voice.workAnswerFirst}</p>
+        <p className="mt-4 text-lg text-muted">{market.voice.workAnswerFirst}</p>
+        <p className="mt-4 text-lg text-muted">
+          We also build custom software: web apps like our own MY Swift Audit and MyResit, AI chatbots for your website
+          or WhatsApp, AI that reads receipts, invoices and statements into clean data, online stores, booking and
+          ordering systems, dashboards and internal tools, and automations that connect the tools you already use.{" "}
+          <a
+            href={waLink(market, "Hi JPBC! I'd like to talk about custom software for my business.")}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="font-semibold text-accent hover:underline"
+          >
+            Tell us what you need on WhatsApp →
+          </a>
+        </p>
       </section>
 
       <ProductsSection market={market} />
