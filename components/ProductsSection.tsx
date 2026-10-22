@@ -9,7 +9,7 @@ export default function ProductsSection({ market }: { market: Market }) {
   return (
     <section id="products" className="mx-auto max-w-6xl scroll-mt-24 px-6 py-10">
       <h2 className="display text-4xl text-ink sm:text-5xl">Our products</h2>
-      <p className="mt-3 max-w-3xl text-muted">
+      <p className="mt-3 text-muted">
         Software we build and run ourselves, for Malaysian businesses. Sold by {OPERATOR}, paid by card through Stripe.
       </p>
 
