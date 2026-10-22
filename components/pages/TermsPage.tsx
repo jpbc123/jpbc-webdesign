@@ -140,6 +140,7 @@ export default function TermsPage({ market }: { market: Market }) {
             This is why our products have free plans and trials, and why we agree every web design quote with you
             before you pay: so you can see what you are getting first.
           </p>
+          <p className="mt-3">Nothing in these terms limits any rights you have under Malaysian consumer law that cannot be excluded.</p>
         </div>
 
         <div>
