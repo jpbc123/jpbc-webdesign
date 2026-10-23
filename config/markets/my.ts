@@ -19,11 +19,11 @@ export const my: Market = {
   pricing: {
     monthly: 179,
     setup: 0,
-    lumpSum: 3500,
+    lumpSum: 2800,
     lumpSumCare: 49,
     minimumMonths: 12,
     edits: { hoursPerMonth: 1, hourlyRate: 50 },
-    addons: { extraPage: 100, googleBusinessProfile: 500, localSeoMonthly: 300 },
+    addons: { extraPage: 100, googleBusinessProfile: 300, localSeoMonthly: 300 },
   },
 
   contact: {
