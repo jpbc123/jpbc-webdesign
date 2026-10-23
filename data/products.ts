@@ -51,11 +51,16 @@ export const products: Product[] = [
     tagline: "For individuals and businesses in Malaysia",
     blurb:
       "Photograph a receipt, let AI read it, check what it found. Kept and searchable for the seven years LHDN asks, with tax reliefs and exports for your accountant.",
-    status: "Launching soon",
+    url: "https://myresit.com.my",
     domain: "myresit.com.my",
     plans: [
       { name: "Free trial", price: "RM0", detail: "First 10 receipts read, no time limit" },
-      { name: "Personal", price: "RM69 / year", was: "RM99", detail: "360 receipts read a year, for personal use" },
+      {
+        name: "Personal",
+        price: "RM69 first year",
+        was: "RM99",
+        detail: "then RM99 / year. 360 receipts read a year, for personal use. Launch price for the first 31",
+      },
       { name: "Basic", price: "RM30 / month", detail: "150 receipts read a month, for a business" },
       { name: "Plus", price: "RM50 / month", detail: "300 receipts read a month, for a business" },
     ],
