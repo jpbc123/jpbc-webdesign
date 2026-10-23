@@ -85,7 +85,7 @@ export const au: Market = {
     businessDescription:
       "Web design studio serving small businesses across Australia. Hand-coded custom websites — {setup} down, {monthly}/month.",
     workAnswerFirst:
-      "What kind of websites does JPBC build? Fast, hand-coded sites and web apps for everyday small businesses — clinics, cafés, salons, trades, tutoring centres, workshops, travel agents. Explore the live demos below and see the standard for yourself.",
+      "What kind of websites does JPBC build? Fast, hand-coded sites, web apps and AI implementation for everyday small businesses — clinics, cafés, salons, trades, tutoring centres, workshops, travel agents. Explore the live demos below and see the standard for yourself.",
     aboutH1: "A small studio that answers its own WhatsApp",
     aboutAnswerFirst:
       "Who is JPBC Web Designs? A founder-led web design studio that hand-codes websites for Australian small businesses. No account managers, no ticket systems — you message us, the person who built your site replies.",
