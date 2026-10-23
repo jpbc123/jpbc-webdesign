@@ -94,9 +94,10 @@ export type Market = {
     closed: string;
     /** Small line under the closed sign, e.g. "WhatsApp still on" */
     closedNote: string;
-    /** The blank fascia board over the hero's shop window */
+    /** The fascia board over the hero's window. Says "your business", not
+     *  "your shop": clinics, vets and tuition centres read it as theirs too. */
     shopName: string;
-    /** Line under the fascia board */
+    /** Line under the fascia board: the kinds of business we build for */
     shopSub: string;
     /** Sign-off printed at the foot of the "how it works" receipt */
     receiptThanks: string;

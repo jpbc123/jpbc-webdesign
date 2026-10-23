@@ -1,10 +1,12 @@
 import type { Market } from "@/config/markets/types";
 
 /**
- * Hero visual: a shoplot front. A blank fascia signboard ("KEDAI ANDA" — your
- * shop) over a striped awning, and in the window, a live site we built on a
- * laptop-width browser and a phone. The point it makes: your business, with
- * its website in the window.
+ * Hero visual: a shoplot front. A fascia signboard ("BISNES ANDA" — your
+ * business, with the kinds of business we serve underneath) over a striped
+ * awning, and in the window, a live site we built on a laptop-width browser
+ * and a phone. The point it makes: your business, with its website in the
+ * window. The sign deliberately avoids "shop" so a clinic or a vet sees
+ * itself in it too.
  *
  * Frames are pure CSS — zero payload beyond the two screenshots. They are
  * full-page captures of the live dental demo site; refresh them with
@@ -22,7 +24,11 @@ export default function ShopfrontMockup({ market }: { market: Market }) {
         {/* Fascia signboard */}
         <div className="screws border-b-2 border-frame bg-sign-green px-6 py-4 text-center text-sign-green-ink [--sign-glow:var(--sign-green-ink)]">
           <p className="sign sign-lit text-3xl sm:text-4xl">{market.signage.shopName}</p>
-          <p className="mt-1.5 text-[0.7rem] font-bold uppercase tracking-[0.2em] opacity-85">{market.signage.shopSub}</p>
+          {/* A no-break space glues each dot to the word before it, so a wrapped
+              line never starts with "·". */}
+          <p className="mt-2 text-balance text-[0.62rem] font-bold uppercase tracking-[0.1em] opacity-90 sm:text-[0.7rem] sm:tracking-[0.14em]">
+            {market.signage.shopSub.split(" · ").join("\u00a0· ")}
+          </p>
         </div>
 
         <div className="awning" aria-hidden />

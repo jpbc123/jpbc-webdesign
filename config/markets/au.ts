@@ -49,8 +49,8 @@ export const au: Market = {
     open: "OPEN",
     closed: "CLOSED",
     closedNote: "WhatsApp still on",
-    shopName: "YOUR SHOP",
-    shopSub: "Your website · hand-coded",
+    shopName: "YOUR BUSINESS",
+    shopSub: "Clinics · Cafés · Trades · & more",
     receiptThanks: "Thanks · Come again",
   },
 

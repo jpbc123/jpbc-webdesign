@@ -43,8 +43,8 @@ export const my: Market = {
     open: "BUKA",
     closed: "TUTUP",
     closedNote: "WhatsApp masih on",
-    shopName: "KEDAI ANDA",
-    shopSub: "Your website · hand-coded",
+    shopName: "BISNES ANDA",
+    shopSub: "Klinik · Restoran · Bengkel · Tuisyen · & lagi",
     receiptThanks: "Terima kasih · Sila datang lagi",
   },
 

@@ -48,8 +48,8 @@ export const ph: Market = {
     open: "OPEN",
     closed: "CLOSED",
     closedNote: "WhatsApp still on",
-    shopName: "YOUR SHOP",
-    shopSub: "Your website · hand-coded",
+    shopName: "YOUR BUSINESS",
+    shopSub: "Clinics · Restaurants · Salons · & more",
     receiptThanks: "Salamat po · Come again",
   },
 
