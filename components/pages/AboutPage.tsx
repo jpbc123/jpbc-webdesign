@@ -12,7 +12,8 @@ export default function AboutPage({ market }: { market: Market }) {
   return (
     <>
       <section className="mx-auto max-w-3xl px-6 pb-4 pt-16">
-        <h1 className="display text-5xl text-ink sm:text-6xl">{market.voice.aboutH1}</h1>
+        <p className="plate mb-5">About us</p>
+        <h1 className="display text-balance text-[2.6rem] text-ink sm:text-6xl lg:text-7xl">{market.voice.aboutH1}</h1>
         {/* Answer-first for SEO/AEO */}
         <p className="mt-6 text-lg text-muted">{market.voice.aboutAnswerFirst}</p>
       </section>
@@ -21,12 +22,16 @@ export default function AboutPage({ market }: { market: Market }) {
         {market.voice.aboutStory.map((paragraph) => (
           <p key={paragraph.slice(0, 40)}>{paragraph}</p>
         ))}
-        <div className="rounded-3xl border-2 border-accent/40 bg-surface p-8">
-          <h2 className="display text-2xl text-ink">What we believe</h2>
-          <ul className="mt-4 space-y-3">
-            {market.voice.aboutBeliefs.map((belief) => (
-              <li key={belief.title}>
-                <strong className="text-ink">{belief.title}</strong> {belief.body}
+        <div className="pt-6">
+          <h2 className="display text-3xl text-ink">What we believe</h2>
+          <ul className="mt-6 grid gap-5 sm:grid-cols-2">
+            {market.voice.aboutBeliefs.map((belief, i) => (
+              <li
+                key={belief.title}
+                className={`board p-6 ${i === 0 ? "bg-sign-yellow text-sign-yellow-ink" : "bg-surface"}`}
+              >
+                <strong className={`block text-lg font-extrabold ${i === 0 ? "" : "text-ink"}`}>{belief.title}</strong>
+                <span className="mt-1 block text-sm">{belief.body}</span>
               </li>
             ))}
           </ul>

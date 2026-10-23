@@ -3,7 +3,7 @@ import WhatsAppButton from "./WhatsAppButton";
 import type { Market } from "@/config/markets/types";
 import { mpath } from "@/lib/market";
 
-/** Final CTA band used at the bottom of most pages. */
+/** Final CTA at the bottom of most pages: one big red signboard. */
 export default function CtaBand({
   market,
   heading = "Ready for a website that actually works?",
@@ -16,16 +16,13 @@ export default function CtaBand({
   waMessage?: string;
 }) {
   return (
-    <section className="starfield relative mx-3 mt-20 overflow-hidden rounded-[2.5rem] bg-hero px-6 py-16 text-center text-hero-ink sm:mx-6">
-      <div className="relative mx-auto max-w-2xl">
-        <h2 className="display text-4xl sm:text-5xl">{heading}</h2>
-        <p className="mt-4 text-lg text-hero-muted">{sub ?? market.voice.ctaSub}</p>
+    <section className="mx-auto mt-20 max-w-6xl px-4 sm:px-6">
+      <div className="board screws bg-sign-red px-6 py-14 text-center text-sign-red-ink [--sign-glow:var(--sign-red-ink)] sm:px-12">
+        <h2 className="display sign-lit mx-auto max-w-3xl text-balance text-4xl sm:text-6xl">{heading}</h2>
+        <p className="mx-auto mt-5 max-w-xl text-pretty text-lg text-[#fff3dc]">{sub ?? market.voice.ctaSub}</p>
         <div className="mt-8 flex flex-wrap items-center justify-center gap-4">
-          <WhatsAppButton market={market} message={waMessage} />
-          <Link
-            href={mpath(market, "/get-started")}
-            className="inline-flex items-center rounded-full border-2 border-hero-ink/40 px-6 py-3 font-semibold text-hero-ink transition-colors hover:border-accent hover:text-accent"
-          >
+          <WhatsAppButton market={market} message={waMessage} variant="yellow" />
+          <Link href={mpath(market, "/get-started")} className="btn btn-on-sign">
             Get started online
           </Link>
         </div>

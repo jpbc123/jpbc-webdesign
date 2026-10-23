@@ -18,7 +18,8 @@ export default function WorkPage({ market }: { market: Market }) {
   return (
     <>
       <section className="mx-auto max-w-6xl px-6 pb-4 pt-16">
-        <h1 className="display text-5xl text-ink sm:text-6xl">Our work</h1>
+        <p className="plate mb-5">Our work</p>
+        <h1 className="display text-balance text-[2.6rem] text-ink sm:text-6xl lg:text-7xl">Our work</h1>
         {/* Answer-first for SEO/AEO */}
         <p className="mt-4 text-lg text-muted">{market.voice.workAnswerFirst}</p>
         <p className="mt-4 text-lg text-muted">
@@ -29,7 +30,7 @@ export default function WorkPage({ market }: { market: Market }) {
             href={waLink(market, "Hi JPBC! I'd like to talk about custom software for my business.")}
             target="_blank"
             rel="noopener noreferrer"
-            className="font-semibold text-accent hover:underline"
+            className="font-bold text-accent underline decoration-2 underline-offset-2"
           >
             Tell us what you need on WhatsApp →
           </a>
@@ -40,6 +41,7 @@ export default function WorkPage({ market }: { market: Market }) {
 
       {projects.length > 0 && (
         <section className="mx-auto max-w-6xl px-6 py-10">
+          <p className="plate mb-4">Client work</p>
           <h2 className="display text-4xl text-ink sm:text-5xl">Recent work</h2>
           <div className="mt-8">
             <WorkGrid projects={projects} />
@@ -50,7 +52,8 @@ export default function WorkPage({ market }: { market: Market }) {
       {/* ---------- WEBSITES BY INDUSTRY (live demo sites, not client work) ---------- */}
       {market.workExamples.showIndustryDemos && (
         <section className="mx-auto max-w-6xl px-6 py-10">
-          <h2 className="display text-4xl text-ink sm:text-5xl">Websites by Industry</h2>
+          <p className="plate mb-4">Demo sites</p>
+          <h2 className="display text-4xl text-ink sm:text-5xl">Websites by industry</h2>
           <p className="mt-3 max-w-3xl text-muted">
             Live demo sites showing exactly what we build for your type of business. Explore one, then imagine it with
             your name on it — we&apos;ll build your free preview to prove it.
@@ -65,23 +68,19 @@ export default function WorkPage({ market }: { market: Market }) {
                 href={d.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="glow-card group rounded-3xl border border-line bg-surface p-6 transition-all hover:-translate-y-1 hover:border-accent hover:shadow-lg"
+                className="board group flex flex-col bg-surface p-6"
               >
-                <div className="flex justify-end">
-                  <span className="rounded-full border border-accent/40 px-3 py-1 text-xs font-semibold text-accent">
-                    Live demo
-                  </span>
-                </div>
+                <span className="plate self-start">Live demo</span>
                 <h3 className="display mt-4 text-xl text-ink">{d.name}</h3>
                 <p className="mt-3 text-sm text-muted">{d.blurb}</p>
-                <span className="mt-4 inline-block text-sm font-semibold text-accent">Explore the demo →</span>
+                <span className="mt-auto pt-4 text-sm font-bold text-accent">Explore the demo →</span>
               </a>
             ))}
             <a
               href={waLink(market)}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex flex-col items-center justify-center rounded-3xl border-2 border-dashed border-accent/50 p-6 text-center transition-all hover:-translate-y-1 hover:border-accent"
+              className="flex flex-col items-center justify-center rounded-board border-2 border-dashed border-frame p-6 text-center transition-colors hover:bg-surface"
             >
               <span className="display text-xl text-ink">Your industry next? →</span>
               <p className="mt-2 text-sm text-muted">WhatsApp us and we&apos;ll build your free preview.</p>

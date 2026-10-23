@@ -1,6 +1,7 @@
 import type { MetadataRoute } from "next";
 import { locations } from "@/data/locations";
 import { services } from "@/data/services";
+import { posts } from "@/content/blog";
 import { enabledMarkets, SHARED_PAGE_PATHS } from "@/config/markets";
 import { mpath } from "@/lib/market";
 import { absoluteUrl } from "@/lib/site";
@@ -27,6 +28,14 @@ export default function sitemap(): MetadataRoute.Sitemap {
           url: absoluteUrl(mpath(market, `/locations/${l.slug}`)),
           changeFrequency: "monthly" as const,
           priority: 0.9,
+        }))
+      : []),
+    ...(market.pages.blogPosts
+      ? posts.map((p) => ({
+          url: absoluteUrl(mpath(market, `/blog/${p.slug}`)),
+          lastModified: p.updated ?? p.date,
+          changeFrequency: "yearly" as const,
+          priority: 0.7,
         }))
       : []),
   ]);

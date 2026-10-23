@@ -95,7 +95,8 @@ export default function PricingPage({ market }: { market: Market }) {
       <JsonLd data={offersJsonLd} />
 
       <section className="mx-auto max-w-6xl px-6 pb-4 pt-16">
-        <h1 className="display text-5xl text-ink sm:text-6xl">Pricing</h1>
+        <p className="plate mb-5">Menu & prices</p>
+        <h1 className="display text-balance text-[2.6rem] text-ink sm:text-6xl lg:text-7xl">Pricing</h1>
         {/* Answer-first for SEO/AEO */}
         <p className="mt-4 max-w-3xl text-lg text-muted">
           {market.voice.pricingQuestion} With JPBC it&apos;s{" "}
@@ -118,19 +119,19 @@ export default function PricingPage({ market }: { market: Market }) {
           Honest answer: monthly is cheaper to start and includes unlimited edits; lump sum works out cheaper from
           around year three. Here&apos;s the math, no spin.
         </p>
-        <div className="glow-card mt-8 overflow-x-auto rounded-3xl border border-line">
+        <div className="board mt-8 overflow-x-auto">
           <table className="w-full min-w-[560px] bg-surface text-left text-sm">
             <thead>
-              <tr className="border-b border-line">
-                <th className="px-6 py-4 font-semibold text-muted"></th>
-                <th className="px-6 py-4 font-semibold text-accent">Monthly ({p(monthly)})</th>
-                <th className="px-6 py-4 font-semibold text-ink">Lump Sum ({p(lumpSum)}+)</th>
+              <tr className="bg-sign-black text-sign-black-ink">
+                <th className="px-6 py-4"></th>
+                <th className="sign px-6 py-4 font-normal text-sign-yellow">Monthly ({p(monthly)})</th>
+                <th className="sign px-6 py-4 font-normal">Lump Sum ({p(lumpSum)}+)</th>
               </tr>
             </thead>
             <tbody>
               {comparison.map((row) => (
                 <tr key={row.label} className="border-b border-line last:border-0">
-                  <td className="px-6 py-3 font-medium text-ink">{row.label}</td>
+                  <td className="px-6 py-3 font-bold text-ink">{row.label}</td>
                   <td className="px-6 py-3 text-muted">{row.monthly}</td>
                   <td className="px-6 py-3 text-muted">{row.lump}</td>
                 </tr>
@@ -143,19 +144,19 @@ export default function PricingPage({ market }: { market: Market }) {
       {/* Add-ons */}
       <section className="mx-auto max-w-6xl px-6 py-10">
         <h2 className="display text-3xl text-ink sm:text-4xl">Add-ons</h2>
-        <div className="mt-8 grid gap-6 sm:grid-cols-2">
+        {/* Add-ons as a menu board: item, dotted leader, price */}
+        <ul className="board screws mt-8 space-y-6 bg-sign-black p-8 text-sign-black-ink sm:p-10">
           {addons.map((a) => (
-            <div key={a.name} className="glow-card rounded-3xl border border-line bg-surface p-6">
-              <div className="flex items-start justify-between gap-4">
-                <h3 className="font-bold text-ink">{a.name}</h3>
-                <span className="shrink-0 rounded-full bg-surface-2 px-3 py-1 text-xs font-semibold text-accent">
-                  {a.price}
-                </span>
+            <li key={a.name}>
+              <div className="menu-row text-lg">
+                <h3 className="font-bold">{a.name}</h3>
+                <span className="menu-leader" aria-hidden />
+                <span className="sign shrink-0 text-right text-sign-yellow">{a.price}</span>
               </div>
-              <p className="mt-2 text-sm text-muted">{a.desc}</p>
-            </div>
+              <p className="mt-1 text-sm text-[#c9c0ae]">{a.desc}</p>
+            </li>
           ))}
-        </div>
+        </ul>
         <div className="mt-8 text-center">
           <WhatsAppButton market={market} message="Hi JPBC! I have a question about pricing and add-ons.">
             Not sure? WhatsApp us

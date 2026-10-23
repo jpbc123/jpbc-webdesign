@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 
 /**
- * Light = daytime studio. Dark = "Lepas Kerja" (after-hours) mode.
+ * Light = the street by day. Dark = "Lepas Kerja" (after hours): same street, signs lit.
  * Preference persists in localStorage; system preference is the default.
  */
 export default function ThemeToggle() {
@@ -28,7 +28,7 @@ export default function ThemeToggle() {
       onClick={toggle}
       aria-label={dark ? "Switch to light mode" : "Switch to Lepas Kerja mode"}
       title={dark ? "Switch to light mode" : "Lepas Kerja mode"}
-      className="flex h-9 w-9 items-center justify-center rounded-full border border-line bg-surface text-ink transition-colors hover:border-accent"
+      className="flex h-9 w-9 items-center justify-center rounded-tag border-2 border-frame bg-surface text-ink transition-colors hover:bg-surface-2"
     >
       {/* Render both icons; CSS decides — avoids hydration mismatch */}
       <span className="dark:hidden" aria-hidden>

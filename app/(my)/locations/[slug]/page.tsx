@@ -84,8 +84,8 @@ export default async function LocationPage({ params }: Props) {
       <JsonLd data={faqJsonLd} />
 
       <section className="mx-auto max-w-4xl px-6 pb-4 pt-16">
-        <p className="text-sm font-semibold uppercase tracking-wider text-accent">Serving {loc.name}</p>
-        <h1 className="display mt-2 text-5xl text-ink sm:text-6xl">Web Designer in {loc.name}</h1>
+        <p className="plate mb-5">Serving {loc.name}</p>
+        <h1 className="display text-balance text-[2.6rem] text-ink sm:text-6xl lg:text-7xl">Web Designer in {loc.name}</h1>
         {/* Answer-first for SEO/AEO */}
         <p className="mt-6 text-lg text-muted">{loc.answerFirst}</p>
         <p className="mt-4 text-muted">{loc.intro}</p>
@@ -100,7 +100,7 @@ export default async function LocationPage({ params }: Props) {
       </section>
 
       {/* Services block (interlinks to service pages) */}
-      <section className="bg-surface-2 py-14 dark:bg-surface">
+      <section className="border-y-2 border-frame bg-surface-2 py-16">
         <div className="mx-auto max-w-6xl px-6">
           <h2 className="display text-3xl text-ink sm:text-4xl">What we do for {loc.name} businesses</h2>
           <div className="mt-8 grid gap-6 sm:grid-cols-3">
@@ -108,11 +108,11 @@ export default async function LocationPage({ params }: Props) {
               <Link
                 key={s.slug}
                 href={`/services/${s.slug}`}
-                className="group rounded-3xl bg-surface p-6 transition-all hover:-translate-y-1 hover:shadow-lg dark:bg-surface-2"
+                className="board group bg-surface p-6"
               >
                 <h3 className="display text-xl text-ink">{s.name}</h3>
                 <p className="mt-2 text-sm text-muted">{s.description}</p>
-                <span className="mt-3 inline-block text-sm font-semibold text-accent">Learn more →</span>
+                <span className="mt-3 inline-block text-sm font-bold text-accent">Learn more →</span>
               </Link>
             ))}
           </div>

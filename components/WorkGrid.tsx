@@ -20,10 +20,8 @@ export default function WorkGrid({ projects }: { projects: PortfolioItem[] }) {
             type="button"
             onClick={() => setFilter(c.key)}
             aria-pressed={filter === c.key}
-            className={`rounded-full px-4 py-2 text-sm font-semibold transition-colors ${
-              filter === c.key
-                ? "bg-accent text-accent-ink"
-                : "border border-line bg-surface text-muted hover:text-ink"
+            className={`rounded-tag border-2 border-frame px-4 py-2 text-sm font-bold uppercase tracking-wide transition-colors ${
+              filter === c.key ? "bg-sign-black text-sign-black-ink" : "bg-surface text-ink hover:bg-surface-2"
             }`}
           >
             {c.label}
@@ -43,9 +41,9 @@ export default function WorkGrid({ projects }: { projects: PortfolioItem[] }) {
 
 function Card({ item, open, onToggle }: { item: PortfolioItem; open: boolean; onToggle: () => void }) {
   return (
-    <article className={`overflow-hidden rounded-3xl border bg-surface transition-all ${open ? "border-accent shadow-xl" : "glow-card border-line"}`}>
+    <article className="board overflow-hidden bg-surface">
       <button type="button" onClick={onToggle} aria-expanded={open} className="block w-full text-left">
-        <div className="relative h-40">
+        <div className="relative h-44 border-b-2 border-frame">
           {item.image ? (
             <img
               src={item.image}
@@ -57,33 +55,33 @@ function Card({ item, open, onToggle }: { item: PortfolioItem; open: boolean; on
             <div className={`absolute inset-0 bg-gradient-to-br ${item.gradient}`} aria-hidden />
           )}
           <div className="absolute inset-x-0 bottom-0 flex items-end justify-between p-4">
-            <span className="rounded-full bg-black/60 px-3 py-1 text-xs font-semibold text-white">{item.industry}</span>
+            <span className="plate">{item.industry}</span>
             {item.loadTime && (
-              <span className="rounded-full bg-black/60 px-3 py-1 text-xs font-bold text-white">⚡ {item.loadTime}</span>
+              <span className="plate !bg-sign-yellow !text-sign-yellow-ink">⚡ {item.loadTime}</span>
             )}
           </div>
         </div>
         <div className="p-5">
-          <h2 className="font-bold text-ink">{item.name}</h2>
+          <h2 className="sign text-xl text-ink">{item.name}</h2>
           <p className="mt-1 text-sm text-muted">{item.location}</p>
           <p className="mt-2 text-sm text-muted">{item.blurb}</p>
-          <span className="mt-3 inline-block text-sm font-semibold text-accent">
+          <span className="mt-3 inline-block text-sm font-bold text-accent">
             {open ? "Hide case details ▴" : "View case details ▾"}
           </span>
         </div>
       </button>
 
       {open && (
-        <div className="border-t border-line p-5 text-sm">
+        <div className="border-t-2 border-frame p-5 text-sm">
           {/* TODO: Replace with real before/after screenshots */}
           <div className="grid gap-3 sm:grid-cols-2">
-            <div className="rounded-2xl bg-surface-2 p-4">
+            <div className="rounded-tag bg-surface-2 p-4">
               <p className="text-xs font-bold uppercase tracking-wide text-muted">Before</p>
               <p className="mt-1 text-muted">{item.beforeAfter.before}</p>
             </div>
-            <div className="rounded-2xl border border-accent/40 bg-surface-2 p-4">
-              <p className="text-xs font-bold uppercase tracking-wide text-accent">After</p>
-              <p className="mt-1 text-muted">{item.beforeAfter.after}</p>
+            <div className="rounded-tag border-2 border-frame bg-sign-yellow p-4 text-sign-yellow-ink">
+              <p className="text-xs font-bold uppercase tracking-wide">After</p>
+              <p className="mt-1">{item.beforeAfter.after}</p>
             </div>
           </div>
           <p className="mt-4 text-xs font-bold uppercase tracking-wide text-muted">What we built</p>
@@ -99,7 +97,7 @@ function Card({ item, open, onToggle }: { item: PortfolioItem; open: boolean; on
               href={item.url}
               target="_blank"
               rel="noopener noreferrer"
-              className="mt-4 inline-block font-semibold text-accent hover:underline"
+              className="btn btn-primary mt-5 !py-2 text-xs"
             >
               Visit live site
             </a>

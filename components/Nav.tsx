@@ -1,9 +1,10 @@
 "use client";
 
 import Link from "next/link";
-import { useEffect, useRef, useState } from "react";
+import { useState } from "react";
 import type { CSSProperties } from "react";
 import ThemeToggle from "./ThemeToggle";
+import OpenSign from "./OpenSign";
 import { locations } from "@/data/locations";
 import type { Market } from "@/config/markets/types";
 import { mpath, waLink } from "@/lib/market";
@@ -12,8 +13,8 @@ const navLinks = [
   { href: "/pricing", label: "Pricing" },
   { href: "/work", label: "Work" },
   { href: "/about", label: "About" },
-  { href: "/faq", label: "FAQ" },
   { href: "/blog", label: "Blog" },
+  { href: "/faq", label: "FAQ" },
   { href: "/contact", label: "Contact" },
 ];
 
@@ -30,54 +31,58 @@ const serviceLinks = [
   { href: "/services/google-business-profile", label: "Google Business Profile" },
 ];
 
+const linkClass =
+  "whitespace-nowrap rounded-tag px-2.5 py-2 text-sm font-bold uppercase tracking-wide text-ink/80 transition-colors hover:bg-surface-2 hover:text-ink";
+
+/** Dropdown on desktop: opens on hover or keyboard focus, no JS. */
+function Dropdown({ label, links }: { label: string; links: { href: string; label: string }[] }) {
+  return (
+    <div className="group relative">
+      <button type="button" className={linkClass} aria-haspopup="true">
+        {label} <span aria-hidden>▾</span>
+      </button>
+      <div className="invisible absolute left-0 top-full pt-2 opacity-0 transition-opacity group-focus-within:visible group-focus-within:opacity-100 group-hover:visible group-hover:opacity-100">
+        <div className="board w-64 bg-surface p-1.5">
+          {links.map((l) => (
+            <Link key={l.href} href={l.href} className="block rounded-tag px-3 py-2 text-sm font-semibold text-ink hover:bg-surface-2">
+              {l.label}
+            </Link>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+}
+
 export default function Nav({ market }: { market: Market }) {
   const [open, setOpen] = useState(false);
   const [mobileGroup, setMobileGroup] = useState<"services" | "locations" | null>(null);
-  const [expanded, setExpanded] = useState(false);
-  const sentinelRef = useRef<HTMLDivElement>(null);
-
-  // Expand the pill into a full-width bar once the top-of-page sentinel
-  // scrolls out of view (no per-scroll-event work; the morph is pure CSS).
-  useEffect(() => {
-    const sentinel = sentinelRef.current;
-    if (!sentinel) return;
-    const observer = new IntersectionObserver(([entry]) => setExpanded(!entry.isIntersecting));
-    observer.observe(sentinel);
-    return () => observer.disconnect();
-  }, []);
 
   const close = () => {
     setOpen(false);
     setMobileGroup(null);
   };
 
+  const services = serviceLinks.map((s) => ({ ...s, href: mpath(market, s.href) }));
+  const places = locations.map((l) => ({ href: mpath(market, `/locations/${l.slug}`), label: l.name }));
+
   return (
-    <>
-      <div ref={sentinelRef} aria-hidden className="pointer-events-none absolute top-0 h-[60px] w-px" />
-      <header className={"site-header sticky z-50 " + (expanded ? "site-header--expanded" : "")}>
-      {/* Rounded pill nav bar floating over the hero */}
-      <nav className="site-header-bar glow-card mx-auto flex max-w-5xl items-center justify-between rounded-full border border-line bg-surface/90 px-4 py-2 shadow-lg shadow-navy/5 backdrop-blur sm:px-6">
-        <Link
-          href={mpath(market, "/")}
-          aria-label="JPBC Web Designs"
-          className="group flex flex-col items-start leading-none"
-          onClick={close}
-        >
-          {/* Stacked wordmark: brand name over a descriptor spread to the same
-              width. The bottom margin keeps the tag below clear of the
-              descriptor. See .brand-lockup in globals.css for the knobs. */}
-          <span className="brand-lockup mb-0.5">
-            <span className="brand-name display">JPBC</span>
-            <span className="brand-desc display">
-              <span>Web</span>
-              <span>Designs</span>
+    <header className="site-header sticky top-0 z-50">
+      <nav className="mx-auto flex max-w-6xl items-center justify-between gap-4 px-4 py-2.5 sm:px-6">
+        <Link href={mpath(market, "/")} aria-label="JPBC Web Designs" className="flex items-end gap-2" onClick={close}>
+          {/* Signboard logo: JPBC in yellow on red, descriptor spread to the
+              same width underneath. Knobs live in .brand-board (globals.css). */}
+          <span className="brand-board">
+            <span className="brand-name sign-lit">JPBC</span>
+            <span className="brand-desc">
+              <span>WEB</span>
+              <span>DESIGNS</span>
             </span>
           </span>
-          {/* "Lepas Kerja" tag appears under the logo in dark mode only.
-              Letters warm up neon-sign style each time dark mode switches on
-              (display:none -> inline restarts the CSS animations), then keep
-              blinking off/on individually per the neonBlink timings. */}
-          <span className="neon-tag hidden self-end font-script text-base leading-none text-accent dark:inline" aria-hidden>
+          {/* "after hours" neon tag beside the logo, dark mode only. Letters warm
+              up neon-sign style each time dark mode switches on (display:none ->
+              inline restarts the CSS animations), then blink individually. */}
+          <span className="hidden pb-0.5 font-script text-lg leading-none text-accent xl:dark:inline" aria-hidden>
             {"after hours".split("").map((ch, i) =>
               ch === " " ? (
                 <span key={i}>{" "}</span>
@@ -98,76 +103,33 @@ export default function Nav({ market }: { market: Market }) {
               )
             )}
           </span>
-          {/* Holds the tag's line open in light mode so the wordmark sits at
-              the same height in both themes. The tag itself stays display:none
-              there — that's what restarts its warm-up on the switch to dark. */}
-          <span aria-hidden className="block h-4 dark:hidden" />
         </Link>
 
         {/* Desktop links */}
-        <div className="hidden items-center gap-1 lg:flex">
-          {market.pages.services && (
-            <div className="group relative">
-              <button
-                type="button"
-                className="rounded-full px-3 py-2 text-sm font-medium text-muted hover:text-ink"
-                aria-haspopup="true"
-              >
-                Services ▾
-              </button>
-              <div className="invisible absolute left-0 top-full pt-2 opacity-0 transition-opacity group-focus-within:visible group-focus-within:opacity-100 group-hover:visible group-hover:opacity-100">
-                <div className="glow-card w-64 rounded-2xl border border-line bg-surface p-2 shadow-xl">
-                  {serviceLinks.map((s) => (
-                    <Link key={s.href} href={mpath(market, s.href)} className="block rounded-xl px-3 py-2 text-sm text-muted hover:bg-surface-2 hover:text-ink">
-                      {s.label}
-                    </Link>
-                  ))}
-                </div>
-              </div>
-            </div>
-          )}
-
-          {market.pages.locations && (
-            <div className="group relative">
-              <button
-                type="button"
-                className="rounded-full px-3 py-2 text-sm font-medium text-muted hover:text-ink"
-                aria-haspopup="true"
-              >
-                Top Locations ▾
-              </button>
-              <div className="invisible absolute left-0 top-full pt-2 opacity-0 transition-opacity group-focus-within:visible group-focus-within:opacity-100 group-hover:visible group-hover:opacity-100">
-                <div className="glow-card w-56 rounded-2xl border border-line bg-surface p-2 shadow-xl">
-                  {locations.map((l) => (
-                    <Link key={l.slug} href={mpath(market, `/locations/${l.slug}`)} className="block rounded-xl px-3 py-2 text-sm text-muted hover:bg-surface-2 hover:text-ink">
-                      {l.name}
-                    </Link>
-                  ))}
-                </div>
-              </div>
-            </div>
-          )}
-
+        <div className="hidden items-center lg:flex">
+          {market.pages.services && <Dropdown label="Services" links={services} />}
+          {market.pages.locations && <Dropdown label="Areas" links={places} />}
           {navLinks.map((l) => (
-            <Link key={l.href} href={mpath(market, l.href)} className="rounded-full px-3 py-2 text-sm font-medium text-muted hover:text-ink">
+            <Link key={l.href} href={mpath(market, l.href)} className={linkClass}>
               {l.label}
             </Link>
           ))}
         </div>
 
         <div className="flex items-center gap-2">
+          <OpenSign market={market} />
           <ThemeToggle />
           <a
             href={waLink(market)}
             target="_blank"
             rel="noopener noreferrer"
-            className="hidden rounded-full bg-accent px-4 py-2 text-sm font-semibold text-accent-ink glow-accent sm:inline-block"
+            className="btn btn-primary hidden whitespace-nowrap !px-4 !py-2 sm:inline-flex"
           >
             WhatsApp us
           </a>
           <button
             type="button"
-            className="flex h-9 w-9 items-center justify-center rounded-full border border-line text-ink lg:hidden"
+            className="flex h-9 w-9 items-center justify-center rounded-tag border-2 border-frame bg-surface text-ink lg:hidden"
             aria-expanded={open}
             aria-label={open ? "Close menu" : "Open menu"}
             onClick={() => setOpen(!open)}
@@ -179,20 +141,20 @@ export default function Nav({ market }: { market: Market }) {
 
       {/* Mobile menu */}
       {open && (
-        <div className="site-mobile-menu glow-card mx-auto mt-2 max-w-5xl rounded-3xl border border-line bg-surface p-4 shadow-xl lg:hidden">
+        <div className="border-t-2 border-frame bg-surface px-4 pb-5 pt-3 lg:hidden">
           {market.pages.services && (
             <>
               <button
                 type="button"
-                className="flex w-full items-center justify-between rounded-xl px-3 py-2 text-left font-medium text-ink"
+                className="flex w-full items-center justify-between py-2.5 text-left font-bold uppercase tracking-wide text-ink"
                 onClick={() => setMobileGroup(mobileGroup === "services" ? null : "services")}
                 aria-expanded={mobileGroup === "services"}
               >
                 Services <span aria-hidden>{mobileGroup === "services" ? "▴" : "▾"}</span>
               </button>
               {mobileGroup === "services" &&
-                serviceLinks.map((s) => (
-                  <Link key={s.href} href={mpath(market, s.href)} onClick={close} className="block rounded-xl px-6 py-2 text-sm text-muted">
+                services.map((s) => (
+                  <Link key={s.href} href={s.href} onClick={close} className="block py-2 pl-4 text-muted">
                     {s.label}
                   </Link>
                 ))}
@@ -203,36 +165,36 @@ export default function Nav({ market }: { market: Market }) {
             <>
               <button
                 type="button"
-                className="flex w-full items-center justify-between rounded-xl px-3 py-2 text-left font-medium text-ink"
+                className="flex w-full items-center justify-between py-2.5 text-left font-bold uppercase tracking-wide text-ink"
                 onClick={() => setMobileGroup(mobileGroup === "locations" ? null : "locations")}
                 aria-expanded={mobileGroup === "locations"}
               >
-                Top Locations <span aria-hidden>{mobileGroup === "locations" ? "▴" : "▾"}</span>
+                Areas <span aria-hidden>{mobileGroup === "locations" ? "▴" : "▾"}</span>
               </button>
               {mobileGroup === "locations" &&
-                locations.map((l) => (
-                  <Link key={l.slug} href={mpath(market, `/locations/${l.slug}`)} onClick={close} className="block rounded-xl px-6 py-2 text-sm text-muted">
-                    {l.name}
+                places.map((l) => (
+                  <Link key={l.href} href={l.href} onClick={close} className="block py-2 pl-4 text-muted">
+                    {l.label}
                   </Link>
                 ))}
             </>
           )}
 
           {navLinks.map((l) => (
-            <Link key={l.href} href={mpath(market, l.href)} onClick={close} className="block rounded-xl px-3 py-2 font-medium text-ink">
+            <Link
+              key={l.href}
+              href={mpath(market, l.href)}
+              onClick={close}
+              className="block py-2.5 font-bold uppercase tracking-wide text-ink"
+            >
               {l.label}
             </Link>
           ))}
-          <Link
-            href={mpath(market, "/get-started")}
-            onClick={close}
-            className="mt-2 block rounded-full bg-accent px-4 py-3 text-center font-semibold text-accent-ink"
-          >
+          <Link href={mpath(market, "/get-started")} onClick={close} className="btn btn-primary mt-3 w-full">
             Get started
           </Link>
         </div>
       )}
-      </header>
-    </>
+    </header>
   );
 }

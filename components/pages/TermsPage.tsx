@@ -26,7 +26,8 @@ export default function TermsPage({ market }: { market: Market }) {
   return (
     <>
       <section className="mx-auto max-w-3xl px-6 pb-4 pt-16">
-        <h1 className="display text-5xl text-ink sm:text-6xl">Terms of Service</h1>
+        <p className="plate mb-5">Legal</p>
+        <h1 className="display text-balance text-[2.6rem] text-ink sm:text-6xl lg:text-7xl">Terms of Service</h1>
         {/* Answer-first for SEO/AEO */}
         <p className="mt-6 text-lg text-muted">
           The short version: JPBC Web Designs and its products, MY Swift Audit and MyResit, are run by {OPERATOR} (
@@ -121,7 +122,7 @@ export default function TermsPage({ market }: { market: Market }) {
           </p>
         </div>
 
-        <div id="no-refund" className="scroll-mt-24 rounded-3xl border-2 border-accent/40 bg-surface p-8">
+        <div id="no-refund" className="scroll-mt-24 board bg-surface p-8">
           <h2 className={h2}>6. No refund policy</h2>
           <p className="mt-4 font-semibold text-ink">
             All sales are final. We do not offer refunds, credits, or exchanges for any fees once payment has been

@@ -18,17 +18,17 @@ import path from "node:path";
 
 const PUBLIC = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "../public");
 
-const NAVY = "#0b1f3a";
-const CYAN = "#22d3ee";
+const RED = "#c42a1c";
+const YELLOW = "#ffd75e";
 const MARK = "M22 20H44M38 20V35A9 9 0 0 1 20 35";
 
 const svg = (radius) => `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
-  <rect width="64" height="64" rx="${radius}" fill="${NAVY}"/>
-  <path d="${MARK}" fill="none" stroke="${CYAN}" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/>
+  <rect width="64" height="64" rx="${radius}" fill="${RED}"/>
+  <path d="${MARK}" fill="none" stroke="${YELLOW}" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/>
 </svg>`;
 
 const targets = [
-  { file: "favicon-32.png", size: 32, radius: 14 },
+  { file: "favicon-32.png", size: 32, radius: 10 },
   { file: "apple-touch-icon.png", size: 180, radius: 0 },
   { file: "icon-192.png", size: 192, radius: 0 },
   { file: "icon-512.png", size: 512, radius: 0 },

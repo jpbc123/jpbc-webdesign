@@ -25,7 +25,8 @@ export default function PrivacyPage({ market }: { market: Market }) {
   return (
     <>
       <section className="mx-auto max-w-3xl px-6 pb-4 pt-16">
-        <h1 className="display text-5xl text-ink sm:text-6xl">Privacy Policy</h1>
+        <p className="plate mb-5">Legal</p>
+        <h1 className="display text-balance text-[2.6rem] text-ink sm:text-6xl lg:text-7xl">Privacy Policy</h1>
         {/* Answer-first for SEO/AEO */}
         <p className="mt-6 text-lg text-muted">
           The short version: we collect only what we need to reply to you and build your website, we never sell it, and

@@ -66,8 +66,8 @@ export default async function ServicePage({ params }: Props) {
       <JsonLd data={serviceJsonLd} />
 
       <section className="mx-auto max-w-4xl px-6 pb-4 pt-16">
-        <p className="text-sm font-semibold uppercase tracking-wider text-accent">Service</p>
-        <h1 className="display mt-2 text-5xl text-ink sm:text-6xl">{service.name}</h1>
+        <p className="plate mb-5">Service</p>
+        <h1 className="display text-balance text-[2.6rem] text-ink sm:text-6xl lg:text-7xl">{service.name}</h1>
         {/* Answer-first for SEO/AEO */}
         <p className="mt-6 text-lg text-muted">{service.answerFirst}</p>
       </section>
@@ -79,13 +79,13 @@ export default async function ServicePage({ params }: Props) {
       </section>
 
       {/* Approach */}
-      <section className="bg-surface-2 py-14 dark:bg-surface">
+      <section className="border-y-2 border-frame bg-surface-2 py-16">
         <div className="mx-auto max-w-4xl px-6">
           <h2 className="display text-3xl text-ink sm:text-4xl">{service.approach.heading}</h2>
           <div className="mt-8 grid gap-6 sm:grid-cols-3">
             {service.approach.points.map((p, i) => (
-              <div key={p.title} className="rounded-3xl bg-surface p-6 dark:bg-surface-2">
-                <span className="display text-3xl text-accent">{i + 1}</span>
+              <div key={p.title} className="board bg-surface p-6">
+                <span className="sign text-3xl text-accent">{String(i + 1).padStart(2, "0")}</span>
                 <h3 className="mt-2 font-bold text-ink">{p.title}</h3>
                 <p className="mt-2 text-sm text-muted">{p.body}</p>
               </div>
@@ -102,9 +102,9 @@ export default async function ServicePage({ params }: Props) {
 
       {/* Malaysia angle */}
       <section className="mx-auto max-w-4xl px-6 pb-6">
-        <div className="rounded-3xl border-2 border-accent/40 bg-surface p-8">
-          <h2 className="display text-2xl text-ink sm:text-3xl">🇲🇾 {service.malaysiaAngle.heading}</h2>
-          <p className="mt-4 text-muted">{service.malaysiaAngle.body}</p>
+        <div className="board screws bg-sign-yellow p-8 text-sign-yellow-ink sm:p-10">
+          <h2 className="display text-2xl sm:text-3xl">{service.malaysiaAngle.heading}</h2>
+          <p className="mt-4">{service.malaysiaAngle.body}</p>
           <div className="mt-6">
             <WhatsAppButton market={market} message={`Hi JPBC! I'd like to ask about ${service.name}.`}>
               {service.cta}

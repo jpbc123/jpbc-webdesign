@@ -88,7 +88,7 @@ export default function IntakeForm({ market }: { market: Market }) {
 
   if (status === "sent") {
     return (
-      <div className="rounded-3xl border-2 border-accent/40 bg-surface p-8 text-center">
+      <div className="board bg-surface p-8 text-center">
         <p className="display text-3xl text-ink">{fillBusiness(market.voice.intakeThanks, answers.business)}</p>
         <p className="mt-3 text-muted">
           We&apos;ve got your details and will WhatsApp you shortly. Want to skip the queue? Message us first:
@@ -97,7 +97,7 @@ export default function IntakeForm({ market }: { market: Market }) {
           href={waLink(market, `Hi JPBC! I just filled the get-started form for ${answers.business}.`)}
           target="_blank"
           rel="noopener noreferrer"
-          className="mt-6 inline-block rounded-full bg-accent px-6 py-3 font-semibold text-accent-ink glow-accent"
+          className="btn btn-primary mt-6"
         >
           WhatsApp us now
         </a>
@@ -106,7 +106,7 @@ export default function IntakeForm({ market }: { market: Market }) {
   }
 
   return (
-    <div className="glow-card rounded-3xl border border-line bg-surface p-8">
+    <div className="board bg-surface p-8">
       {/* Progress */}
       <div className="mb-8 flex items-center gap-2" aria-hidden>
         {Array.from({ length: STEPS }).map((_, i) => (
@@ -126,7 +126,7 @@ export default function IntakeForm({ market }: { market: Market }) {
             onChange={(e) => set("business", e.target.value)}
             onKeyDown={(e) => e.key === "Enter" && next()}
             maxLength={150}
-            className="mt-4 w-full rounded-2xl border border-line bg-bg px-4 py-3 text-ink placeholder:text-muted/60 focus:border-accent"
+            className="mt-4 w-full rounded-tag border-2 border-frame bg-surface px-4 py-3 text-ink placeholder:text-muted/60 focus:border-accent"
             placeholder={market.voice.formIntakeBusinessPlaceholder}
             aria-label="Business name"
           />
@@ -143,7 +143,7 @@ export default function IntakeForm({ market }: { market: Market }) {
                 type="button"
                 onClick={() => set("industry", ind)}
                 aria-pressed={answers.industry === ind}
-                className={`rounded-2xl border px-4 py-3 text-left text-sm font-medium transition-colors ${
+                className={`rounded-tag border-2 px-4 py-3 text-left text-sm font-medium transition-colors ${
                   answers.industry === ind ? "border-accent bg-surface-2 text-ink" : "border-line text-muted hover:text-ink"
                 }`}
               >
@@ -164,7 +164,7 @@ export default function IntakeForm({ market }: { market: Market }) {
                 type="button"
                 onClick={() => set("website", o.value)}
                 aria-pressed={answers.website === o.value}
-                className={`block w-full rounded-2xl border px-4 py-3 text-left transition-colors ${
+                className={`block w-full rounded-tag border-2 px-4 py-3 text-left transition-colors ${
                   answers.website === o.value ? "border-accent bg-surface-2" : "border-line hover:border-muted"
                 }`}
               >
@@ -186,7 +186,7 @@ export default function IntakeForm({ market }: { market: Market }) {
                 type="button"
                 onClick={() => set("package", o.value)}
                 aria-pressed={answers.package === o.value}
-                className={`block w-full rounded-2xl border px-4 py-3 text-left transition-colors ${
+                className={`block w-full rounded-tag border-2 px-4 py-3 text-left transition-colors ${
                   answers.package === o.value ? "border-accent bg-surface-2" : "border-line hover:border-muted"
                 }`}
               >
@@ -208,7 +208,7 @@ export default function IntakeForm({ market }: { market: Market }) {
             value={answers.phone}
             onChange={(e) => set("phone", e.target.value)}
             onKeyDown={(e) => e.key === "Enter" && submit()}
-            className="mt-4 w-full rounded-2xl border border-line bg-bg px-4 py-3 text-ink placeholder:text-muted/60 focus:border-accent"
+            className="mt-4 w-full rounded-tag border-2 border-frame bg-surface px-4 py-3 text-ink placeholder:text-muted/60 focus:border-accent"
             placeholder={market.phone.placeholder}
             aria-label={`WhatsApp number (${market.label})`}
           />
@@ -222,14 +222,14 @@ export default function IntakeForm({ market }: { market: Market }) {
 
       <div className="mt-8 flex items-center justify-between">
         {step > 0 ? (
-          <button type="button" onClick={() => setStep((s) => s - 1)} className="rounded-full px-5 py-2.5 font-semibold text-muted hover:text-ink">
+          <button type="button" onClick={() => setStep((s) => s - 1)} className="rounded-tag px-5 py-2.5 font-bold uppercase tracking-wide text-muted hover:text-ink">
             ← Back
           </button>
         ) : (
           <span />
         )}
         {step < STEPS - 1 ? (
-          <button type="button" onClick={next} className="rounded-full bg-accent px-6 py-3 font-semibold text-accent-ink">
+          <button type="button" onClick={next} className="btn btn-primary">
             Continue →
           </button>
         ) : (
@@ -237,7 +237,7 @@ export default function IntakeForm({ market }: { market: Market }) {
             type="button"
             onClick={submit}
             disabled={status === "sending"}
-            className="rounded-full bg-accent px-6 py-3 font-semibold text-accent-ink glow-accent disabled:opacity-60"
+            className="btn btn-primary disabled:opacity-60"
           >
             {status === "sending" ? "Sending…" : "Send & get my plan"}
           </button>

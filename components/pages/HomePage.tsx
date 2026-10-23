@@ -1,16 +1,16 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import WhatsAppButton from "@/components/WhatsAppButton";
-import DeviceMockup from "@/components/DeviceMockup";
-import CurveDivider from "@/components/CurveDivider";
-import NightSilhouette from "@/components/NightSilhouette";
-import NightSkyFx from "@/components/NightSkyFx";
+import ShopfrontMockup from "@/components/ShopfrontMockup";
+import SectionHeading from "@/components/SectionHeading";
+import PostCard from "@/components/PostCard";
 import CtaBand from "@/components/CtaBand";
 import FaqAccordion from "@/components/FaqAccordion";
 import JsonLd from "@/components/JsonLd";
 import { portfolioFor } from "@/data/portfolio";
 import { industryDemosFor } from "@/data/industryDemos";
 import { allFaqs } from "@/data/faqs";
+import { posts } from "@/content/blog";
 import type { Market } from "@/config/markets/types";
 import { mpath, price } from "@/lib/market";
 import { marketMetadata } from "@/lib/seo";
@@ -34,34 +34,62 @@ export function homeMetadata(market: Market): Metadata {
   };
 }
 
-const steps = [
-  { n: "1", title: "Chat on WhatsApp", body: "Tell us about your business. Five minutes, no jargon, no sales pitch." },
-  { n: "2", title: "We design, you approve", body: "Design draft in 2–3 days. You tell us what to tweak until you love it." },
-  { n: "3", title: "We build it", body: "Hand-coded, mobile-first, tested on real phones. You don't lift a finger." },
-  { n: "4", title: "Live in 7 days", body: "Domain, hosting, SSL — all sorted. Your site is live and loading in under a second." },
+/** Fascia colours for the row of shoplots in the work section, in order. */
+const shoplotSigns = [
+  "bg-sign-red text-sign-red-ink [--sign-glow:var(--sign-red-ink)]",
+  "bg-sign-green text-sign-green-ink [--sign-glow:var(--sign-green-ink)]",
+  "bg-sign-yellow text-sign-yellow-ink",
+  "bg-sign-black text-sign-black-ink [--sign-glow:var(--sign-black-ink)]",
 ];
+
+const pad = (n: number) => String(n).padStart(2, "0");
 
 export default function HomePage({ market }: { market: Market }) {
   const monthly = price(market, market.pricing.monthly);
   const setup = price(market, market.pricing.setup);
   const lumpSum = price(market, market.pricing.lumpSum);
   const care = price(market, market.pricing.lumpSumCare);
+  const { addons } = market.pricing;
   const work = portfolioFor(market);
   const faqs = allFaqs(market);
+  const latestPosts = market.pages.blogPosts ? posts.slice(0, 3) : [];
 
-  const whatWeDo = [
-    { title: "Web Design", body: market.voice.homeWhatWeDoDesign, href: "/services/web-design" },
+  const directory = [
+    { title: "Web design", body: market.voice.homeWhatWeDoDesign, href: "/services/web-design" },
     {
-      title: "Development",
-      body: "Hand-coded static sites. No WordPress, no page builders, no plugins to break or hack.",
+      title: "Hand-coded build",
+      body: "Fast static sites. No WordPress, no page builders, no plugins to break or hack.",
       href: "/services/web-design",
     },
     {
       title: "Google Business Profile",
-      body: "Claimed, verified, and optimised so you show up in Maps and the local 3-pack.",
+      body: "Claimed, verified and optimised so you show up on Google Maps and the local 3-pack.",
       href: "/services/google-business-profile",
     },
     { title: "Local SEO", body: market.voice.homeWhatWeDoSeo, href: "/services/seo" },
+    {
+      title: "Online stores & web apps",
+      body: "Your own shop with catalogue, checkout and an admin you run from your phone. Plus custom software.",
+      href: "/work",
+    },
+  ];
+
+  const receipt = [
+    { item: "Chat on WhatsApp", time: "5 min", body: "Tell us about your business. No jargon, no sales pitch." },
+    { item: "Design draft", time: "2–3 days", body: "You tell us what to tweak until you love it." },
+    { item: "Hand-coded build", time: "~3 days", body: "Mobile-first, tested on real phones." },
+    { item: "Go live", time: "Day 7", body: "Domain, hosting and SSL all sorted for you." },
+  ];
+
+  const menu = [
+    { item: "Website, 5 pages (monthly plan)", price: `${monthly}/mo` },
+    { item: "Setup fee", price: setup },
+    { item: "Own it outright (lump sum)", price: `from ${lumpSum}` },
+    { item: "Hosting & care (lump sum)", price: `${care}/mo` },
+    { item: "Extra page", price: price(market, addons.extraPage) },
+    { item: "Google Business Profile setup", price: price(market, addons.googleBusinessProfile) },
+    { item: "Local SEO pages", price: `${price(market, addons.localSeoMonthly)}/mo` },
+    { item: "Online store / web app", price: "Quote" },
   ];
 
   const localBusinessJsonLd = {
@@ -108,241 +136,292 @@ export default function HomePage({ market }: { market: Market }) {
     <>
       <JsonLd data={localBusinessJsonLd} />
 
-      {/* ---------- HERO ---------- */}
-      <section className="starfield under-header relative overflow-hidden bg-hero pb-4 pt-32 text-hero-ink">
-        <NightSilhouette />
-        <NightSkyFx />
-        <div className="relative mx-auto grid max-w-6xl items-center gap-12 px-6 lg:grid-cols-2">
+      {/* ---------- HERO: the shopfront ---------- */}
+      <section className="overflow-hidden">
+        <div className="awning" aria-hidden />
+        <div className="mx-auto grid max-w-6xl items-center gap-14 px-6 pb-16 pt-10 lg:grid-cols-[1.1fr_1fr] lg:pt-14">
           <div>
-            <p className="mb-4 inline-block rounded-full border border-accent/40 px-4 py-1 text-sm font-semibold text-accent">
-              {market.heroCopy.badge}
-            </p>
-            <h1 className="display text-5xl sm:text-6xl lg:text-7xl">
+            <p className="plate !bg-sign-yellow !text-sign-yellow-ink">{market.heroCopy.badge}</p>
+            <h1 className="display mt-6 text-[2.6rem] text-ink sm:text-6xl lg:text-[4.1rem]">
               {market.heroCopy.headlineLead}
-              <span className="text-accent">{market.heroCopy.headlineHighlight}</span>
+              <span className="sign sign-lit mt-3 inline-block -rotate-[1.5deg] rounded-tag border-2 border-frame bg-sign-red px-3 pb-2 pt-3 text-sign-red-ink shadow-[4px_4px_0_var(--shadow-hard)] [--sign-glow:var(--sign-red-ink)]">
+                {market.heroCopy.headlineHighlight}
+              </span>
             </h1>
-            <p className="mt-6 max-w-xl text-lg text-hero-muted">{market.heroCopy.subheadline}</p>
+            <p className="mt-7 max-w-xl text-pretty text-lg text-muted">{market.heroCopy.subheadline}</p>
             <div className="mt-8 flex flex-wrap gap-4">
-              <Link
-                href={mpath(market, "/get-started")}
-                className="inline-flex items-center rounded-full bg-accent px-6 py-3 font-semibold text-accent-ink glow-accent transition-transform hover:-translate-y-0.5"
-              >
+              <Link href={mpath(market, "/get-started")} className="btn btn-primary">
                 Get started
               </Link>
-              <Link
-                href={mpath(market, "/pricing")}
-                className="inline-flex items-center rounded-full border-2 border-hero-ink/40 px-6 py-3 font-semibold text-hero-ink transition-colors hover:border-accent hover:text-accent"
-              >
-                See pricing
+              <Link href={mpath(market, "/pricing")} className="btn btn-secondary">
+                See the menu
               </Link>
             </div>
           </div>
-          <DeviceMockup />
-        </div>
-        {/* Sweeping curve into the light content below (relative: paints over the silhouette) */}
-        <CurveDivider className="relative mt-16 text-bg" />
-      </section>
-
-      {/* ---------- WHAT WE DO ---------- */}
-      <section className="mx-auto max-w-6xl px-6 py-20">
-        <h2 className="display text-4xl text-ink sm:text-5xl">What we do</h2>
-        <p className="mt-3 max-w-2xl text-muted">
-          One studio, four things — done properly. Everything your business needs to get found and get customers online.
-        </p>
-        <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-          {whatWeDo.map((item) =>
-            market.pages.services ? (
-              <Link
-                key={item.title}
-                href={mpath(market, item.href)}
-                className="glow-card group rounded-3xl border border-line bg-surface p-6 transition-all hover:-translate-y-1 hover:border-accent hover:shadow-lg"
-              >
-                <h3 className="display text-xl text-ink">{item.title}</h3>
-                <p className="mt-3 text-sm text-muted">{item.body}</p>
-                <span className="mt-4 inline-block text-sm font-semibold text-accent">Learn more →</span>
-              </Link>
-            ) : (
-              <div key={item.title} className="glow-card rounded-3xl border border-line bg-surface p-6">
-                <h3 className="display text-xl text-ink">{item.title}</h3>
-                <p className="mt-3 text-sm text-muted">{item.body}</p>
-              </div>
-            )
-          )}
+          <ShopfrontMockup market={market} />
         </div>
       </section>
 
-      {/* ---------- WHY HAND-CODED ---------- */}
-      <section className="bg-surface-2 py-20 dark:bg-surface">
+      {/* ---------- 01 WHAT WE DO: the building directory ---------- */}
+      <section className="mx-auto grid max-w-6xl gap-10 px-6 py-24 lg:grid-cols-[1fr_1.35fr] lg:items-start">
+        <SectionHeading
+          no="No. 01"
+          title="What's in this building"
+          intro="One small studio, five things done properly. Everything your business needs to get found and get customers online."
+        />
+        <nav aria-label="Services" className="letterboard p-5 sm:p-7">
+          <p className="mb-4 border-b border-white/20 pb-3 text-center text-xs font-bold uppercase tracking-[0.35em] text-white/70">
+            Directory
+          </p>
+          <ul className="divide-y divide-white/10">
+            {directory.map((d, i) => (
+              <li key={d.title}>
+                <Link
+                  href={mpath(market, d.href)}
+                  className="group grid grid-cols-[2.5rem_1fr_auto] items-baseline gap-3 py-3.5"
+                >
+                  <span className="font-bold tabular-nums text-white/50">{pad(i + 1)}</span>
+                  <span>
+                    <span className="block font-extrabold uppercase tracking-[0.12em] group-hover:text-sign-yellow">
+                      {d.title}
+                    </span>
+                    <span className="mt-1 block text-sm text-white/65">{d.body}</span>
+                  </span>
+                  <span aria-hidden className="text-white/60 transition-transform group-hover:translate-x-1 group-hover:text-sign-yellow">
+                    →
+                  </span>
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </nav>
+      </section>
+
+      {/* ---------- 02 WHY HAND-CODED: yellow price-tag boards ---------- */}
+      <section className="border-y-2 border-frame bg-surface-2 py-24">
         <div className="mx-auto max-w-6xl px-6">
-          <h2 className="display text-4xl text-ink sm:text-5xl">Why hand-coded beats WordPress</h2>
-          <div className="mt-10 grid gap-6 lg:grid-cols-3">
-            <div className="rounded-3xl bg-surface p-8 dark:bg-surface-2">
-              <p className="display text-5xl text-accent">&lt;1s</p>
-              <h3 className="mt-3 text-lg font-bold text-ink">Loads before they blink</h3>
-              <p className="mt-2 text-sm text-muted">
-                Our static sites load in under a second. The average WordPress site takes 3–5 seconds — and half your
+          <SectionHeading no="No. 02" title="Why hand-coded beats WordPress" />
+          <div className="mt-12 grid gap-6 lg:grid-cols-[1.3fr_1fr_1fr]">
+            <div className="board screws bg-sign-yellow p-8 text-sign-yellow-ink lg:row-span-2 lg:p-10">
+              <p className="sign text-7xl sm:text-8xl">&lt;1s</p>
+              <h3 className="mt-6 text-2xl font-extrabold">Loads before they blink</h3>
+              <p className="mt-3 max-w-md">
+                Our static sites load in under a second. The average WordPress site takes 3–5 seconds, and half your
                 visitors give up by then. Speed is also a Google ranking factor.
               </p>
             </div>
-            <div className="rounded-3xl bg-surface p-8 dark:bg-surface-2">
-              <p className="display text-5xl text-accent">0</p>
-              <h3 className="mt-3 text-lg font-bold text-ink">Nothing to hack</h3>
+            <div className="board bg-surface p-7">
+              <p className="sign text-5xl text-accent">0</p>
+              <h3 className="mt-4 text-lg font-extrabold text-ink">Nothing to hack</h3>
               <p className="mt-2 text-sm text-muted">
-                Static files have no database, no admin login, no plugins with security holes. WordPress powers most of
-                the web — and most of the hacked sites. Ours simply have no way in.
+                No database, no admin login, no plugins with security holes. There&apos;s simply no way in.
               </p>
             </div>
-            <div className="rounded-3xl bg-surface p-8 dark:bg-surface-2">
-              <p className="display text-5xl text-accent">✓</p>
-              <h3 className="mt-3 text-lg font-bold text-ink">No plugin updates, ever</h3>
+            <div className="board bg-surface p-7">
+              <p className="sign text-5xl text-accent">0</p>
+              <h3 className="mt-4 text-lg font-extrabold text-ink">Plugin updates, ever</h3>
               <p className="mt-2 text-sm text-muted">
-                No "please update 14 plugins" emails, no themes breaking after an update, no maintenance retainer. Your
-                site just works — this month, next year, always.
+                No &ldquo;please update 14 plugins&rdquo; emails, no theme breaking after an update. It just works.
+              </p>
+            </div>
+            {/* Notice taped to the wall */}
+            <div className="relative rotate-[0.6deg] border-2 border-dashed border-frame bg-surface p-7 lg:col-span-2">
+              <span className="absolute -top-3 left-8 h-6 w-20 -rotate-3 bg-sign-yellow/70" aria-hidden />
+              <p className="sign text-sm tracking-wider text-accent">Notice</p>
+              <p className="mt-2 font-semibold text-ink">
+                Don&apos;t take our word for it. Test your current site at{" "}
+                <a
+                  href="https://pagespeed.web.dev"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-accent underline decoration-2 underline-offset-2"
+                >
+                  pagespeed.web.dev
+                </a>
+                . If it scores under 90 on mobile, WhatsApp us the result and we&apos;ll show you what we&apos;d fix.
               </p>
             </div>
           </div>
-          <div className="mt-8 rounded-3xl border-2 border-dashed border-accent/50 p-6 text-center">
-            <p className="font-semibold text-ink">
-              Don&apos;t take our word for it — test your current site at{" "}
-              <a
-                href="https://pagespeed.web.dev"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-accent underline"
-              >
-                pagespeed.web.dev
-              </a>
-              . If it scores under 90 on mobile, WhatsApp us the result and we&apos;ll show you what we&apos;d fix.
+        </div>
+      </section>
+
+      {/* ---------- 03 HOW IT WORKS: the order receipt ---------- */}
+      <section className="mx-auto grid max-w-6xl items-center gap-12 px-6 py-24 lg:grid-cols-[1fr_1fr]">
+        <div>
+          <SectionHeading
+            no="No. 03"
+            title="How it works"
+            intro="From your first WhatsApp to a live website in about a week. Here's your order."
+          />
+          <div className="mt-8">
+            <WhatsAppButton market={market}>Place your order</WhatsAppButton>
+          </div>
+        </div>
+        <div className="receipt mx-auto w-full max-w-md -rotate-1 text-sm">
+          <div className="text-center">
+            <p className="text-base font-bold tracking-widest">JPBC WEB DESIGNS</p>
+            <p className="mt-1 text-xs opacity-70">{market.voice.footerLegalLine}</p>
+            <p className="mt-3 border-y border-dashed border-current/40 py-2 text-xs uppercase tracking-widest">
+              Order receipt
             </p>
           </div>
+          <ol className="mt-4 space-y-4">
+            {receipt.map((r) => (
+              <li key={r.item}>
+                <div className="menu-row font-bold">
+                  <span>1x {r.item}</span>
+                  <span className="menu-leader" aria-hidden />
+                  <span className="shrink-0">{r.time}</span>
+                </div>
+                <p className="mt-1 pl-6 text-xs opacity-75">{r.body}</p>
+              </li>
+            ))}
+          </ol>
+          <div className="mt-5 space-y-1 border-t border-dashed border-current/40 pt-4 font-bold">
+            <div className="menu-row">
+              <span>TO PAY TODAY</span>
+              <span className="menu-leader" aria-hidden />
+              <span>{setup}</span>
+            </div>
+            <div className="menu-row">
+              <span>THEN</span>
+              <span className="menu-leader" aria-hidden />
+              <span>{monthly}/mo</span>
+            </div>
+          </div>
+          <p className="mt-6 text-center text-xs uppercase tracking-widest opacity-70">{market.signage.receiptThanks}</p>
         </div>
       </section>
 
-      {/* ---------- HOW IT WORKS ---------- */}
-      <section className="mx-auto max-w-6xl px-6 py-20">
-        <h2 className="display text-4xl text-ink sm:text-5xl">How it works</h2>
-        <p className="mt-3 text-muted">From first WhatsApp to live website in about a week.</p>
-        <ol className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-          {steps.map((s) => (
-            <li key={s.n} className="glow-card rounded-3xl border border-line bg-surface p-6">
-              <span className="display flex h-12 w-12 items-center justify-center rounded-full bg-accent text-xl text-accent-ink">
-                {s.n}
-              </span>
-              <h3 className="mt-4 text-lg font-bold text-ink">{s.title}</h3>
-              <p className="mt-2 text-sm text-muted">{s.body}</p>
-            </li>
-          ))}
-        </ol>
-      </section>
-
-      {/* ---------- WORK GRID (client projects, or demo builds in newer markets) ---------- */}
+      {/* ---------- 04 WORK: a row of shoplots ---------- */}
       <section className="mx-auto max-w-6xl px-6 py-10">
         <div className="flex flex-wrap items-end justify-between gap-4">
-          <div>
-            <h2 className="display text-4xl text-ink sm:text-5xl">{market.voice.homeWorkHeading}</h2>
-            <p className="mt-3 text-muted">{market.voice.homeWorkIntro}</p>
-          </div>
-          <Link href={mpath(market, "/work")} className="font-semibold text-accent hover:underline">
-            See all work →
+          <SectionHeading no="No. 04" title={market.voice.homeWorkHeading} intro={market.voice.homeWorkIntro} />
+          <Link href={mpath(market, "/work")} className="btn btn-secondary">
+            See all work
           </Link>
         </div>
-        <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {work.length > 0
-            ? work.slice(0, 6).map((p) => (
-                <Link
-                  key={p.slug}
-                  href={mpath(market, "/work")}
-                  className="glow-card group overflow-hidden rounded-3xl border border-line bg-surface transition-all hover:-translate-y-1 hover:shadow-lg"
-                >
-                  <div className="relative h-40">
+            ? work.slice(0, 6).map((p, i) => (
+                <Link key={p.slug} href={mpath(market, "/work")} className="board group flex flex-col overflow-hidden bg-surface-2">
+                  <div className={`border-b-2 border-frame px-4 py-3 text-center ${shoplotSigns[i % shoplotSigns.length]}`}>
+                    <h3 className="sign sign-lit truncate text-lg">{p.name}</h3>
+                  </div>
+                  <div className="awning awning-sm" aria-hidden />
+                  <div className="relative mx-4 -mt-1 h-40 overflow-hidden rounded-tag border-2 border-frame bg-surface">
                     {p.image ? (
                       <img
                         src={p.image}
                         alt={`Screenshot of the ${p.name} website`}
                         loading="lazy"
-                        className="absolute inset-0 h-full w-full object-cover object-top"
+                        className="absolute inset-0 h-full w-full object-cover object-top transition-transform duration-500 group-hover:scale-[1.03]"
                       />
                     ) : (
                       <div className={`absolute inset-0 bg-gradient-to-br ${p.gradient}`} aria-hidden />
                     )}
-                    <span className="absolute bottom-4 left-4 rounded-full bg-black/60 px-3 py-1 text-xs font-semibold text-white">
-                      {p.industry}
-                    </span>
                   </div>
-                  <div className="p-5">
-                    <h3 className="font-bold text-ink">{p.name}</h3>
-                    <p className="mt-1 text-sm text-muted">
-                      {p.location}
-                      {p.loadTime && ` · loads in ${p.loadTime}`}
-                    </p>
+                  <div className="flex items-center justify-between gap-3 px-4 pb-4 pt-3 text-sm">
+                    <span className="font-bold text-ink">{p.industry}</span>
+                    <span className="shrink-0 text-xs font-bold uppercase tracking-wider text-muted">No. {pad(i + 1)}</span>
                   </div>
                 </Link>
               ))
-            : industryDemosFor(market).slice(0, 6).map((d) => (
+            : industryDemosFor(market).slice(0, 6).map((d, i) => (
                 <a
                   key={d.slug}
                   href={d.url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="glow-card group rounded-3xl border border-line bg-surface p-6 transition-all hover:-translate-y-1 hover:border-accent hover:shadow-lg"
+                  className="board group flex flex-col overflow-hidden bg-surface"
                 >
-                  <div className="flex justify-end">
-                    <span className="rounded-full border border-accent/40 px-3 py-1 text-xs font-semibold text-accent">
-                      Live demo
-                    </span>
+                  <div className={`border-b-2 border-frame px-4 py-3 text-center ${shoplotSigns[i % shoplotSigns.length]}`}>
+                    <h3 className="sign sign-lit truncate text-lg">{d.name}</h3>
                   </div>
-                  <h3 className="display mt-4 text-xl text-ink">{d.name}</h3>
-                  <p className="mt-3 text-sm text-muted">{d.blurb}</p>
-                  <span className="mt-4 inline-block text-sm font-semibold text-accent">Explore the demo →</span>
+                  <div className="flex flex-1 flex-col p-6">
+                    <span className="plate self-start">Live demo</span>
+                    <p className="mt-4 text-sm text-muted">{d.blurb}</p>
+                    <span className="mt-auto pt-4 text-sm font-bold text-accent">Explore the demo →</span>
+                  </div>
                 </a>
               ))}
         </div>
       </section>
 
-      {/* ---------- PRICING TEASER ---------- */}
-      <section className="starfield relative mx-3 mt-20 overflow-hidden rounded-[2.5rem] bg-hero px-6 py-16 text-hero-ink sm:mx-6">
-        <div className="relative mx-auto max-w-3xl text-center">
-          <h2 className="display text-4xl sm:text-5xl">Simple, honest pricing</h2>
-          <p className="mt-4 text-lg text-hero-muted">
-            <span className="display text-3xl text-accent">
-              {setup} down, {monthly}/month
-            </span>
-            <br />
-            for a custom 5-page site — domain, hosting, SSL, and unlimited edits included. Prefer to own it outright?
-            Lump sum from {lumpSum}.
-          </p>
-          <div className="mt-8 flex flex-wrap justify-center gap-4">
-            <Link
-              href={mpath(market, "/pricing")}
-              className="inline-flex items-center rounded-full bg-accent px-6 py-3 font-semibold text-accent-ink glow-accent"
-            >
-              See full pricing
-            </Link>
-            <WhatsAppButton
-              market={market}
-              variant="outline"
-              message="Hi JPBC! Can you tell me more about your website pricing?"
-            >
-              Ask us anything
-            </WhatsAppButton>
+      {/* ---------- 05 PRICING: the kopitiam menu board ---------- */}
+      <section className="mx-auto max-w-6xl px-6 py-24">
+        <div className="board screws overflow-hidden bg-sign-green text-sign-green-ink [--sign-glow:var(--sign-yellow)]">
+          <div className="grid gap-10 p-8 sm:p-12 lg:grid-cols-[1fr_1.4fr]">
+            <div>
+              <p className="plate !bg-sign-yellow !text-sign-yellow-ink">No. 05</p>
+              <h2 className="sign sign-lit mt-5 text-5xl text-sign-yellow sm:text-6xl">Menu</h2>
+              <p className="mt-5 max-w-sm text-lg text-[#e3efe7]">
+                Simple, honest pricing. No &ldquo;PM for price&rdquo;. Everything on the monthly plan includes domain,
+                hosting, SSL and unlimited edits.
+              </p>
+              <div className="mt-8 flex flex-wrap gap-4">
+                <Link href={mpath(market, "/pricing")} className="btn btn-yellow">
+                  Full pricing
+                </Link>
+                <WhatsAppButton
+                  market={market}
+                  variant="on-sign"
+                  message="Hi JPBC! Can you tell me more about your website pricing?"
+                >
+                  Ask us
+                </WhatsAppButton>
+              </div>
+            </div>
+            <ul className="space-y-4 text-base sm:text-lg">
+              {menu.map((m) => (
+                <li key={m.item} className="menu-row">
+                  <span className="font-semibold">{m.item}</span>
+                  <span className="menu-leader" aria-hidden />
+                  <span className="sign shrink-0 text-sign-yellow">{m.price}</span>
+                </li>
+              ))}
+              <li className="pt-2 text-sm text-[#cfe2d6]">
+                Monthly plan: {market.pricing.minimumMonths}-month minimum, then cancel anytime.
+              </li>
+            </ul>
           </div>
         </div>
       </section>
 
-      {/* ---------- FAQ TEASER ---------- */}
+      {/* ---------- 06 FAQ ---------- */}
       <section className="mx-auto max-w-3xl px-6 py-10">
-        <h2 className="display text-center text-4xl text-ink sm:text-5xl">Quick questions</h2>
+        <SectionHeading no="No. 06" title="Quick questions" center />
         <div className="mt-10">
           <FaqAccordion faqs={faqs.slice(0, 4)} />
         </div>
-        <p className="mt-6 text-center">
-          <Link href={mpath(market, "/faq")} className="font-semibold text-accent hover:underline">
-            Read all {faqs.length} FAQs →
+        <p className="mt-8 text-center">
+          <Link href={mpath(market, "/faq")} className="btn btn-secondary">
+            Read all {faqs.length} FAQs
           </Link>
         </p>
       </section>
 
-      {/* ---------- FINAL CTA ---------- */}
+      {/* ---------- 07 FROM THE BLOG ---------- */}
+      {latestPosts.length > 0 && (
+        <section className="mx-auto max-w-6xl px-6 py-20">
+          <div className="flex flex-wrap items-end justify-between gap-4">
+            <SectionHeading
+              no="No. 07"
+              title="Free advice, no sales pitch"
+              intro="Plain-English guides for business owners on websites, Google and selling online."
+            />
+            <Link href={mpath(market, "/blog")} className="btn btn-secondary">
+              All articles
+            </Link>
+          </div>
+          <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            {latestPosts.map((p) => (
+              <PostCard key={p.slug} post={p} />
+            ))}
+          </div>
+        </section>
+      )}
+
       <CtaBand market={market} />
     </>
   );

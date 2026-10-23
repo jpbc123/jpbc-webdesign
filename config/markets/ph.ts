@@ -39,6 +39,17 @@ export const ph: Market = {
       "We work with businesses anywhere in the Philippines (remote) — Metro Manila, Cebu, Davao, and every province in between. Everything happens over WhatsApp and email, so where you are never slows the project down.",
     hours: "Monday–Friday, 9am–6pm (PHT)",
     afterHoursNote: "WhatsApp anytime — we often reply outside business hours too.",
+    timeZone: "Asia/Manila",
+    openingHours: { days: [1, 2, 3, 4, 5], open: 9, close: 18 },
+  },
+
+  signage: {
+    open: "OPEN",
+    closed: "CLOSED",
+    closedNote: "WhatsApp still on",
+    shopName: "YOUR SHOP",
+    shopSub: "Your website · hand-coded",
+    receiptThanks: "Salamat po · Come again",
   },
 
   phone: {
@@ -168,7 +179,7 @@ export const ph: Market = {
 
   // Service and city pages need market-specific copy written first — see the
   // "adding a market" notes in config/markets/index.ts.
-  pages: { services: false, locations: false },
+  pages: { services: false, locations: false, blogPosts: false },
 
   schema: {
     areaServed: { type: "Country", names: ["Philippines"] },

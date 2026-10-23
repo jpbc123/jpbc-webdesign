@@ -40,6 +40,17 @@ export const au: Market = {
       "We work with businesses anywhere in Australia (remote) — Sydney, Melbourne, Brisbane, Perth, and every town in between. Everything happens over WhatsApp and email, so where you are never slows the project down.",
     hours: "Monday–Friday, 9am–6pm (AEST)",
     afterHoursNote: "WhatsApp anytime — we often reply outside business hours too.",
+    timeZone: "Australia/Sydney",
+    openingHours: { days: [1, 2, 3, 4, 5], open: 9, close: 18 },
+  },
+
+  signage: {
+    open: "OPEN",
+    closed: "CLOSED",
+    closedNote: "WhatsApp still on",
+    shopName: "YOUR SHOP",
+    shopSub: "Your website · hand-coded",
+    receiptThanks: "Thanks · Come again",
   },
 
   phone: {
@@ -167,7 +178,7 @@ export const au: Market = {
       "We're onboarding our first Australian clients now. Until their sites launch, these live demo builds show exactly the standard you'd get.",
   },
 
-  pages: { services: false, locations: false },
+  pages: { services: false, locations: false, blogPosts: false },
 
   schema: {
     areaServed: { type: "Country", names: ["Australia"] },

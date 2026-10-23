@@ -1,11 +1,13 @@
 import type { Metadata, Viewport } from "next";
-import { Source_Sans_3, Oswald, Yellowtail } from "next/font/google";
+import { Archivo, Bungee, Yellowtail } from "next/font/google";
 import "./globals.css";
 import { SITE_URL, SITE_NAME } from "@/lib/site";
 import { Analytics } from "@vercel/analytics/next";
 
-const sourceSans = Source_Sans_3({ subsets: ["latin"], variable: "--font-source-sans" });
-const oswald = Oswald({ subsets: ["latin"], variable: "--font-oswald" });
+// Archivo carries everything from body copy to the wide sign-painter headlines
+// (via its wdth axis). Bungee is the signboard lettering.
+const archivo = Archivo({ subsets: ["latin"], axes: ["wdth"], variable: "--font-archivo" });
+const bungee = Bungee({ subsets: ["latin"], weight: "400", variable: "--font-bungee" });
 const yellowtail = Yellowtail({ subsets: ["latin"], weight: "400", variable: "--font-yellowtail" });
 
 export const metadata: Metadata = {
@@ -38,8 +40,8 @@ export const metadata: Metadata = {
 // Tints mobile browser chrome to match whichever palette is showing.
 export const viewport: Viewport = {
   themeColor: [
-    { media: "(prefers-color-scheme: light)", color: "#f5f7fb" },
-    { media: "(prefers-color-scheme: dark)", color: "#0b1f3a" },
+    { media: "(prefers-color-scheme: light)", color: "#f3ead8" },
+    { media: "(prefers-color-scheme: dark)", color: "#13110e" },
   ],
 };
 
@@ -50,14 +52,20 @@ export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html
+      lang="en"
+      suppressHydrationWarning
+      // Font variables live on <html> (not <body>) because the theme tokens in
+      // globals.css that reference them are resolved at :root.
+      className={`${archivo.variable} ${bungee.variable} ${yellowtail.variable}`}
+    >
       <head>
         <script dangerouslySetInnerHTML={{ __html: themeInit }} />
         {/* TODO: Paste your analytics snippet here (e.g. Plausible/GA4) */}
       </head>
       {/* Nav/main/footer come from the market layouts (components/MarketShell),
           so every page renders the chrome for the market it belongs to. */}
-      <body className={`${sourceSans.variable} ${oswald.variable} ${yellowtail.variable} font-body`}>
+      <body className="font-body">
         {children}
         <Analytics />
       </body>
