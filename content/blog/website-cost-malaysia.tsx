@@ -19,7 +19,7 @@ export const post: Post = {
   faqs: [
     {
       q: "What is a fair price for a small business website in Malaysia?",
-      a: "For a 5-page business site, freelancers commonly quote around RM1,500 to RM6,000 and agencies RM8,000 and up. Monthly plans that bundle the build, domain, hosting and edits run from roughly RM150 to RM300 a month. The fair price depends on what is included after launch, not just the build.",
+      a: "For a 5-page business site, freelancers commonly quote around RM1,500 to RM6,000 and agencies RM8,000 and up. Monthly plans instead spread the build over a flat monthly fee that also covers the domain, hosting and a set amount of edits; compare what each one includes and how long the minimum term is. The fair price depends on what is included after launch, not just the build.",
     },
     {
       q: "How much does it cost to keep a website running each year?",
@@ -86,9 +86,9 @@ export const post: Post = {
             </tr>
             <tr>
               <td>Monthly website plan</td>
-              <td>Often RM0</td>
-              <td>About RM150–RM300/month, everything bundled</td>
-              <td>The provider, including edits</td>
+              <td>Low or none</td>
+              <td>One flat monthly fee, build and hosting bundled</td>
+              <td>The provider, including a set amount of edits</td>
             </tr>
           </tbody>
         </Table>
