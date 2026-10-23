@@ -27,6 +27,7 @@ export const ph: Market = {
     lumpSum: 28000,
     lumpSumCare: 390,
     minimumMonths: 12,
+    edits: { hoursPerMonth: 1, hourlyRate: 400 },
     addons: { extraPage: 800, googleBusinessProfile: 4000, localSeoMonthly: 2400 },
   },
 
@@ -66,7 +67,7 @@ export const ph: Market = {
     headlineLead: "Small business web design, ",
     headlineHighlight: "Philippine prices",
     subheadline:
-      "We hand-code fast, custom websites for Philippine small businesses — {setup} down and {monthly}/month, including domain, hosting, and unlimited edits. No WordPress. No page builders. No six-figure agency quotes.",
+      "We hand-code fast, custom websites for Philippine small businesses — {setup} down and {monthly}/month, including domain, hosting, and {editHours} of edits a month. No WordPress. No page builders. No six-figure agency quotes.",
   },
 
   voice: {
@@ -131,12 +132,12 @@ export const ph: Market = {
     home: {
       title: "JPBC Web Designs - Small Business Web Design, Philippines",
       description:
-        "Hand-coded custom websites for Philippine small businesses. {setup} down, {monthly}/month — domain, hosting, SSL, unlimited edits included. No WordPress, no six-figure agency quotes.",
+        "Hand-coded custom websites for Philippine small businesses. {setup} down, {monthly}/month — domain, hosting, SSL and {editHours} of edits a month included. No WordPress, no six-figure agency quotes.",
     },
     pricing: {
       title: "Website Pricing Philippines - {monthly}/month or {lumpSum} Lump Sum",
       description:
-        "Honest website pricing for Philippine small businesses: {setup} down {monthly}/month (domain, hosting, unlimited edits included) or lump sum from {lumpSum} + {care}/month care.",
+        "Honest website pricing for Philippine small businesses: {setup} down {monthly}/month (domain, hosting and {editHours} of edits a month included) or lump sum from {lumpSum} + {care}/month care.",
     },
     work: {
       title: "Our Work - Websites for Small Businesses",
@@ -151,7 +152,7 @@ export const ph: Market = {
     faq: {
       title: "FAQ - Pricing, Ownership, Timelines & Edits",
       description:
-        "Answers to the most common questions about JPBC Web Designs: what {monthly}/month includes, who owns the website and domain, what happens if you cancel, how fast we build, unlimited edits, and languages.",
+        "Answers to the most common questions about JPBC Web Designs: what {monthly}/month includes, who owns the website and domain, what happens if you cancel, how fast we build, edits, and languages.",
     },
     blog: {
       title: "Blog - Web & Local SEO Tips for Philippine Small Businesses",

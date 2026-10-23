@@ -9,7 +9,7 @@ import CtaBand from "@/components/CtaBand";
 import JsonLd from "@/components/JsonLd";
 import WhatsAppButton from "@/components/WhatsAppButton";
 import { defaultMarket } from "@/config/markets";
-import { price } from "@/lib/market";
+import { editHours, price } from "@/lib/market";
 import { SITE_URL } from "@/lib/site";
 import { pricingFaqs } from "@/data/faqs";
 
@@ -36,7 +36,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   if (!loc) return {};
   return {
     title: `Web Designer in ${loc.name} - ${setup} Down, ${monthly}/month`,
-    description: `Hand-coded custom websites for ${loc.name} small businesses. ${setup} down, ${monthly}/month including domain, hosting, and unlimited edits. Serving ${loc.areas.slice(0, 3).join(", ")} and beyond.`,
+    description: `Hand-coded custom websites for ${loc.name} small businesses. ${setup} down, ${monthly}/month including domain, hosting, and ${editHours(market)} of edits a month. Serving ${loc.areas.slice(0, 3).join(", ")} and beyond.`,
     alternates: { canonical: `/locations/${loc.slug}` },
   };
 }

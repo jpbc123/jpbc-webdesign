@@ -12,7 +12,7 @@ import { industryDemosFor } from "@/data/industryDemos";
 import { allFaqs } from "@/data/faqs";
 import { posts } from "@/content/blog";
 import type { Market } from "@/config/markets/types";
-import { mpath, price } from "@/lib/market";
+import { editHours, mpath, price } from "@/lib/market";
 import { marketMetadata } from "@/lib/seo";
 import { absoluteUrl } from "@/lib/site";
 
@@ -49,6 +49,7 @@ export default function HomePage({ market }: { market: Market }) {
   const setup = price(market, market.pricing.setup);
   const lumpSum = price(market, market.pricing.lumpSum);
   const care = price(market, market.pricing.lumpSumCare);
+  const hours = editHours(market);
   const { addons } = market.pricing;
   const work = portfolioFor(market);
   const faqs = allFaqs(market);
@@ -86,6 +87,7 @@ export default function HomePage({ market }: { market: Market }) {
     { item: "Setup fee", price: setup },
     { item: "Own it outright (lump sum)", price: `from ${lumpSum}` },
     { item: "Hosting & care (lump sum)", price: `${care}/mo` },
+    { item: "Extra edit time", price: `${price(market, market.pricing.edits.hourlyRate)}/hr` },
     { item: "Extra page", price: price(market, addons.extraPage) },
     { item: "Google Business Profile setup", price: price(market, addons.googleBusinessProfile) },
     { item: "Local SEO pages", price: `${price(market, addons.localSeoMonthly)}/mo` },
@@ -120,7 +122,7 @@ export default function HomePage({ market }: { market: Market }) {
         name: "Monthly website plan",
         price: String(market.pricing.monthly),
         priceCurrency: market.currency.code,
-        description: `Custom hand-coded 5-page website. ${setup} down, ${monthly}/month including domain, hosting, SSL, unlimited edits.`,
+        description: `Custom hand-coded 5-page website. ${setup} down, ${monthly}/month including domain, hosting, SSL and ${hours} of edits a month.`,
       },
       {
         "@type": "Offer",
@@ -357,7 +359,7 @@ export default function HomePage({ market }: { market: Market }) {
               <h2 className="sign sign-lit mt-5 text-5xl text-sign-yellow sm:text-6xl">Menu</h2>
               <p className="mt-5 max-w-sm text-lg text-[#e3efe7]">
                 Simple, honest pricing. No &ldquo;PM for price&rdquo;. Everything on the monthly plan includes domain,
-                hosting, SSL and unlimited edits.
+                hosting, SSL and {hours} of edits a month.
               </p>
               <div className="mt-8 flex flex-wrap gap-4">
                 <Link href={mpath(market, "/pricing")} className="btn btn-yellow">

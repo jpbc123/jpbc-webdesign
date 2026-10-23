@@ -4,7 +4,7 @@ import CtaBand from "@/components/CtaBand";
 import JsonLd from "@/components/JsonLd";
 import { allFaqs } from "@/data/faqs";
 import type { Market } from "@/config/markets/types";
-import { price } from "@/lib/market";
+import { editHours, price } from "@/lib/market";
 import { marketMetadata } from "@/lib/seo";
 
 export function faqMetadata(market: Market): Metadata {
@@ -34,7 +34,7 @@ export default function FaqPage({ market }: { market: Market }) {
         {/* Answer-first for SEO/AEO */}
         <p className="mt-4 text-lg text-muted">
           {`The short version: ${price(market, market.pricing.setup)} down and ${price(market, market.pricing.monthly)}/month`} gets
-          you a custom hand-coded website with domain, hosting, and unlimited edits included; you always own your
+          you a custom hand-coded website with domain, hosting, and {editHours(market)} of edits a month included; you always own your
           domain; and your site is live within 7 days of design approval. Details below.
         </p>
       </section>

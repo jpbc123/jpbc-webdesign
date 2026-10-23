@@ -28,6 +28,7 @@ export const au: Market = {
     lumpSum: 3500,
     lumpSumCare: 49,
     minimumMonths: 12,
+    edits: { hoursPerMonth: 1, hourlyRate: 50 },
     addons: { extraPage: 100, googleBusinessProfile: 500, localSeoMonthly: 300 },
   },
 
@@ -67,7 +68,7 @@ export const au: Market = {
     headlineLead: "Small business web design, ",
     headlineHighlight: "honest prices",
     subheadline:
-      "We hand-code fast, custom websites for Australian small businesses — {setup} down and {monthly}/month, including domain, hosting, and unlimited edits. No WordPress. No page builders. No five-figure agency quotes.",
+      "We hand-code fast, custom websites for Australian small businesses — {setup} down and {monthly}/month, including domain, hosting, and {editHours} of edits a month. No WordPress. No page builders. No five-figure agency quotes.",
   },
 
   voice: {
@@ -132,12 +133,12 @@ export const au: Market = {
     home: {
       title: "JPBC Web Designs - Small Business Web Design, Australia",
       description:
-        "Hand-coded custom websites for Australian small businesses. {setup} down, {monthly}/month — domain, hosting, SSL, unlimited edits included. No WordPress, no five-figure agency quotes.",
+        "Hand-coded custom websites for Australian small businesses. {setup} down, {monthly}/month — domain, hosting, SSL and {editHours} of edits a month included. No WordPress, no five-figure agency quotes.",
     },
     pricing: {
       title: "Website Pricing Australia - {monthly}/month or {lumpSum} Lump Sum",
       description:
-        "Honest website pricing for Australian small businesses: {setup} down {monthly}/month (domain, hosting, unlimited edits included) or lump sum from {lumpSum} + {care}/month care.",
+        "Honest website pricing for Australian small businesses: {setup} down {monthly}/month (domain, hosting and {editHours} of edits a month included) or lump sum from {lumpSum} + {care}/month care.",
     },
     work: {
       title: "Our Work - Websites for Small Businesses",
@@ -152,7 +153,7 @@ export const au: Market = {
     faq: {
       title: "FAQ - Pricing, Ownership, Timelines & Edits",
       description:
-        "Answers to the most common questions about JPBC Web Designs: what {monthly}/month includes, who owns the website and domain, what happens if you cancel, how fast we build, unlimited edits, and languages.",
+        "Answers to the most common questions about JPBC Web Designs: what {monthly}/month includes, who owns the website and domain, what happens if you cancel, how fast we build, edits, and languages.",
     },
     blog: {
       title: "Blog - Web & Local SEO Tips for Australian Small Businesses",

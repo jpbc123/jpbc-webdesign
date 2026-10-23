@@ -1,19 +1,20 @@
 import Link from "next/link";
 import WhatsAppButton from "./WhatsAppButton";
 import type { Market } from "@/config/markets/types";
-import { mpath, price } from "@/lib/market";
+import { editHours, mpath, price } from "@/lib/market";
 
 export default function PricingCards({ market }: { market: Market }) {
   const monthly = price(market, market.pricing.monthly);
   const setup = price(market, market.pricing.setup);
   const lumpSum = price(market, market.pricing.lumpSum);
   const care = price(market, market.pricing.lumpSumCare);
+  const editRate = price(market, market.pricing.edits.hourlyRate);
 
   const monthlyIncludes = [
     "Custom-designed, hand-coded 5-page website",
     `${market.voice.domainLine} domain included`,
     "Hosting + SSL certificate included",
-    "Unlimited content edits — WhatsApp us, it's done",
+    `${editHours(market)} of edits a month included — just WhatsApp us`,
     "Loads in under 1 second, guaranteed static",
     "WhatsApp support from the person who built it",
     "Live within 7 days of design approval",
@@ -24,7 +25,7 @@ export default function PricingCards({ market }: { market: Market }) {
     "You own the site code outright from day one",
     `${care}/month hosting & care plan`,
     "Domain + SSL included in care plan",
-    "Content edits billed per request (or add unlimited edits)",
+    `Content edits at ${editRate}/hour, only when you need them`,
     "Live within 7 days of design approval",
   ];
 

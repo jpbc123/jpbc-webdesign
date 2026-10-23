@@ -25,7 +25,7 @@ export const locations: Location[] = [
     intro:
       "PJ is home base for us — our studio is here, and most of our first clients were PJ businesses: aircon specialists in SS2, klinik pergigian in Damansara, kedai makan along Section 17. We know how PJ customers search, and we build sites that show up when they do.",
     answerFirst:
-      "Looking for a web designer in Petaling Jaya? JPBC Web Designs is a PJ-based studio that hand-codes fast, custom websites for small businesses — RM0 down and RM179/month, including domain, hosting, and unlimited edits.",
+      "Looking for a web designer in Petaling Jaya? JPBC Web Designs is a PJ-based studio that hand-codes fast, custom websites for small businesses — RM0 down and RM179/month, including domain, hosting, and 1 hour of edits a month.",
     areas: ["SS2", "Damansara Utama", "Section 17", "Kelana Jaya", "Bandar Utama", "Kota Damansara"],
     faqs: [
       {
@@ -50,7 +50,7 @@ export const locations: Location[] = [
     faqs: [
       {
         q: "I run a small business in KL — is RM179/month really all I pay?",
-        a: "For the standard 5-page site, yes. Domain, hosting, SSL, unlimited edits, and WhatsApp support are all included. Add-ons like extra pages or local SEO are optional and priced separately.",
+        a: "For the standard 5-page site, yes. Domain, hosting, SSL, 1 hour of edits a month, and WhatsApp support are all included. Add-ons like extra pages or local SEO are optional and priced separately.",
       },
       {
         q: "Do you only serve certain areas of KL?",
@@ -64,7 +64,7 @@ export const locations: Location[] = [
     intro:
       "From SS15's food scene to USJ's endless rows of shoplots, Subang is packed with small businesses that deserve better than a Facebook page. We build proper websites for Subang tuition centres, klinik, salons, and service businesses — sites that load fast and rank locally.",
     answerFirst:
-      "Searching for a web designer in Subang Jaya? JPBC Web Designs hand-codes custom small business websites for RM0 down and RM179/month — including domain, hosting, and unlimited edits, with support over WhatsApp.",
+      "Searching for a web designer in Subang Jaya? JPBC Web Designs hand-codes custom small business websites for RM0 down and RM179/month — including domain, hosting, and 1 hour of edits a month, with support over WhatsApp.",
     areas: ["SS15", "USJ", "Bandar Sunway", "Putra Heights", "SS18"],
     faqs: [
       {
@@ -121,7 +121,7 @@ export const locations: Location[] = [
     intro:
       "Klang businesses are some of the most established in the Klang Valley — decades-old kedai, family-run restaurants, port-related services. Established doesn't have to mean invisible online. We give Klang businesses websites that match their reputation: solid, fast, and easy to find.",
     answerFirst:
-      "Looking for a web designer in Klang? JPBC Web Designs builds hand-coded custom websites for Klang small businesses — RM0 down and RM179/month including domain, hosting, SSL, and unlimited edits.",
+      "Looking for a web designer in Klang? JPBC Web Designs builds hand-coded custom websites for Klang small businesses — RM0 down and RM179/month including domain, hosting, SSL, and 1 hour of edits a month.",
     areas: ["Bandar Bukit Tinggi", "Klang Town", "Bukit Raja", "Kapar", "Port Klang"],
     faqs: [
       {

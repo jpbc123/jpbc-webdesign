@@ -1,5 +1,5 @@
 import type { Market } from "@/config/markets/types";
-import { price } from "@/lib/market";
+import { editHours, price } from "@/lib/market";
 
 export type Faq = { q: string; a: string };
 
@@ -14,19 +14,21 @@ export function pricingFaqs(market: Market): Faq[] {
   const lumpSum = price(market, market.pricing.lumpSum);
   const care = price(market, market.pricing.lumpSumCare);
   const min = market.pricing.minimumMonths;
+  const hours = editHours(market);
+  const rate = price(market, market.pricing.edits.hourlyRate);
 
   return [
     {
       q: `What exactly does ${monthly}/month include?`,
-      a: `A custom-designed, hand-coded 5-page website, your ${market.voice.domainLine} domain, hosting, SSL certificate, unlimited content edits, and support over WhatsApp. No hidden fees, no setup cost — ${setup} down.`,
+      a: `A custom-designed, hand-coded 5-page website, your ${market.voice.domainLine} domain, hosting, SSL certificate, up to ${hours} of edits a month, and support over WhatsApp. No hidden fees, no setup cost — ${setup} down.`,
     },
     {
       q: "Is there a contract? What's the minimum commitment?",
       a: `The monthly plan has a ${min}-month minimum term. After that there's no lock-in — you simply keep paying monthly, and you can cancel anytime.`,
     },
     {
-      q: "What does 'unlimited edits' actually cover?",
-      a: "Text changes, photo swaps, price updates, new menu items, opening hours, promo banners — anything on your existing pages. WhatsApp us the change and it's usually live the same day. New pages or new features (like booking systems) are add-ons, and we'll always tell you before anything costs extra.",
+      q: "How do edits work on the monthly plan?",
+      a: `Up to ${hours} of edits a month is included: text changes, photo swaps, price updates, new menu items, opening hours, promo banners, anything on your existing pages. Most small changes take minutes, so that covers several requests. WhatsApp us the change and it's usually live the same day. Unused time doesn't roll over. Beyond that, extra time is ${rate}/hour, and we always tell you before anything costs extra. New pages or features (like booking systems) are add-ons.`,
     },
     {
       q: "What payment methods do you accept?",

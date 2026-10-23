@@ -6,7 +6,7 @@ import JsonLd from "@/components/JsonLd";
 import WhatsAppButton from "@/components/WhatsAppButton";
 import { pricingFaqs } from "@/data/faqs";
 import type { Market } from "@/config/markets/types";
-import { price } from "@/lib/market";
+import { editHours, price } from "@/lib/market";
 import { marketMetadata } from "@/lib/seo";
 
 export function pricingMetadata(market: Market): Metadata {
@@ -17,6 +17,8 @@ export default function PricingPage({ market }: { market: Market }) {
   const { monthly, setup, lumpSum, lumpSumCare } = market.pricing;
   const p = (amount: number) => price(market, amount);
   const faqs = pricingFaqs(market);
+  const hours = editHours(market);
+  const editRate = p(market.pricing.edits.hourlyRate);
 
   const faqJsonLd = {
     "@context": "https://schema.org",
@@ -39,7 +41,7 @@ export default function PricingPage({ market }: { market: Market }) {
         name: "Monthly plan",
         price: String(monthly),
         priceCurrency: market.currency.code,
-        description: `${p(setup)} down, no setup fee, ${p(monthly)}/month. Domain, hosting, SSL, unlimited edits included. ${market.pricing.minimumMonths}-month minimum term, then pay monthly — cancel anytime.`,
+        description: `${p(setup)} down, no setup fee, ${p(monthly)}/month. Domain, hosting, SSL and ${hours} of edits a month included. ${market.pricing.minimumMonths}-month minimum term, then pay monthly — cancel anytime.`,
         availability: "https://schema.org/InStock",
       },
       {
@@ -60,7 +62,7 @@ export default function PricingPage({ market }: { market: Market }) {
     { label: "Monthly cost", monthly: p(monthly), lump: `${p(lumpSumCare)} (hosting & care)` },
     { label: "Cost over 2 years", monthly: p(monthly * 24), lump: p(lumpSum + lumpSumCare * 24) },
     { label: "Cost over 4 years", monthly: p(monthly * 48), lump: p(lumpSum + lumpSumCare * 48) },
-    { label: "Content edits", monthly: "Unlimited, included", lump: "Billed per request" },
+    { label: "Content edits", monthly: `${hours}/month included, then ${editRate}/hr`, lump: `${editRate}/hour` },
     { label: "Who owns the site code", monthly: "JPBC (service)", lump: "You, from day one" },
     { label: "Who owns the domain", monthly: "You, always", lump: "You, always" },
     { label: "Best for", monthly: "Cash flow & hands-off owners", lump: "Long-term cost & full ownership" },
@@ -103,7 +105,7 @@ export default function PricingPage({ market }: { market: Market }) {
           <strong className="text-ink">
             {p(setup)} down and {p(monthly)}/month
           </strong>{" "}
-          — custom-designed, hand-coded, with domain, hosting, SSL, and unlimited edits included. Prefer to own it
+          — custom-designed, hand-coded, with domain, hosting, SSL, and {hours} of edits a month included. Prefer to own it
           outright? Lump sum from {p(lumpSum)} plus {p(lumpSumCare)}/month hosting &amp; care.
         </p>
       </section>
@@ -116,7 +118,7 @@ export default function PricingPage({ market }: { market: Market }) {
       <section className="mx-auto max-w-6xl px-6 py-10">
         <h2 className="display text-3xl text-ink sm:text-4xl">Which one suits you: cash flow vs long-term cost</h2>
         <p className="mt-3 max-w-2xl text-muted">
-          Honest answer: monthly is cheaper to start and includes unlimited edits; lump sum works out cheaper from
+          Honest answer: monthly is cheaper to start and includes {hours} of edits a month; lump sum works out cheaper from
           around year three. Here&apos;s the math, no spin.
         </p>
         <div className="board mt-8 overflow-x-auto">

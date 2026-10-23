@@ -1,6 +1,6 @@
 import type { Post } from "./types";
 import { Callout, Table, To, AskUs } from "./parts";
-import { price } from "@/lib/market";
+import { editHours, price } from "@/lib/market";
 
 export const post: Post = {
   slug: "how-much-does-a-website-cost-in-malaysia",
@@ -36,6 +36,8 @@ export const post: Post = {
     const lumpSum = price(market, market.pricing.lumpSum);
     const care = price(market, market.pricing.lumpSumCare);
     const extraPage = price(market, market.pricing.addons.extraPage);
+    const hours = editHours(market);
+    const editRate = price(market, market.pricing.edits.hourlyRate);
     const threeYearsMonthly = price(market, market.pricing.monthly * 36);
     const threeYearsLump = price(market, market.pricing.lumpSum + market.pricing.lumpSumCare * 36);
 
@@ -178,12 +180,12 @@ export const post: Post = {
         <ul>
           <li>
             <strong>Monthly: {setup} down, {monthly}/month.</strong> A custom, hand-coded 5-page website with domain,
-            hosting, SSL and unlimited content edits included. There&apos;s a {market.pricing.minimumMonths}-month
+            hosting, SSL and {hours} of content edits a month included (extra time is {editRate}/hour). There&apos;s a {market.pricing.minimumMonths}-month
             minimum term, then you can cancel anytime. Over three years that&apos;s {threeYearsMonthly}, all in.
           </li>
           <li>
             <strong>Lump sum: from {lumpSum}, then {care}/month</strong> for hosting and care. You own the site code
-            outright. Over three years that&apos;s about {threeYearsLump}, with changes billed per request.
+            outright. Over three years that&apos;s about {threeYearsLump}, with changes billed at {editRate}/hour.
           </li>
         </ul>
         <p>

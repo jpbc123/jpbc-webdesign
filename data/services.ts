@@ -19,9 +19,9 @@ export const services: Service[] = [
     name: "Web Design & Development",
     title: "Small Business Web Design Malaysia — Hand-Coded, RM179/month",
     description:
-      "Custom, hand-coded websites for Malaysian small businesses. RM0 down, RM179/month including domain, hosting, SSL, and unlimited edits. No WordPress.",
+      "Custom, hand-coded websites for Malaysian small businesses. RM0 down, RM179/month including domain, hosting, SSL, and 1 hour of edits a month. No WordPress.",
     answerFirst:
-      "How much does a small business website cost in Malaysia? With JPBC it's RM0 down and RM179/month — a custom-designed, hand-coded 5-page site including domain, hosting, SSL, and unlimited edits. No RM10,000 agency quotes, no DIY page builders.",
+      "How much does a small business website cost in Malaysia? With JPBC it's RM0 down and RM179/month — a custom-designed, hand-coded 5-page site including domain, hosting, SSL, and 1 hour of edits a month. No RM10,000 agency quotes, no DIY page builders.",
     problem: {
       heading: "The problem: agencies overcharge, DIY underdelivers",
       body: "Malaysian SMEs get squeezed from both sides. Agencies quote RM8,000–RM15,000 for a WordPress site stuffed with plugins that break, load slowly, and get hacked. DIY builders like Wix look cheap until you're three weekends deep and the site still looks like a template — because it is one. Either way, you end up with a slow site that doesn't rank and doesn't convert.",
@@ -39,7 +39,7 @@ export const services: Service[] = [
         },
         {
           title: "Everything included, one monthly price",
-          body: "Domain (.com or .com.my), hosting, SSL, and unlimited edits — all in the RM179/month. You WhatsApp a change, we make it. Usually same day.",
+          body: "Domain (.com or .com.my), hosting, SSL, and 1 hour of edits a month — all in the RM179/month. You WhatsApp a change, we make it. Usually same day.",
         },
       ],
     },

@@ -1,6 +1,6 @@
 import type { Post } from "./types";
 import { Callout, To, AskUs } from "./parts";
-import { price } from "@/lib/market";
+import { editHours, price } from "@/lib/market";
 
 export const post: Post = {
   slug: "website-vs-facebook-page",
@@ -115,7 +115,7 @@ export const post: Post = {
         <h2>What does that cost?</h2>
         <p>
           Less than most people think. Our monthly plan is {monthly}/month with nothing upfront, covering the
-          website, domain, hosting and unlimited edits. For a full comparison of your options, read{" "}
+          website, domain, hosting and {editHours(market)} of edits a month. For a full comparison of your options, read{" "}
           <To href="/blog/how-much-does-a-website-cost-in-malaysia">how much a website costs in Malaysia</To>.
         </p>
 

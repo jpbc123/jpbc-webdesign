@@ -8,7 +8,8 @@
 // build-time env vars. Formatting/behaviour helpers live in lib/market.ts.
 //
 // Any string below may contain price tokens — {monthly}, {setup}, {lumpSum},
-// {care}, {extraPage}, {gbp}, {seoMonthly}, {minMonths} — which are resolved
+// {care}, {extraPage}, {gbp}, {seoMonthly}, {minMonths}, {editHours}, {editRate}
+// — which are resolved
 // once when the market is loaded (see config/markets/index.ts). That way a
 // price change in `pricing` propagates through every sentence on the site.
 
@@ -59,6 +60,9 @@ export type Market = {
     /** Monthly hosting & care on the lump-sum plan */
     lumpSumCare: number;
     minimumMonths: number;
+    /** Edits included in the monthly plan; time beyond that (and all edits on
+     *  the lump-sum plan) is billed at the hourly rate. */
+    edits: { hoursPerMonth: number; hourlyRate: number };
     addons: {
       extraPage: number;
       googleBusinessProfile: number;

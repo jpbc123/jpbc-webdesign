@@ -40,6 +40,12 @@ export function normalisePhone(market: Market, raw: string): string {
   return `+${dialCode}${digits}`;
 }
 
+/** The monthly plan's edit allowance as words, e.g. "1 hour". */
+export function editHours(market: Market): string {
+  const h = market.pricing.edits.hoursPerMonth;
+  return `${h} hour${h === 1 ? "" : "s"}`;
+}
+
 /** Substitute {business} into a template string. */
 export function fillBusiness(template: string, business: string): string {
   return template.replace(/\{business\}/g, business);
@@ -61,6 +67,8 @@ function tokensFor(market: Market): Record<string, string> {
     gbp: price(market, pricing.addons.googleBusinessProfile),
     seoMonthly: price(market, pricing.addons.localSeoMonthly),
     minMonths: String(pricing.minimumMonths),
+    editHours: editHours(market),
+    editRate: price(market, pricing.edits.hourlyRate),
     serviceArea: market.contact.serviceArea,
     market: market.label,
   };

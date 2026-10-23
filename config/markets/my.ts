@@ -22,6 +22,7 @@ export const my: Market = {
     lumpSum: 3500,
     lumpSumCare: 49,
     minimumMonths: 12,
+    edits: { hoursPerMonth: 1, hourlyRate: 50 },
     addons: { extraPage: 100, googleBusinessProfile: 500, localSeoMonthly: 300 },
   },
 
@@ -61,7 +62,7 @@ export const my: Market = {
     headlineLead: "Small business web design, ",
     headlineHighlight: "Malaysian prices",
     subheadline:
-      "We hand-code fast, custom websites for Malaysian small businesses — {setup} down and {monthly}/month, including domain, hosting, and unlimited edits. No WordPress. No page builders. No RM10,000 agency quotes.",
+      "We hand-code fast, custom websites for Malaysian small businesses — {setup} down and {monthly}/month, including domain, hosting, and {editHours} of edits a month. No WordPress. No page builders. No RM10,000 agency quotes.",
   },
 
   voice: {
@@ -126,12 +127,12 @@ export const my: Market = {
     home: {
       title: "JPBC Web Designs - Small Business Web Design, Malaysian Prices",
       description:
-        "Hand-coded custom websites for Malaysian small businesses. {setup} down, {monthly}/month — domain, hosting, SSL, unlimited edits included. No WordPress, no RM10,000 agency quotes.",
+        "Hand-coded custom websites for Malaysian small businesses. {setup} down, {monthly}/month — domain, hosting, SSL and {editHours} of edits a month included. No WordPress, no RM10,000 agency quotes.",
     },
     pricing: {
       title: "Website Pricing Malaysia - {monthly}/month or {lumpSum} Lump Sum",
       description:
-        "Honest website pricing for Malaysian small businesses: {setup} down {monthly}/month (domain, hosting, unlimited edits included) or lump sum from {lumpSum} + {care}/month care.",
+        "Honest website pricing for Malaysian small businesses: {setup} down {monthly}/month (domain, hosting and {editHours} of edits a month included) or lump sum from {lumpSum} + {care}/month care.",
     },
     work: {
       title: "Our Work - Websites for Malaysian Small Businesses",
@@ -146,7 +147,7 @@ export const my: Market = {
     faq: {
       title: "FAQ - Pricing, Ownership, Timelines & Edits",
       description:
-        "Answers to the most common questions about JPBC Web Designs: what {monthly}/month includes, who owns the website and domain, what happens if you cancel, how fast we build, unlimited edits, and languages.",
+        "Answers to the most common questions about JPBC Web Designs: what {monthly}/month includes, who owns the website and domain, what happens if you cancel, how fast we build, edits, and languages.",
     },
     blog: {
       title: "Blog - Web & Local SEO Tips for Malaysian Small Businesses",

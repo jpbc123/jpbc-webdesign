@@ -1,10 +1,10 @@
 import type { Metadata } from "next";
 import CtaBand from "@/components/CtaBand";
 import type { Market } from "@/config/markets/types";
-import { mpath, price } from "@/lib/market";
+import { editHours, mpath, price } from "@/lib/market";
 import { legalMetadata, OPERATOR, OPERATOR_REG_NO } from "@/lib/legal";
 
-export const TERMS_EFFECTIVE = "22 October 2026";
+export const TERMS_EFFECTIVE = "24 October 2026";
 
 export function termsMetadata(market: Market): Metadata {
   return legalMetadata(
@@ -77,7 +77,10 @@ export default function TermsPage({ market }: { market: Market }) {
           <ul className={list}>
             <li>
               <strong className="text-ink">Monthly plan:</strong> {price(market, pricing.setup)} down and{" "}
-              {price(market, pricing.monthly)} a month, including domain, hosting, SSL and unlimited content edits.
+              {price(market, pricing.monthly)} a month, including domain, hosting, SSL and up to{" "}
+              {editHours(market)} of minor content edits a month. Unused edit time does not roll over; additional edit
+              time is billed at {price(market, pricing.edits.hourlyRate)} an hour, and we tell you before any extra
+              time is charged.
               The first {pricing.minimumMonths} months are a minimum term; after that you can cancel anytime. The
               website is part of the subscription: when the subscription ends, the site goes offline. A one-time
               buyout is available on request.
@@ -85,6 +88,7 @@ export default function TermsPage({ market }: { market: Market }) {
             <li>
               <strong className="text-ink">Lump sum:</strong> from {price(market, pricing.lumpSum)} one-time, plus{" "}
               {price(market, pricing.lumpSumCare)} a month for hosting and care. You own the site code outright.
+              Content edits are billed at {price(market, pricing.edits.hourlyRate)} an hour.
             </li>
             <li>
               <strong className="text-ink">Add-ons</strong> such as extra pages, Google Business Profile setup and
