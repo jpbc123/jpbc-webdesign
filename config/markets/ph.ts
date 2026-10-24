@@ -64,10 +64,10 @@ export const ph: Market = {
 
   heroCopy: {
     badge: "{setup} down · {monthly}/month · Live in 7 days",
-    headlineLead: "Small business web design, ",
+    headlineLead: "Agency-quality websites, ",
     headlineHighlight: "Philippine prices",
     subheadline:
-      "We hand-code fast, custom websites for Philippine small businesses — {setup} down and {monthly}/month, including domain, hosting, and {editHours} of edits a month. No WordPress. No page builders. No six-figure agency quotes.",
+      "We hand-code fast, custom websites for Philippine small and medium businesses — {setup} down and {monthly}/month, including domain, hosting, and {editHours} of edits a month. No WordPress. No page builders. No six-figure agency quotes.",
   },
 
   voice: {

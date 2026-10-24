@@ -59,10 +59,10 @@ export const my: Market = {
 
   heroCopy: {
     badge: "{setup} down · {monthly}/month · Live in 7 days",
-    headlineLead: "Small business web design, ",
+    headlineLead: "Agency-quality websites, ",
     headlineHighlight: "Malaysian prices",
     subheadline:
-      "We hand-code fast, custom websites for Malaysian small businesses — {setup} down and {monthly}/month, including domain, hosting, and {editHours} of edits a month. No WordPress. No page builders. No RM10,000 agency quotes.",
+      "We hand-code fast, custom websites for Malaysian small and medium businesses — {setup} down and {monthly}/month, including domain, hosting, and {editHours} of edits a month. No WordPress. No page builders. No RM10,000 agency quotes.",
   },
 
   voice: {
