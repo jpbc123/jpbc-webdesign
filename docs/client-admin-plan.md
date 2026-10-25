@@ -32,9 +32,13 @@ clients never see it.
 
 ## Things to decide first
 
-- **Database**: this site has none yet (it's a static Next 15 site on Vercel). It needs its
-  own NEW Supabase project. Never reuse a client's project (e.g. `pvg-store`); that's the
-  client's data.
+- **Database** (decided 2026-10-25): share the `pvg-store` Supabase project (it's in the
+  owner's account; saves cost and avoids juggling DBs), but kept apart from the store:
+  - tables in their own `jpbc` schema, not exposed to the public API;
+  - own `jpbc.admins` table holding only the owner's user. NEVER reuse the store's
+    `public.is_admin()`, because Gary is a store admin and could read the data with it;
+  - own private `jpbc-receipts` bucket, policies checked against `jpbc.admins`;
+  - keep it easy to move `jpbc` into its own project later if needed.
 - **Next version**: this site is on Next 15, the Gary store on Next 16. Next 15 calls the
   file `middleware.ts` (Next 16 renamed it `proxy.ts`), so copied code needs small changes,
   or upgrade first.
