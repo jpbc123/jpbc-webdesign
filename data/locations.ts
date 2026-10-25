@@ -19,22 +19,25 @@ export type Location = {
 
 export const locations: Location[] = [
   {
-    slug: "petaling-jaya",
-    name: "Petaling Jaya",
-    short: "PJ",
+    slug: "shah-alam",
+    name: "Shah Alam",
     intro:
-      "PJ is home base for us — our studio is here, and most of our first clients were PJ businesses: aircon specialists in SS2, klinik pergigian in Damansara, kedai makan along Section 17. We know how PJ customers search, and we build sites that show up when they do.",
+      "Shah Alam is home base for us — our registered business is here. The city runs on SMEs: workshops in Section 26, kedai in Seksyen 7, factories and services all over, and many still have no website or an outdated one. We fix that with fast, hand-coded sites that match how Shah Alam customers actually search: on their phones, in BM and English.",
     answerFirst:
-      "Looking for a web designer in Petaling Jaya? JPBC Web Designs is a PJ-based studio that hand-codes fast, custom websites for small businesses — RM0 down and RM179/month, including domain, hosting, and 1 hour of edits a month.",
-    areas: ["SS2", "Damansara Utama", "Section 17", "Kelana Jaya", "Bandar Utama", "Kota Damansara"],
+      "Looking for a web designer in Shah Alam? JPBC Web Designs is a Shah Alam-based studio that builds fast, hand-coded websites for local businesses — RM0 down, RM179/month, everything included. BM and English content, optimised for mobile.",
+    areas: ["Seksyen 7", "Seksyen 13", "Setia Alam", "Kota Kemuning", "Bukit Jelutong"],
     faqs: [
       {
-        q: "Do you meet clients in Petaling Jaya face to face?",
-        a: "Yes — we're based in PJ, so if you prefer to discuss over kopi instead of WhatsApp, we can arrange a meetup at your shop or a mamak nearby. Most clients handle everything over WhatsApp though; it's faster.",
+        q: "Do you meet clients in Shah Alam face to face?",
+        a: "Yes — we're based in Shah Alam, so if you prefer to talk it through over kopi instead of WhatsApp, we can meet at your shop or a mamak nearby. Most clients handle everything over WhatsApp though; it's faster.",
       },
       {
-        q: "Can you help my PJ business show up in 'near me' searches?",
-        a: "That's exactly what our Google Business Profile and local SEO add-ons are for. We optimise your profile, build location-relevant content, and make sure your site loads fast — all three matter for 'web designer near me' style searches.",
+        q: "Boleh buat website dalam Bahasa Melayu?",
+        a: "Boleh, memang selalu buat. Ramai pelanggan Shah Alam pilih website dwibahasa — BM untuk pelanggan tempatan, English untuk corporate clients. Kami tulis copy yang natural, bukan Google Translate.",
+      },
+      {
+        q: "I run a workshop — do I really need more than a Facebook page?",
+        a: "A website ranks on Google Maps and search when someone's car breaks down and they search 'workshop Shah Alam'. Facebook posts don't. Plus your pricing, services, and location are always one click away, not buried in a feed.",
       },
     ],
   },
@@ -43,7 +46,7 @@ export const locations: Location[] = [
     name: "Kuala Lumpur",
     short: "KL",
     intro:
-      "KL businesses compete with everyone — big brands, franchises, and a thousand other kedai one street over. A fast, professional website is how a small KL business punches above its weight. We build them for cafes in TTDI, tuition centres in Cheras, workshops in Kepong, and everything in between.",
+      "KL businesses compete with everyone — big brands, franchises, and a thousand other kedai one street over. A fast, professional website is how a small KL business punches above its weight. Whether you run a cafe in TTDI, a tuition centre in Cheras or a workshop in Kepong, we build sites that hold their own.",
     answerFirst:
       "Need a web designer in Kuala Lumpur? JPBC Web Designs builds hand-coded, custom websites for KL small businesses from RM0 down and RM179/month — no WordPress, no templates, loads in under a second.",
     areas: ["Cheras", "TTDI", "Kepong", "Setapak", "Bangsar", "Mont Kiara"],
@@ -55,6 +58,26 @@ export const locations: Location[] = [
       {
         q: "Do you only serve certain areas of KL?",
         a: "No — everything from Sentul to Sri Petaling. Since we work over WhatsApp and email, your exact neighbourhood doesn't matter. We serve the whole Klang Valley.",
+      },
+    ],
+  },
+  {
+    slug: "petaling-jaya",
+    name: "Petaling Jaya",
+    short: "PJ",
+    intro:
+      "PJ is one of the busiest small-business areas in the Klang Valley: aircon specialists in SS2, klinik pergigian in Damansara, kedai makan along Section 17, all competing for the same 'near me' searches. We build fast, hand-coded sites that show up when PJ customers search, and we're just down the Federal Highway in Shah Alam.",
+    answerFirst:
+      "Looking for a web designer in Petaling Jaya? JPBC Web Designs is a Shah Alam studio that hand-codes fast, custom websites for PJ businesses — RM0 down and RM179/month, including domain, hosting, and 1 hour of edits a month.",
+    areas: ["SS2", "Damansara Utama", "Section 17", "Kelana Jaya", "Bandar Utama", "Kota Damansara"],
+    faqs: [
+      {
+        q: "Do you meet clients in Petaling Jaya face to face?",
+        a: "Yes — we're based in Shah Alam, a short drive away, so if you prefer to discuss over kopi instead of WhatsApp, we can arrange a meetup at your shop or a mamak nearby. Most clients handle everything over WhatsApp though; it's faster.",
+      },
+      {
+        q: "Can you help my PJ business show up in 'near me' searches?",
+        a: "That's exactly what our Google Business Profile and local SEO add-ons are for. We optimise your profile, build location-relevant content, and make sure your site loads fast — all three matter for 'web designer near me' style searches.",
       },
     ],
   },
@@ -74,25 +97,6 @@ export const locations: Location[] = [
       {
         q: "Can the site be in both English and BM?",
         a: "Yes — we build in BM, English, Chinese, or a mix. For most Subang businesses we recommend English-first with BM where it counts, but it's your call.",
-      },
-    ],
-  },
-  {
-    slug: "shah-alam",
-    name: "Shah Alam",
-    intro:
-      "Shah Alam runs on SMEs — workshops in Section 26, kedai in Seksyen 7, factories and services all over. Most still have no website or an outdated one from 2015. We fix that with fast, hand-coded sites that match how Shah Alam customers actually search: on their phones, in BM and English.",
-    answerFirst:
-      "Looking for a web designer in Shah Alam? JPBC Web Designs builds fast, hand-coded websites for Shah Alam small businesses — RM0 down, RM179/month, everything included. BM and English content, optimised for mobile.",
-    areas: ["Seksyen 7", "Seksyen 13", "Setia Alam", "Kota Kemuning", "Bukit Jelutong"],
-    faqs: [
-      {
-        q: "Boleh buat website dalam Bahasa Melayu?",
-        a: "Boleh, memang selalu buat. Ramai pelanggan Shah Alam pilih website dwibahasa — BM untuk pelanggan tempatan, English untuk corporate clients. Kami tulis copy yang natural, bukan Google Translate.",
-      },
-      {
-        q: "I run a workshop — do I really need more than a Facebook page?",
-        a: "A website ranks on Google Maps and search when someone's car breaks down and they search 'workshop Shah Alam'. Facebook posts don't. Plus your pricing, services, and location are always one click away, not buried in a feed.",
       },
     ],
   },

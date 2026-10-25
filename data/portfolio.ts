@@ -1,5 +1,6 @@
-// All items are real, launched projects. Add new client projects here as
-// they launch — each item drives a card on /work and the home page
+// All items are real, launched projects: our own sites so far (Feng Shui &
+// Beyond, Setia Alam Garden Services, MY Swift Audit), so never call them
+// client work. Add client projects here as they launch — each item drives a card on /work and the home page
 // portfolio grid. Screenshots live in /public/work/<slug>.jpg.
 //
 // Which items a market shows is set by `workExamples.portfolioSlugs` in

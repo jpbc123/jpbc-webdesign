@@ -25,3 +25,12 @@ jpbc-webdesigns-scaffold-prompt.md
 *-claude-code-prompt.md
 
 instructions.txt
+
+# scratch files dropped in the repo root (screenshots, notes, transcripts) —
+# never commit them. Rooted with "/" so public/llms.txt, docs/*.md etc. are unaffected.
+/*.png
+/*.jpg
+/*.jpeg
+/*.webp
+/*.txt
+/*.md

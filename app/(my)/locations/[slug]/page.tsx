@@ -10,7 +10,7 @@ import JsonLd from "@/components/JsonLd";
 import WhatsAppButton from "@/components/WhatsAppButton";
 import { defaultMarket } from "@/config/markets";
 import { editHours, price } from "@/lib/market";
-import { SITE_URL } from "@/lib/site";
+import { BUSINESS_ID, SITE_URL } from "@/lib/site";
 import { pricingFaqs } from "@/data/faqs";
 
 // One shared template for every location — add a location object in
@@ -48,24 +48,16 @@ export default async function LocationPage({ params }: Props) {
 
   const pageFaqs = [...loc.faqs, ...pricingFaqs(market).slice(0, 3)];
 
+  // A Service offered in this city by the one business on the home page, not
+  // a separate business per city (that splits the brand in search results).
   const jsonLd = {
     "@context": "https://schema.org",
-    "@type": "ProfessionalService",
-    name: `JPBC Web Designs — Web Designer in ${loc.name}`,
+    "@type": "Service",
+    name: `Web design in ${loc.name}`,
+    serviceType: "Web design",
     url: `${SITE_URL}/locations/${loc.slug}`,
-    telephone: `+${market.contact.whatsapp}`,
+    provider: { "@id": BUSINESS_ID },
     areaServed: { "@type": "City", name: loc.name },
-    ...(market.schema.address
-      ? {
-          address: {
-            "@type": "PostalAddress",
-            addressLocality: market.schema.address.locality,
-            addressRegion: market.schema.address.region,
-            addressCountry: market.schema.address.country,
-          },
-        }
-      : {}),
-    priceRange: `${market.currency.symbol}${market.pricing.monthly} - ${market.currency.symbol}${market.pricing.lumpSum}`,
   };
 
   const faqJsonLd = {

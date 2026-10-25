@@ -6,7 +6,7 @@ import WhatsAppButton from "@/components/WhatsAppButton";
 import CtaBand from "@/components/CtaBand";
 import JsonLd from "@/components/JsonLd";
 import { defaultMarket } from "@/config/markets";
-import { SITE_URL } from "@/lib/site";
+import { BUSINESS_ID, SITE_URL } from "@/lib/site";
 
 // Service pages are Malaysia-only for now — the copy in data/services.ts is
 // written for the Malaysian market. A market opts in with `pages.services`
@@ -43,21 +43,7 @@ export default async function ServicePage({ params }: Props) {
     name: service.name,
     description: service.description,
     url: `${SITE_URL}/services/${service.slug}`,
-    provider: {
-      "@type": "ProfessionalService",
-      name: "JPBC Web Designs",
-      url: SITE_URL,
-      ...(market.schema.address
-        ? {
-            address: {
-              "@type": "PostalAddress",
-              addressLocality: market.schema.address.locality,
-              addressRegion: market.schema.address.region,
-              addressCountry: market.schema.address.country,
-            },
-          }
-        : {}),
-    },
+    provider: { "@id": BUSINESS_ID },
     areaServed: { "@type": "AdministrativeArea", name: "Klang Valley, Malaysia" },
   };
 

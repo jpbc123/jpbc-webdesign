@@ -41,7 +41,7 @@ export default function WorkPage({ market }: { market: Market }) {
 
       {projects.length > 0 && (
         <section className="mx-auto max-w-6xl px-6 py-10">
-          <p className="plate mb-4">Client work</p>
+          <p className="plate mb-4">Live projects</p>
           <h2 className="display text-4xl text-ink sm:text-5xl">Recent work</h2>
           <div className="mt-8">
             <WorkGrid projects={projects} />

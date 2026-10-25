@@ -1,6 +1,7 @@
 # JPBC Web Designs
 
-> Web design studio in Petaling Jaya, Malaysia. We hand-code fast, custom websites
+> Web design studio in Shah Alam, Selangor, serving Kuala Lumpur and the Klang
+> Valley. We hand-code fast, custom websites
 > for local small businesses on an affordable monthly subscription: RM0 down and
 > RM179/month, including a .com/.com.my domain, hosting, SSL, 1 hour of edits a
 > month, and WhatsApp support. Lump-sum option from RM2,800 + RM49/month hosting & care.
@@ -21,10 +22,10 @@ Key facts:
 - Primary contact: WhatsApp click-to-chat.
 
 Locations served (Klang Valley, Malaysia):
-- Petaling Jaya: https://jpbcwebdesigns.com/locations/petaling-jaya
+- Shah Alam (home base): https://jpbcwebdesigns.com/locations/shah-alam
 - Kuala Lumpur: https://jpbcwebdesigns.com/locations/kuala-lumpur
+- Petaling Jaya: https://jpbcwebdesigns.com/locations/petaling-jaya
 - Subang Jaya: https://jpbcwebdesigns.com/locations/subang-jaya
-- Shah Alam: https://jpbcwebdesigns.com/locations/shah-alam
 - Puchong: https://jpbcwebdesigns.com/locations/puchong
 - Klang: https://jpbcwebdesigns.com/locations/klang
 

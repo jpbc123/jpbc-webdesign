@@ -14,7 +14,8 @@ import { posts } from "@/content/blog";
 import type { Market } from "@/config/markets/types";
 import { editHours, mpath, price } from "@/lib/market";
 import { marketMetadata } from "@/lib/seo";
-import { absoluteUrl } from "@/lib/site";
+import { absoluteUrl, BUSINESS_ID, SITE_NAME, SITE_URL } from "@/lib/site";
+import { DEFAULT_MARKET_CODE } from "@/config/markets";
 
 // One home page for every market — all market-specific values come from the
 // market config passed in by the route.
@@ -94,11 +95,28 @@ export default function HomePage({ market }: { market: Market }) {
     { item: "Online store / web app", price: "Quote" },
   ];
 
+  const isDefaultMarket = market.code === DEFAULT_MARKET_CODE;
+
+  // Site name + brand variants, so Google labels results "JPBC Web Designs"
+  // and treats searches like "jpbcwebdesign" as the brand. Read from the root
+  // home page only.
+  const websiteJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    name: SITE_NAME,
+    alternateName: ["JPBC", "JPBC Webdesigns", "jpbcwebdesigns.com"],
+    url: `${SITE_URL}/`,
+    publisher: { "@id": BUSINESS_ID },
+  };
+
   const localBusinessJsonLd = {
     "@context": "https://schema.org",
     "@type": ["LocalBusiness", "ProfessionalService"],
-    name: "JPBC Web Designs",
+    ...(isDefaultMarket ? { "@id": BUSINESS_ID } : {}),
+    name: SITE_NAME,
     url: absoluteUrl(mpath(market, "/")),
+    logo: `${SITE_URL}/icon-512.png`,
+    image: `${SITE_URL}/icon-512.png`,
     telephone: `+${market.contact.whatsapp}`,
     description: market.voice.businessDescription,
     ...(market.schema.address
@@ -136,6 +154,7 @@ export default function HomePage({ market }: { market: Market }) {
 
   return (
     <>
+      {isDefaultMarket && <JsonLd data={websiteJsonLd} />}
       <JsonLd data={localBusinessJsonLd} />
 
       {/* ---------- HERO: the shopfront ---------- */}

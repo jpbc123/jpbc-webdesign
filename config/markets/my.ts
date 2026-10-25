@@ -32,7 +32,7 @@ export const my: Market = {
     email: "hello@jpbcwebdesigns.com", // TODO: confirm email
     serviceArea: "Klang Valley, Malaysia",
     serviceAreaBody:
-      "Based in Petaling Jaya, serving the whole Klang Valley — PJ, KL, Subang Jaya, Shah Alam, Puchong, Klang, and everywhere in between. Everything works over WhatsApp, so your exact location never slows us down.",
+      "Based in Shah Alam, serving Kuala Lumpur and the whole Klang Valley — KL, PJ, Subang Jaya, Shah Alam, Puchong, Klang, and everywhere in between. Everything works over WhatsApp, so your exact location never slows us down.",
     hours: "Monday–Friday, 9am–6pm (MYT)",
     afterHoursNote: "WhatsApp anytime — we reply after hours more often than we should.",
     timeZone: "Asia/Kuala_Lumpur",
@@ -77,12 +77,12 @@ export const my: Market = {
     pricingQuestion: "How much does a small business website cost in Malaysia?",
     productDescription: "Custom, hand-coded 5-page website for Malaysian small businesses.",
     businessDescription:
-      "Web design studio in Petaling Jaya, Malaysia. Hand-coded custom websites for small businesses — {setup} down, {monthly}/month.",
+      "Web design studio in Shah Alam, Selangor, serving Kuala Lumpur and the Klang Valley. Hand-coded custom websites for small businesses — {setup} down, {monthly}/month.",
     workAnswerFirst:
       "What kind of websites does JPBC build? Fast, hand-coded sites, web apps and AI implementation for everyday Malaysian businesses — aircon teams, klinik, restoran, renovation contractors, tuition centres, workshops, travel agencies. Our own products put AI to work too: MyResit reads receipts and MY Swift Audit helps prepare audit reports. Every project below is live; click through and see for yourself.",
     aboutH1: "A small studio that answers its own WhatsApp",
     aboutAnswerFirst:
-      "Who is JPBC Web Designs? A founder-led web design studio in Petaling Jaya that hand-codes websites for Malaysian small businesses. No account managers, no ticket systems — you WhatsApp us, the person who built your site replies.",
+      "Who is JPBC Web Designs? A founder-led web design studio in Shah Alam that hand-codes websites for Malaysian small businesses. No account managers, no ticket systems — you WhatsApp us, the person who built your site replies.",
     aboutStory: [
       "JPBC started the way most of our clients' businesses did: one person, one skill, and a lot of WhatsApp messages. We kept meeting kedai owners, clinic managers, and workshop bosses who'd been quoted RM10,000 for a website — or worse, paid it, and got a slow WordPress site that broke a year later with nobody answering the phone.",
       "That felt wrong. Building a good website for a small business isn't a RM10,000 problem. It's a craft problem: someone who knows what they're doing, sitting down and hand-coding a fast, clean site — then sticking around to keep it updated. So that's the business we built. {setup} down, {monthly} a month, everything included, and the person who wrote your code is the one replying to your messages.",
@@ -99,9 +99,9 @@ export const my: Market = {
     blogComingSoon:
       "We're writing our first guides — starting with “How much should a small business website cost in Malaysia?” and “Why your kedai needs more than a Facebook page.” Check back soon.",
     footerBlurb:
-      "Hand-coded websites for Malaysian small businesses. {setup} down, {monthly}/month. Based in Petaling Jaya, serving the whole Klang Valley.",
+      "Hand-coded websites for Malaysian small businesses. {setup} down, {monthly}/month. Based in Shah Alam, serving Kuala Lumpur and the whole Klang Valley.",
     footerHoursNote: "Mon–Fri 9am–6pm · WhatsApp anytime, we reply cepat.",
-    footerLegalLine: "Petaling Jaya, Selangor, Malaysia",
+    footerLegalLine: "Shah Alam, Selangor, Malaysia",
     formNamePlaceholder: "Ali / Mei Ling / Kumar",
     formBusinessPlaceholder: "e.g. Restoran Selera Kampung",
     formIntakeBusinessPlaceholder: "e.g. Setia Alam Garden Services",
@@ -140,9 +140,9 @@ export const my: Market = {
         "Hand-coded websites and web apps for Malaysian businesses — aircon services, klinik, restoran, renovation, tuition centres, workshops, and more. Every project is live, plus industry demo sites for dental clinics and gyms.",
     },
     about: {
-      title: "About - A Small Studio in Petaling Jaya",
+      title: "About - A Small Studio in Shah Alam",
       description:
-        "JPBC Web Designs is a founder-led web design studio in Petaling Jaya. You WhatsApp us, the person who built your site replies. No account managers, no ticket systems.",
+        "JPBC Web Designs is a founder-led web design studio in Shah Alam, serving Kuala Lumpur and the Klang Valley. You WhatsApp us, the person who built your site replies. No account managers, no ticket systems.",
     },
     faq: {
       title: "FAQ - Pricing, Ownership, Timelines & Edits",
@@ -157,7 +157,7 @@ export const my: Market = {
     contact: {
       title: "Contact - WhatsApp Us or Send a Message",
       description:
-        "Contact JPBC Web Designs in Petaling Jaya. WhatsApp is fastest — a real person replies. Serving the whole Klang Valley: PJ, KL, Subang, Shah Alam, Puchong, Klang.",
+        "Contact JPBC Web Designs in Shah Alam. WhatsApp is fastest — a real person replies. Serving Kuala Lumpur and the whole Klang Valley: KL, PJ, Subang, Shah Alam, Puchong, Klang.",
     },
     getStarted: {
       title: "Get Started - Tell Us About Your Business",
@@ -174,7 +174,7 @@ export const my: Market = {
   pages: { services: true, locations: true, blogPosts: true },
 
   schema: {
-    address: { locality: "Petaling Jaya", region: "Selangor", country: "MY" },
+    address: { locality: "Shah Alam", region: "Selangor", country: "MY" },
     areaServed: { type: "City", names: locations.map((l) => l.name) },
   },
 };

@@ -17,7 +17,7 @@ export const metadata: Metadata = {
     template: `%s | ${SITE_NAME}`,
   },
   description:
-    "Hand-coded custom websites for Malaysian small businesses. RM0 down, RM179/month — domain, hosting, SSL and 1 hour of edits a month included. Based in Petaling Jaya, serving the Klang Valley.",
+    "Hand-coded custom websites for Malaysian small businesses. RM0 down, RM179/month — domain, hosting, SSL and 1 hour of edits a month included. Based in Shah Alam, serving Kuala Lumpur and the Klang Valley.",
   openGraph: {
     type: "website",
     siteName: SITE_NAME,
