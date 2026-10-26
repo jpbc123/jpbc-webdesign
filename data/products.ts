@@ -24,6 +24,8 @@ export type Product = {
   /** Shown instead of a link while `url` is unset. */
   status?: string;
   domain: string;
+  /** Screenshot of the product, 960x600 (public/work). */
+  image: string;
   plans: ProductPlan[];
 };
 
@@ -36,6 +38,7 @@ export const products: Product[] = [
       "Turns a company's trial balance into full MPERS financial statements, audit working papers and the MBRS file for SSM.",
     url: "https://myswiftaudit.com",
     domain: "myswiftaudit.com",
+    image: "/work/swift-audit.jpg",
     plans: [
       { name: "Free", price: "RM0", detail: "1 active company and 3 reports, no time limit" },
       {
@@ -53,6 +56,7 @@ export const products: Product[] = [
       "Photograph a receipt, let AI read it, check what it found. Kept and searchable for the seven years LHDN asks, with tax reliefs and exports for your accountant.",
     url: "https://myresit.com.my",
     domain: "myresit.com.my",
+    image: "/work/myresit.jpg",
     plans: [
       { name: "Free trial", price: "RM0", detail: "First 10 receipts read, no time limit" },
       {
