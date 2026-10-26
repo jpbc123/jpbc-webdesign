@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import PricingCards from "@/components/PricingCards";
 import FaqAccordion from "@/components/FaqAccordion";
 import CtaBand from "@/components/CtaBand";
@@ -87,8 +88,12 @@ export default function PricingPage({ market }: { market: Market }) {
     },
     {
       name: "E-commerce / booking features",
-      price: "Custom quote",
-      desc: "Online store, appointment booking, payment integration — tell us what you need.",
+      price:
+        market.pricing.addons.bookingFrom !== undefined ? `From ${p(market.pricing.addons.bookingFrom)} one-time` : "Custom quote",
+      desc:
+        market.pricing.addons.onlineStoreFrom !== undefined && market.pricing.addons.bookingFrom !== undefined
+          ? `Booking system from ${p(market.pricing.addons.bookingFrom)}, online store from ${p(market.pricing.addons.onlineStoreFrom)}. Final price after a quick chat.`
+          : "Online store, appointment booking, payment integration — tell us what you need.",
     },
   ];
 
@@ -163,6 +168,13 @@ export default function PricingPage({ market }: { market: Market }) {
             </div>
           ))}
         </div>
+        {market.code === "my" && (
+          <p className="mt-8 text-center">
+            <Link href="/website-cost-calculator" className="font-semibold text-accent-text underline underline-offset-4">
+              Add it all up with our website cost calculator →
+            </Link>
+          </p>
+        )}
         <p className="mt-8 text-center text-sm text-muted">
           Thinking about Facebook or Google ads? Ask us. We&apos;ll tell you straight whether it&apos;s worth it for your
           business.

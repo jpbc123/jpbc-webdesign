@@ -23,7 +23,7 @@ export const my: Market = {
     lumpSumCare: 49,
     minimumMonths: 12,
     edits: { hoursPerMonth: 1, hourlyRate: 50 },
-    addons: { extraPage: 100, googleBusinessProfile: 300, localSeoMonthly: 300 },
+    addons: { extraPage: 100, googleBusinessProfile: 300, localSeoMonthly: 300, onlineStoreFrom: 1500, bookingFrom: 800 },
   },
 
   contact: {

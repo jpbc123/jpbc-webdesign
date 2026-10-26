@@ -12,7 +12,8 @@ Key facts:
   1 hour of content edits a month included; extra edit time is RM50/hour.
 - Lump sum option: from RM2,800 one-time + RM49/month hosting & care.
 - Add-ons: extra pages (RM100/page), Google Business Profile optimisation
-  (RM300), local SEO pages (RM300/month), e-commerce/booking (custom quote).
+  (RM300), local SEO pages (RM300/month), booking system (from RM800 one-time),
+  online store (from RM1,500 one-time).
 - Also builds custom software: web apps and client portals, online stores, booking
   and ordering systems, dashboards, internal tools and integrations.
 - Also builds AI automation for small businesses: AI customer chat on websites and
@@ -37,6 +38,7 @@ Locations served (Klang Valley, Malaysia):
 
 - [Home](https://jpbcwebdesigns.com/): overview of the offer and how it works
 - [Pricing](https://jpbcwebdesigns.com/pricing): full package details, comparison table, add-ons, payment FAQ
+- [Website Cost Calculator](https://jpbcwebdesigns.com/website-cost-calculator): estimate a website's price in Malaysia, JPBC vs typical freelancer and agency quotes, with sources
 - [Web Design](https://jpbcwebdesigns.com/services/web-design): the core service
 - [Local SEO](https://jpbcwebdesigns.com/services/seo): ranking in "near me" searches
 - [Google Business Profile](https://jpbcwebdesigns.com/services/google-business-profile): Maps listing optimisation

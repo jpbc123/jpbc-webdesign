@@ -67,6 +67,9 @@ export type Market = {
       extraPage: number;
       googleBusinessProfile: number;
       localSeoMonthly: number;
+      /** One-time "from" prices on top of either plan; unset = custom quote. */
+      onlineStoreFrom?: number;
+      bookingFrom?: number;
     };
   };
 

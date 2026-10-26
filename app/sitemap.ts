@@ -30,6 +30,10 @@ export default function sitemap(): MetadataRoute.Sitemap {
           priority: 0.9,
         }))
       : []),
+    // Malaysia-only tool page (app/(my)/website-cost-calculator).
+    ...(market.code === "my"
+      ? [{ url: absoluteUrl("/website-cost-calculator"), changeFrequency: "monthly" as const, priority: 0.8 }]
+      : []),
     ...(market.pages.blogPosts
       ? posts.map((p) => ({
           url: absoluteUrl(mpath(market, `/blog/${p.slug}`)),
