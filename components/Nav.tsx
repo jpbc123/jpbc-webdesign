@@ -1,11 +1,10 @@
 "use client";
 
 import Link from "next/link";
-import { useState } from "react";
-import type { CSSProperties } from "react";
+import { usePathname } from "next/navigation";
+import { useEffect, useState } from "react";
+import Logo from "./Logo";
 import ThemeToggle from "./ThemeToggle";
-import OpenSign from "./OpenSign";
-import { locations } from "@/data/locations";
 import type { Market } from "@/config/markets/types";
 import { mpath, waLink } from "@/lib/market";
 
@@ -18,13 +17,6 @@ const navLinks = [
   { href: "/contact", label: "Contact" },
 ];
 
-/* Per-letter idle-blink timing [duration, delay] in seconds — deliberately
-   uneven so the neon letters flick off and back on out of sync. */
-const neonBlink: [number, number][] = [
-  [4.7, 0.4], [6.1, 2.3], [3.9, 1.1], [5.3, 2.9], [4.1, 0.2], [5.9, 1.7],
-  [3.6, 2.6], [6.7, 0.8], [4.4, 1.9], [5.1, 3.1], [3.3, 0.6],
-];
-
 const serviceLinks = [
   { href: "/services/web-design", label: "Web Design" },
   { href: "/services/seo", label: "Local SEO" },
@@ -32,19 +24,43 @@ const serviceLinks = [
 ];
 
 const linkClass =
-  "whitespace-nowrap rounded-tag px-2.5 py-2 text-sm font-bold uppercase tracking-wide text-ink/80 transition-colors hover:bg-surface-2 hover:text-ink";
+  "whitespace-nowrap rounded-full px-3 py-2 text-sm font-medium xl:px-4 text-muted transition-colors hover:text-accent-text";
 
-/** Dropdown on desktop: opens on hover or keyboard focus, no JS. */
+/**
+ * Dropdown on desktop: opens on hover, click or keyboard focus. Held in state
+ * (not CSS :focus-within) so it closes once an option is picked: client-side
+ * navigation keeps focus on the clicked link, which would hold a CSS-only
+ * menu open on the new page.
+ */
 function Dropdown({ label, links }: { label: string; links: { href: string; label: string }[] }) {
+  const [open, setOpen] = useState(false);
+  const pathname = usePathname();
+
+  useEffect(() => setOpen(false), [pathname]);
+
   return (
-    <div className="group relative">
-      <button type="button" className={linkClass} aria-haspopup="true">
+    <div
+      className="relative"
+      onMouseEnter={() => setOpen(true)}
+      onMouseLeave={() => setOpen(false)}
+      onFocus={() => setOpen(true)}
+      onBlur={(e) => {
+        if (!e.currentTarget.contains(e.relatedTarget)) setOpen(false);
+      }}
+      onKeyDown={(e) => e.key === "Escape" && setOpen(false)}
+    >
+      <button type="button" className={linkClass} aria-haspopup="true" aria-expanded={open} onClick={() => setOpen(!open)}>
         {label} <span aria-hidden>▾</span>
       </button>
-      <div className="invisible absolute left-0 top-full pt-2 opacity-0 transition-opacity group-focus-within:visible group-focus-within:opacity-100 group-hover:visible group-hover:opacity-100">
-        <div className="board w-64 bg-surface p-1.5">
+      <div className={`absolute left-0 top-full pt-2 transition-opacity ${open ? "visible opacity-100" : "invisible opacity-0"}`}>
+        <div className="card w-64 p-1.5 shadow-lg">
           {links.map((l) => (
-            <Link key={l.href} href={l.href} className="block rounded-tag px-3 py-2 text-sm font-semibold text-ink hover:bg-surface-2">
+            <Link
+              key={l.href}
+              href={l.href}
+              onClick={() => setOpen(false)}
+              className="block rounded-lg px-3 py-2 text-sm font-medium text-ink hover:bg-surface-2 hover:text-accent-text"
+            >
               {l.label}
             </Link>
           ))}
@@ -56,7 +72,7 @@ function Dropdown({ label, links }: { label: string; links: { href: string; labe
 
 export default function Nav({ market }: { market: Market }) {
   const [open, setOpen] = useState(false);
-  const [mobileGroup, setMobileGroup] = useState<"services" | "locations" | null>(null);
+  const [mobileGroup, setMobileGroup] = useState<"services" | null>(null);
 
   const close = () => {
     setOpen(false);
@@ -64,51 +80,19 @@ export default function Nav({ market }: { market: Market }) {
   };
 
   const services = serviceLinks.map((s) => ({ ...s, href: mpath(market, s.href) }));
-  const places = locations.map((l) => ({ href: mpath(market, `/locations/${l.slug}`), label: l.name }));
 
   return (
     <header className="site-header sticky top-0 z-50">
-      <nav className="mx-auto flex max-w-6xl items-center justify-between gap-4 px-4 py-2.5 sm:px-6">
-        <Link href={mpath(market, "/")} aria-label="JPBC Web Designs" className="flex items-end gap-2" onClick={close}>
-          {/* Signboard logo: JPBC in yellow on red, descriptor spread to the
-              same width underneath. Knobs live in .brand-board (globals.css). */}
-          <span className="brand-board">
-            <span className="brand-name sign-lit">JPBC</span>
-            <span className="brand-desc">
-              <span>WEB</span>
-              <span>DESIGNS</span>
-            </span>
-          </span>
-          {/* "after hours" neon tag beside the logo, dark mode only. Letters warm
-              up neon-sign style each time dark mode switches on (display:none ->
-              inline restarts the CSS animations), then blink individually. */}
-          <span className="hidden pb-0.5 font-script text-lg leading-none text-accent xl:dark:inline" aria-hidden>
-            {"after hours".split("").map((ch, i) =>
-              ch === " " ? (
-                <span key={i}>{" "}</span>
-              ) : (
-                <span
-                  key={i}
-                  className={i === 2 ? "neon-letter neon-letter--flicker" : "neon-letter"}
-                  style={
-                    {
-                      "--d": `${i * 0.1}s`,
-                      "--fdur": `${neonBlink[i % neonBlink.length][0]}s`,
-                      "--fdel": `${neonBlink[i % neonBlink.length][1]}s`,
-                    } as CSSProperties
-                  }
-                >
-                  {ch}
-                </span>
-              )
-            )}
-          </span>
+      {/* Three columns with equal outer tracks, so the links stay centred on the
+          page whether or not the "after hours" neon is showing beside the logo. */}
+      <nav className="mx-auto grid h-18 max-w-6xl grid-cols-[1fr_auto] items-center gap-4 px-4 sm:px-6 lg:grid-cols-[1fr_auto_1fr]">
+        <Link href={mpath(market, "/")} aria-label="JPBC Web Designs" className="justify-self-start" onClick={close}>
+          <Logo afterHours="wide" />
         </Link>
 
         {/* Desktop links */}
         <div className="hidden items-center lg:flex">
           {market.pages.services && <Dropdown label="Services" links={services} />}
-          {market.pages.locations && <Dropdown label="Areas" links={places} />}
           {navLinks.map((l) => (
             <Link key={l.href} href={mpath(market, l.href)} className={linkClass}>
               {l.label}
@@ -116,20 +100,19 @@ export default function Nav({ market }: { market: Market }) {
           ))}
         </div>
 
-        <div className="flex items-center gap-2">
-          <OpenSign market={market} />
+        <div className="flex items-center gap-2 justify-self-end">
           <ThemeToggle />
           <a
             href={waLink(market)}
             target="_blank"
             rel="noopener noreferrer"
-            className="btn btn-primary hidden whitespace-nowrap !px-4 !py-2 sm:inline-flex"
+            className="btn btn-primary hidden whitespace-nowrap !px-5 !py-2.5 text-sm sm:inline-flex"
           >
             WhatsApp us
           </a>
           <button
             type="button"
-            className="flex h-9 w-9 items-center justify-center rounded-tag border-2 border-frame bg-surface text-ink lg:hidden"
+            className="flex size-10 items-center justify-center rounded-full bg-surface text-ink ring-1 ring-line lg:hidden"
             aria-expanded={open}
             aria-label={open ? "Close menu" : "Open menu"}
             onClick={() => setOpen(!open)}
@@ -141,12 +124,12 @@ export default function Nav({ market }: { market: Market }) {
 
       {/* Mobile menu */}
       {open && (
-        <div className="border-t-2 border-frame bg-surface px-4 pb-5 pt-3 lg:hidden">
+        <div className="border-t border-line bg-surface px-4 pb-5 pt-3 lg:hidden">
           {market.pages.services && (
             <>
               <button
                 type="button"
-                className="flex w-full items-center justify-between py-2.5 text-left font-bold uppercase tracking-wide text-ink"
+                className="flex w-full items-center justify-between py-2.5 text-left font-semibold text-ink"
                 onClick={() => setMobileGroup(mobileGroup === "services" ? null : "services")}
                 aria-expanded={mobileGroup === "services"}
               >
@@ -161,31 +144,12 @@ export default function Nav({ market }: { market: Market }) {
             </>
           )}
 
-          {market.pages.locations && (
-            <>
-              <button
-                type="button"
-                className="flex w-full items-center justify-between py-2.5 text-left font-bold uppercase tracking-wide text-ink"
-                onClick={() => setMobileGroup(mobileGroup === "locations" ? null : "locations")}
-                aria-expanded={mobileGroup === "locations"}
-              >
-                Areas <span aria-hidden>{mobileGroup === "locations" ? "▴" : "▾"}</span>
-              </button>
-              {mobileGroup === "locations" &&
-                places.map((l) => (
-                  <Link key={l.href} href={l.href} onClick={close} className="block py-2 pl-4 text-muted">
-                    {l.label}
-                  </Link>
-                ))}
-            </>
-          )}
-
           {navLinks.map((l) => (
             <Link
               key={l.href}
               href={mpath(market, l.href)}
               onClick={close}
-              className="block py-2.5 font-bold uppercase tracking-wide text-ink"
+              className="block py-2.5 font-semibold text-ink"
             >
               {l.label}
             </Link>

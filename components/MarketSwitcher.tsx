@@ -65,8 +65,8 @@ export default function MarketSwitcher({ markets, current, currentPrefix, shared
   };
 
   return (
-    <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-xs text-[#bdb4a3]">
-      <span className="uppercase tracking-wider">Market</span>
+    <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-xs text-muted">
+      <span className="font-semibold">Market</span>
       {markets.map((market) => {
         const isCurrent = market.code === current;
         return (
@@ -78,8 +78,8 @@ export default function MarketSwitcher({ markets, current, currentPrefix, shared
             aria-current={isCurrent ? "true" : undefined}
             className={
               isCurrent
-                ? "font-semibold text-sign-yellow"
-                : "transition-colors hover:text-sign-yellow"
+                ? "font-semibold text-ink"
+                : "transition-colors hover:text-accent-text"
             }
           >
             <span aria-hidden>{market.flag}</span> {market.label}

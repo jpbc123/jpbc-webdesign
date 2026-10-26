@@ -5,7 +5,7 @@ import type { Market } from "@/config/markets/types";
 import { isValidPhone } from "@/lib/market";
 
 const inputCls =
-  "w-full rounded-tag border-2 border-frame bg-surface px-4 py-3 text-ink placeholder:text-muted/60 focus:border-accent";
+  "w-full rounded-xl border border-line-strong bg-surface px-4 py-3 text-ink placeholder:text-muted/60 focus:border-accent";
 
 export default function ContactForm({ market }: { market: Market }) {
   const [status, setStatus] = useState<"idle" | "sending" | "sent" | "error">("idle");
@@ -39,7 +39,7 @@ export default function ContactForm({ market }: { market: Market }) {
 
   if (status === "sent") {
     return (
-      <p className="mt-6 board bg-surface-2 p-6 font-semibold text-ink">
+      <p className="mt-6 rounded-2xl bg-accent-soft p-6 font-semibold text-ink">
         {market.voice.formThanks}
       </p>
     );

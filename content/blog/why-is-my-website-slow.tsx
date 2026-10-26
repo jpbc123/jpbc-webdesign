@@ -166,7 +166,7 @@ export const post: Post = {
         <To href="/blog/how-much-does-a-website-cost-in-malaysia">this guide</To> covers what a website costs.
       </p>
 
-      <AskUs market={market} message="Hi JPBC! I ran a PageSpeed test on my website. Can you take a look?">
+      <AskUs market={market} message="Hi JPBC Web Designs, I ran a PageSpeed test on my website. Can you take a look?">
         Ran the test and not sure what to make of it? Send us the link and we&apos;ll tell you what&apos;s slowing
         it down, free.
       </AskUs>

@@ -12,8 +12,8 @@ export default function AboutPage({ market }: { market: Market }) {
   return (
     <>
       <section className="mx-auto max-w-3xl px-6 pb-4 pt-16">
-        <p className="plate mb-5">About us</p>
-        <h1 className="display text-balance text-[2.6rem] text-ink sm:text-6xl lg:text-7xl">{market.voice.aboutH1}</h1>
+        <p className="eyebrow mb-3">About us</p>
+        <h1 className="display text-[2.6rem] text-ink sm:text-5xl lg:text-6xl">{market.voice.aboutH1}</h1>
         {/* Answer-first for SEO/AEO */}
         <p className="mt-6 text-lg text-muted">{market.voice.aboutAnswerFirst}</p>
       </section>
@@ -28,16 +28,16 @@ export default function AboutPage({ market }: { market: Market }) {
             {market.voice.aboutBeliefs.map((belief, i) => (
               <li
                 key={belief.title}
-                className={`board p-6 ${i === 0 ? "bg-sign-yellow text-sign-yellow-ink" : "bg-surface"}`}
+                className={i === 0 ? "rounded-2xl bg-accent-soft p-6" : "card p-6"}
               >
-                <strong className={`block text-lg font-extrabold ${i === 0 ? "" : "text-ink"}`}>{belief.title}</strong>
+                <strong className="block text-lg font-bold text-ink">{belief.title}</strong>
                 <span className="mt-1 block text-sm">{belief.body}</span>
               </li>
             ))}
           </ul>
         </div>
         <div className="text-center">
-          <WhatsAppButton market={market} message="Hi JPBC! I'd like to chat about a website for my business.">
+          <WhatsAppButton market={market} message="Hi JPBC Web Designs, I'd like to chat about a website for my business.">
             Say hello on WhatsApp
           </WhatsAppButton>
         </div>

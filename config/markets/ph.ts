@@ -40,17 +40,6 @@ export const ph: Market = {
       "We work with businesses anywhere in the Philippines (remote) — Metro Manila, Cebu, Davao, and every province in between. Everything happens over WhatsApp and email, so where you are never slows the project down.",
     hours: "Monday–Friday, 9am–6pm (PHT)",
     afterHoursNote: "WhatsApp anytime — we often reply outside business hours too.",
-    timeZone: "Asia/Manila",
-    openingHours: { days: [1, 2, 3, 4, 5], open: 9, close: 18 },
-  },
-
-  signage: {
-    open: "OPEN",
-    closed: "CLOSED",
-    closedNote: "WhatsApp still on",
-    shopName: "YOUR BUSINESS",
-    shopSub: "Clinics · Restaurants · Salons · & more",
-    receiptThanks: "Salamat po · Come again",
   },
 
   phone: {
@@ -63,15 +52,15 @@ export const ph: Market = {
   },
 
   heroCopy: {
-    badge: "{setup} down · {monthly}/month · Live in 7 days",
-    headlineLead: "Agency-quality websites, ",
-    headlineHighlight: "Philippine prices",
+    badge: "Websites, web apps & AI automation",
+    headlineLead: "Websites that make your business look ",
+    headlineHighlight: "as good as it is.",
     subheadline:
       "We hand-code fast, custom websites for Philippine small and medium businesses — {setup} down and {monthly}/month, including domain, hosting, and {editHours} of edits a month. No WordPress. No page builders. No six-figure agency quotes.",
   },
 
   voice: {
-    waDefaultMessage: "Hi JPBC! I'm interested in a website for my business.",
+    waDefaultMessage: "Hi JPBC Web Designs, I would like to know more about your website services.",
     domainLine: ".com or .ph",
     homeWhatWeDoDesign:
       "Custom design around your business — your services, your customers, your area. No templates.",
@@ -84,7 +73,7 @@ export const ph: Market = {
     businessDescription:
       "Web design studio serving small businesses across the Philippines. Hand-coded custom websites — {setup} down, {monthly}/month.",
     workAnswerFirst:
-      "What kind of websites does JPBC build? Fast, hand-coded sites, web apps and AI implementation for everyday small businesses — clinics, restaurants, salons, contractors, tutorial centres, workshops, travel agencies. Explore the live demos below and see the standard for yourself.",
+      "What kind of websites does JPBC build? Fast, hand-coded sites, web apps and AI automation for everyday small businesses — clinics, restaurants, salons, contractors, tutorial centres, workshops, travel agencies. Explore the live demos below and see the standard for yourself.",
     aboutH1: "A small studio that answers its own WhatsApp",
     aboutAnswerFirst:
       "Who is JPBC Web Designs? A founder-led web design studio that hand-codes websites for small businesses in the Philippines. No account managers, no ticket systems — you WhatsApp us, the person who built your site replies.",
@@ -124,7 +113,7 @@ export const ph: Market = {
       body: "The page you're looking for doesn't exist — the link may be out of date, or the address might have a typo in it.",
       homeCta: "Back to home",
       reportCta: "Tell us what broke",
-      waMessage: "Hi JPBC! I found a broken link on your site.",
+      waMessage: "Hi JPBC Web Designs, I found a broken link on your site.",
     },
   },
 

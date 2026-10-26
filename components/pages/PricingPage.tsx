@@ -3,6 +3,7 @@ import PricingCards from "@/components/PricingCards";
 import FaqAccordion from "@/components/FaqAccordion";
 import CtaBand from "@/components/CtaBand";
 import JsonLd from "@/components/JsonLd";
+import SectionHeading from "@/components/SectionHeading";
 import WhatsAppButton from "@/components/WhatsAppButton";
 import { pricingFaqs } from "@/data/faqs";
 import type { Market } from "@/config/markets/types";
@@ -96,46 +97,48 @@ export default function PricingPage({ market }: { market: Market }) {
       <JsonLd data={faqJsonLd} />
       <JsonLd data={offersJsonLd} />
 
-      <section className="mx-auto max-w-6xl px-6 pb-4 pt-16">
-        <p className="plate mb-5">Menu & prices</p>
-        <h1 className="display text-balance text-[2.6rem] text-ink sm:text-6xl lg:text-7xl">Pricing</h1>
-        {/* Answer-first for SEO/AEO */}
-        <p className="mt-4 max-w-3xl text-lg text-muted">
-          {market.voice.pricingQuestion} With JPBC it&apos;s{" "}
-          <strong className="text-ink">
-            {p(setup)} down and {p(monthly)}/month
-          </strong>{" "}
-          — custom-designed, hand-coded, with domain, hosting, SSL, and {hours} of edits a month included. Prefer to own it
-          outright? Lump sum from {p(lumpSum)} plus {p(lumpSumCare)}/month hosting &amp; care.
-        </p>
+      <section className="bg-gradient-to-b from-hero to-bg">
+        <div className="mx-auto max-w-6xl px-4 pb-6 pt-16 text-center sm:px-6 sm:pt-20">
+          <p className="eyebrow mb-3">Pricing</p>
+          <h1 className="display mx-auto max-w-3xl text-[2.6rem] text-ink sm:text-5xl lg:text-6xl">Pricing</h1>
+          {/* Answer-first for SEO/AEO */}
+          <p className="mx-auto mt-5 max-w-3xl text-pretty text-lg leading-relaxed text-muted">
+            {market.voice.pricingQuestion} With JPBC it&apos;s{" "}
+            <strong className="text-ink">
+              {p(setup)} down and {p(monthly)}/month
+            </strong>{" "}
+            — custom-designed, hand-coded, with domain, hosting, SSL, and {hours} of edits a month included. Prefer to own
+            it outright? Lump sum from {p(lumpSum)} plus {p(lumpSumCare)}/month hosting &amp; care.
+          </p>
+        </div>
       </section>
 
-      <section className="mx-auto max-w-6xl px-6 py-10">
+      <section className="mx-auto max-w-6xl px-4 py-10 sm:px-6">
         <PricingCards market={market} />
       </section>
 
-      {/* Honest comparison table */}
-      <section className="mx-auto max-w-6xl px-6 py-10">
-        <h2 className="display text-3xl text-ink sm:text-4xl">Which one suits you: cash flow vs long-term cost</h2>
-        <p className="mt-3 max-w-2xl text-muted">
-          Honest answer: monthly is cheaper to start and includes {hours} of edits a month; lump sum works out cheaper from
-          around year three. Here&apos;s the math, no spin.
-        </p>
-        <div className="board mt-8 overflow-x-auto">
-          <table className="w-full min-w-[560px] bg-surface text-left text-sm">
+      {/* Honest cost comparison */}
+      <section className="mx-auto max-w-6xl px-4 py-10 sm:px-6">
+        <SectionHeading
+          eyebrow="The math"
+          title="Which one suits you: cash flow vs long-term cost"
+          intro={`Honest answer: monthly is cheaper to start and includes ${hours} of edits a month; lump sum works out cheaper from around year three. Here's the math, no spin.`}
+        />
+        <div className="mt-8 overflow-x-auto rounded-2xl bg-surface ring-1 ring-line">
+          <table className="w-full min-w-[560px] text-left text-sm">
             <thead>
-              <tr className="bg-sign-black text-sign-black-ink">
+              <tr className="border-b border-line">
                 <th className="px-6 py-4"></th>
-                <th className="sign px-6 py-4 font-normal text-sign-yellow">Monthly ({p(monthly)})</th>
-                <th className="sign px-6 py-4 font-normal">Lump Sum ({p(lumpSum)}+)</th>
+                <th className="bg-accent-soft px-6 py-4 font-bold text-ink">Monthly ({p(monthly)})</th>
+                <th className="px-6 py-4 font-bold text-ink">Lump sum ({p(lumpSum)}+)</th>
               </tr>
             </thead>
             <tbody>
               {comparison.map((row) => (
                 <tr key={row.label} className="border-b border-line last:border-0">
-                  <td className="px-6 py-3 font-bold text-ink">{row.label}</td>
-                  <td className="px-6 py-3 text-muted">{row.monthly}</td>
-                  <td className="px-6 py-3 text-muted">{row.lump}</td>
+                  <td className="px-6 py-3.5 font-semibold text-ink">{row.label}</td>
+                  <td className="bg-accent-soft/60 px-6 py-3.5 text-muted">{row.monthly}</td>
+                  <td className="px-6 py-3.5 text-muted">{row.lump}</td>
                 </tr>
               ))}
             </tbody>
@@ -144,31 +147,36 @@ export default function PricingPage({ market }: { market: Market }) {
       </section>
 
       {/* Add-ons */}
-      <section className="mx-auto max-w-6xl px-6 py-10">
-        <h2 className="display text-3xl text-ink sm:text-4xl">Add-ons</h2>
-        {/* Add-ons as a menu board: item, dotted leader, price */}
-        <ul className="board screws mt-8 space-y-6 bg-sign-black p-8 text-sign-black-ink sm:p-10">
+      <section className="mx-auto max-w-6xl px-4 py-10 sm:px-6">
+        <SectionHeading
+          eyebrow="Add-ons"
+          title="Only if you need them"
+          intro="Web apps, online stores and AI automation are quoted per project."
+          center
+        />
+        <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
           {addons.map((a) => (
-            <li key={a.name}>
-              <div className="menu-row text-lg">
-                <h3 className="font-bold">{a.name}</h3>
-                <span className="menu-leader" aria-hidden />
-                <span className="sign shrink-0 text-right text-sign-yellow">{a.price}</span>
-              </div>
-              <p className="mt-1 text-sm text-[#c9c0ae]">{a.desc}</p>
-            </li>
+            <div key={a.name} className="card flex flex-col p-6 text-center">
+              <h3 className="font-bold text-ink">{a.name}</h3>
+              <p className="mt-2 text-xl font-extrabold tracking-tight text-accent-text">{a.price}</p>
+              <p className="mt-2 text-sm leading-relaxed text-muted">{a.desc}</p>
+            </div>
           ))}
-        </ul>
-        <div className="mt-8 text-center">
-          <WhatsAppButton market={market} message="Hi JPBC! I have a question about pricing and add-ons.">
+        </div>
+        <p className="mt-8 text-center text-sm text-muted">
+          Thinking about Facebook or Google ads? Ask us. We&apos;ll tell you straight whether it&apos;s worth it for your
+          business.
+        </p>
+        <div className="mt-6 text-center">
+          <WhatsAppButton market={market} message="Hi JPBC Web Designs, I have a question about pricing and add-ons.">
             Not sure? WhatsApp us
           </WhatsAppButton>
         </div>
       </section>
 
       {/* Pricing FAQ */}
-      <section className="mx-auto max-w-3xl px-6 py-10">
-        <h2 className="display text-3xl text-ink sm:text-4xl">Pricing questions, answered</h2>
+      <section className="mx-auto max-w-3xl px-4 py-10 sm:px-6">
+        <SectionHeading eyebrow="FAQ" title="Pricing questions, answered" center />
         <div className="mt-8">
           <FaqAccordion faqs={faqs} />
         </div>
@@ -178,7 +186,7 @@ export default function PricingPage({ market }: { market: Market }) {
         market={market}
         heading={`Start with ${p(setup)} today`}
         sub="Tell us about your business on WhatsApp — you'll have a price and a timeline in one conversation."
-        waMessage="Hi JPBC! I'd like to get started with a website."
+        waMessage="Hi JPBC Web Designs, I'd like to get started with a website."
       />
     </>
   );

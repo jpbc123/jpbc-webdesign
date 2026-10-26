@@ -13,8 +13,8 @@ Key facts:
 - Lump sum option: from RM2,800 one-time + RM49/month hosting & care.
 - Add-ons: extra pages (RM100/page), Google Business Profile optimisation
   (RM300), local SEO pages (RM300/month), e-commerce/booking (custom quote).
-- Also builds web apps and AI implementation for businesses. Our own products use
-  AI: MyResit reads receipts, and MY Swift Audit helps prepare audit reports.
+- Also builds web apps and AI automation for businesses. Our own products run on
+  AI automation: MyResit reads receipts, and MY Swift Audit helps prepare audit reports.
 - No WordPress or page builders: hand-coded static sites that load in under
   1 second, with no plugins to update and nothing to hack.
 - Sites built in Bahasa Melayu, English, Chinese, or any combination.

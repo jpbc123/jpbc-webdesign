@@ -18,14 +18,14 @@ export default function BlogPage({ market }: { market: Market }) {
   return (
     <>
       <section className="mx-auto max-w-6xl px-6 pb-4 pt-16">
-        <SectionHeading as="h1" no="Notice board" title="Blog" intro={market.voice.blogIntro} />
+        <SectionHeading as="h1" eyebrow="Blog" title="Blog" intro={market.voice.blogIntro} />
       </section>
 
       <section className="mx-auto max-w-6xl px-6 py-10">
         {!featured ? (
-          <div className="board mx-auto max-w-2xl bg-sign-yellow p-10 text-center text-sign-yellow-ink">
-            <p className="sign text-2xl">Coming soon</p>
-            <p className="mx-auto mt-3 max-w-md">{market.voice.blogComingSoon}</p>
+          <div className="mx-auto max-w-2xl rounded-2xl bg-accent-soft p-10 text-center">
+            <p className="text-2xl font-bold text-ink">Coming soon</p>
+            <p className="mx-auto mt-3 max-w-md text-muted">{market.voice.blogComingSoon}</p>
           </div>
         ) : (
           <>
@@ -45,7 +45,7 @@ export default function BlogPage({ market }: { market: Market }) {
         market={market}
         heading="Don't want to read? Just ask."
         sub="WhatsApp us your question about websites or Google — free answer, no obligation."
-        waMessage="Hi JPBC! I have a question about getting my business online."
+        waMessage="Hi JPBC Web Designs, I have a question about getting my business online."
       />
     </>
   );

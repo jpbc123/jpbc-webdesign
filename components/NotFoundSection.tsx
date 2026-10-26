@@ -13,11 +13,8 @@ export default function NotFoundSection({ market }: { market: Market }) {
   const copy = market.voice.notFound;
   return (
     <section className="mx-auto max-w-2xl px-6 py-24 text-center">
-      {/* A shop sign hanging askew, one screw gone */}
-      <p className="board sign sign-lit inline-block rotate-[-4deg] bg-sign-red px-8 py-5 text-7xl text-sign-red-ink [--sign-glow:var(--sign-red-ink)]">
-        404
-      </p>
-      <h1 className="display mt-10 text-4xl text-ink">{copy.heading}</h1>
+      <p className="text-8xl font-extrabold tracking-[-0.04em] text-accent-text">404</p>
+      <h1 className="display mt-6 text-4xl text-ink">{copy.heading}</h1>
       <p className="mt-4 text-muted">{copy.body}</p>
       <div className="mt-8 flex flex-wrap items-center justify-center gap-4">
         <Link href={mpath(market, "/")} className="btn btn-primary">

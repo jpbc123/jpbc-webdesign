@@ -18,13 +18,13 @@ import path from "node:path";
 
 const PUBLIC = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "../public");
 
-const RED = "#c42a1c";
-const YELLOW = "#ffd75e";
+const BLUE = "#1d4ed8";
+const SAND = "#f6dfb2";
 const MARK = "M22 20H44M38 20V35A9 9 0 0 1 20 35";
 
 const svg = (radius) => `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
-  <rect width="64" height="64" rx="${radius}" fill="${RED}"/>
-  <path d="${MARK}" fill="none" stroke="${YELLOW}" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/>
+  <rect width="64" height="64" rx="${radius}" fill="${BLUE}"/>
+  <path d="${MARK}" fill="none" stroke="${SAND}" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/>
 </svg>`;
 
 const targets = [

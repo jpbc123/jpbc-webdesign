@@ -1,16 +1,18 @@
 // All items are real, launched projects: our own sites so far (Feng Shui &
 // Beyond, Setia Alam Garden Services, MY Swift Audit), so never call them
-// client work. Add client projects here as they launch — each item drives a card on /work and the home page
+// client work; `kind` puts that honest label on each card. Add client projects here as they launch — each item drives a card on /work and the home page
 // portfolio grid. Screenshots live in /public/work/<slug>.jpg.
 //
 // Which items a market shows is set by `workExamples.portfolioSlugs` in
 // config/markets/<code>.ts.
 
 import type { Market } from "@/config/markets/types";
+import type { ShowcaseKind } from "@/data/showcase";
 
 export type PortfolioItem = {
   slug: string;
   name: string;
+  kind: ShowcaseKind;
   industry: string;
   /** Filter category on /work */
   category: "apps" | "lifestyle" | "services" | "food" | "health" | "education";
@@ -35,6 +37,7 @@ export const portfolio: PortfolioItem[] = [
   {
     slug: "swift-audit",
     name: "MY Swift Audit",
+    kind: "Own product",
     industry: "Web App / Fintech",
     category: "apps",
     location: "Malaysia",
@@ -56,6 +59,7 @@ export const portfolio: PortfolioItem[] = [
   {
     slug: "fengshui-and-beyond",
     name: "Feng Shui & Beyond",
+    kind: "Own project",
     industry: "Lifestyle / Infotainment",
     category: "lifestyle",
     location: "Online",
@@ -77,6 +81,7 @@ export const portfolio: PortfolioItem[] = [
   {
     slug: "setia-alam-garden-services",
     name: "Setia Alam Garden Services",
+    kind: "Own project",
     industry: "Landscaping / Home Services",
     category: "services",
     location: "Setia Alam, Shah Alam",

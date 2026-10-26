@@ -4,105 +4,90 @@
 @custom-variant dark (&:where(.dark, .dark *));
 
 /*
- * "Shopfront" design system.
+ * "Clean" design system.
  *
- * The site borrows from Malaysian shoplot signage: painted signboards with
- * screwed-on corners, striped awnings, kopitiam menu boards, felt letter
- * directories, thermal receipts and roller shutters. Light mode
- * is the street by day; dark mode ("after hours") is the same street at
- * night, with the signs lit.
+ * Soft rounded cards, one confident royal-blue accent and a single friendly
+ * sans (Plus Jakarta Sans). Light mode is Warm Sand; dark mode is Deep Navy.
  *
  * Every surface reads from the tokens below, so the shared page components
- * only ever say bg-surface / text-ink / border-line and pick up both themes.
+ * only ever say bg-surface / text-ink / ring-line and pick up both themes.
+ * `accent` is the button fill; `accent-text` is the accent used for text,
+ * kept separate so it stays readable (AA) on each background.
  */
 @theme inline {
   --color-bg: var(--bg);
+  --color-hero: var(--hero);
   --color-surface: var(--surface);
   --color-surface-2: var(--surface-2);
+  --color-line: var(--line);
+  --color-line-strong: var(--line-strong);
   --color-ink: var(--ink);
   --color-muted: var(--muted);
-  --color-line: var(--line);
-  --color-frame: var(--frame);
-  --color-hero: var(--hero);
-  --color-hero-ink: var(--hero-ink);
-  --color-hero-muted: var(--hero-muted);
+  --color-faint: var(--faint);
   --color-accent: var(--accent);
-  --color-accent-ink: var(--accent-ink);
-  --color-sign-red: var(--sign-red);
-  --color-sign-red-ink: var(--sign-red-ink);
-  --color-sign-green: var(--sign-green);
-  --color-sign-green-ink: var(--sign-green-ink);
-  --color-sign-yellow: var(--sign-yellow);
-  --color-sign-yellow-ink: var(--sign-yellow-ink);
-  --color-sign-black: var(--sign-black);
-  --color-sign-black-ink: var(--sign-black-ink);
-  --font-display: var(--font-archivo), "Arial Narrow", sans-serif;
-  --font-body: var(--font-archivo), system-ui, sans-serif;
+  --color-accent-hover: var(--accent-hover);
+  --color-accent-text: var(--accent-text);
+  --color-accent-soft: var(--accent-soft);
+  --color-on-accent: var(--on-accent);
+  --color-head: var(--head);
+  --color-head-ink: var(--head-ink);
+  --color-neon: var(--neon);
+  --font-body: var(--font-jakarta), system-ui, sans-serif;
+  /* Logo lettering and the neon "after hours" script only */
   --font-sign: var(--font-bungee), "Arial Black", sans-serif;
   --font-script: var(--font-yellowtail), cursive;
-  --font-receipt: ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
-  --radius-board: 6px;
-  --radius-tag: 3px;
 }
 
-/* ---------- Light mode: the street by day ---------- */
+/* ---------- Light mode: Warm Sand ---------- */
 :root {
-  --bg: #f3ead8;
-  --surface: #fffbf2;
-  --surface-2: #e9dec7;
-  --ink: #1c1813;
-  --muted: #5a5143;
-  --line: #d3c4a6;
-  /* Board outlines and the hard offset shadow under them */
-  --frame: #1c1813;
-  --shadow-hard: #1c1813;
-  --hero: #0e5a3c;
-  --hero-ink: #fff8ea;
-  --hero-muted: #c4dccd;
-  --accent: #c42a1c;
-  --accent-ink: #fff8ea;
-  /* Signboard paints: each board colour has the lettering colour it pairs with */
-  --sign-red: #c42a1c;
-  --sign-red-ink: #ffd75e;
-  --sign-green: #0e5a3c;
-  --sign-green-ink: #fff8ea;
-  --sign-yellow: #f4b400;
-  --sign-yellow-ink: #1c1813;
-  --sign-black: #1c1813;
-  --sign-black-ink: #fff8ea;
-  --awning-light: #fff8ea;
-  --paper: #fffdf7;
-  --paper-ink: #24201a;
-  --sign-glow: transparent;
+  --bg: #f5efe6;
+  --hero: #ece2d2;
+  --surface: #fffcf7;
+  --surface-2: #efe7da;
+  --line: #e2d7c5;
+  --line-strong: #cdbfa8;
+  --ink: #1c1917;
+  --muted: #57534e;
+  /* Only for large decorative text (the sector marquee) */
+  --faint: #a8a097;
+  --accent: #1d4ed8;
+  --accent-hover: #1e40af;
+  --accent-text: #1d4ed8;
+  --accent-soft: #e6ebf7;
+  --on-accent: #ffffff;
+  /* Dark header column of the pricing table, and the footer */
+  --head: #1c1917;
+  --head-ink: #fffcf7;
+  /* The signboard logo's paint */
+  --logo-board: #1d4ed8;
+  --logo-ink: #f6dfb2;
+  --logo-sub: #fffcf7;
+  --neon: #1d4ed8;
 }
 
-/* ---------- Dark mode: after hours, signs lit ---------- */
+/* ---------- Dark mode: Deep Navy ---------- */
 .dark {
-  --bg: #13110e;
-  --surface: #1c1915;
-  --surface-2: #262119;
-  --ink: #f3ead8;
-  --muted: #b1a68f;
-  --line: #3a3329;
-  --frame: #5a5040;
-  --shadow-hard: #000000;
-  --hero: #0b3d29;
-  --hero-ink: #fff8ea;
-  --hero-muted: #a9c9b6;
-  --accent: #ff6450;
-  --accent-ink: #1a0805;
-  --sign-red: #a3241a;
-  --sign-red-ink: #ffd75e;
-  --sign-green: #0c4630;
-  --sign-green-ink: #fff8ea;
-  --sign-yellow: #e0a800;
-  --sign-yellow-ink: #1c1813;
-  --sign-black: #0a0907;
-  --sign-black-ink: #fff8ea;
-  --awning-light: #d9cfbb;
-  --paper: #ebe3d1;
-  --paper-ink: #24201a;
-  --sign-glow: currentColor;
+  --bg: #0f172a;
+  --hero: #15244a;
+  --surface: #16213a;
+  --surface-2: #121c33;
+  --line: #26324d;
+  --line-strong: #34425f;
+  --ink: #f1f5f9;
+  --muted: #a5b2c7;
+  --faint: #5d6b85;
+  --accent: #2563eb;
+  --accent-hover: #1d4ed8;
+  --accent-text: #8ab4ff;
+  --accent-soft: #1b2b52;
+  --on-accent: #ffffff;
+  --head: #0a1020;
+  --head-ink: #f1f5f9;
+  --logo-board: #1e40af;
+  --logo-ink: #f6dfb2;
+  --logo-sub: #f1f5f9;
+  /* The bar-light colour of the "after hours" neon sign: warm amber on navy */
+  --neon: #ffbe73;
 }
 
 html {
@@ -123,104 +108,57 @@ body {
 @layer components {
   /* ---------- Type ---------- */
 
-  /* Headlines: Archivo stretched wide and heavy, like hand-painted sign caps */
+  /* Headlines: heavy and tightly tracked */
   .display {
-    font-family: var(--font-display);
     font-weight: 800;
-    font-variation-settings: "wdth" 115;
-    text-transform: uppercase;
-    letter-spacing: -0.01em;
-    line-height: 0.95;
-  }
-  /* On phones a long single word ("DEVELOPMENT") at full width would run
-     off-screen, so headlines narrow to the font's normal width there. */
-  @media (max-width: 639px) {
-    .display {
-      font-variation-settings: "wdth" 100;
-    }
+    letter-spacing: -0.03em;
+    line-height: 1.08;
+    text-wrap: balance;
   }
 
-  /* Signboard lettering: Bungee, a typeface drawn for street signs */
-  .sign {
-    font-family: var(--font-sign);
-    font-weight: 400;
-    line-height: 1;
-    letter-spacing: 0.02em;
+  /* Small accent kicker above a heading ("Pricing", "How we work") */
+  .eyebrow {
+    display: block;
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--accent-text);
   }
 
-  /* At night every sign's lettering glows in its own colour */
-  .dark .sign-lit {
-    text-shadow:
-      0 0 6px color-mix(in srgb, var(--sign-glow) 55%, transparent),
-      0 0 18px color-mix(in srgb, var(--sign-glow) 30%, transparent);
+  /* Rounded label: tags on cards, "Most popular", the hero kicker */
+  .pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4em;
+    padding: 0.25rem 0.7rem;
+    border-radius: 999px;
+    background: var(--surface-2);
+    color: var(--muted);
+    font-size: 0.75rem;
+    font-weight: 600;
+    line-height: 1.4;
+    box-shadow: inset 0 0 0 1px var(--line);
   }
 
   /* Visible keyboard focus everywhere */
   :focus-visible {
     outline: 3px solid var(--accent);
     outline-offset: 2px;
-    border-radius: 4px;
+    border-radius: 6px;
   }
 
-  /* ---------- Boards: the basic card ---------- */
-  /*
-   * A board is a flat panel with a solid outline and a hard offset shadow, like
-   * a sign standing slightly proud of the wall. Linked boards lift on hover and
-   * press in on click.
-   */
-  .board {
-    border: 2px solid var(--frame);
-    border-radius: var(--radius-board);
-    box-shadow: 4px 4px 0 var(--shadow-hard);
+  /* ---------- Cards ---------- */
+  .card {
+    border-radius: 1rem;
+    background: var(--surface);
+    box-shadow: inset 0 0 0 1px var(--line);
   }
-  a.board,
-  button.board {
-    transition:
-      transform 0.15s ease,
-      box-shadow 0.15s ease;
+  a.card {
+    transition: box-shadow 0.2s ease;
   }
-  a.board:hover {
-    transform: translate(-2px, -2px);
-    box-shadow: 6px 6px 0 var(--shadow-hard);
-  }
-  a.board:active {
-    transform: translate(2px, 2px);
-    box-shadow: 2px 2px 0 var(--shadow-hard);
-  }
-
-  /* Four screw heads in the corners of a signboard */
-  .screws {
-    position: relative;
-  }
-  .screws::after {
-    content: "";
-    position: absolute;
-    inset: 8px;
-    pointer-events: none;
-    --screw: radial-gradient(circle, #d8d2c4 0 2px, #6d665a 2.5px 3px, transparent 3.5px);
-    background:
-      var(--screw) top left / 8px 8px no-repeat,
-      var(--screw) top right / 8px 8px no-repeat,
-      var(--screw) bottom left / 8px 8px no-repeat,
-      var(--screw) bottom right / 8px 8px no-repeat;
-  }
-
-  /* Small enamel number plate used as a section kicker ("No. 01") */
-  .plate {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.5em;
-    padding: 0.35em 0.7em 0.3em;
-    border-radius: var(--radius-tag);
-    background: var(--sign-black);
-    color: var(--sign-black-ink);
-    font-family: var(--font-sign);
-    font-size: 0.75rem;
-    line-height: 1;
-    letter-spacing: 0.08em;
-  }
-  .dark .plate {
-    box-shadow: inset 0 0 0 1px var(--frame);
+  a.card:hover {
+    box-shadow:
+      inset 0 0 0 1px var(--line),
+      0 12px 28px -12px rgb(0 0 0 / 0.18);
   }
 
   /* ---------- Buttons ---------- */
@@ -229,158 +167,68 @@ body {
     align-items: center;
     justify-content: center;
     gap: 0.5rem;
-    padding: 0.8rem 1.4rem;
-    border: 2px solid var(--frame);
-    border-radius: var(--radius-tag);
-    font-weight: 800;
-    font-variation-settings: "wdth" 110;
-    text-transform: uppercase;
-    letter-spacing: 0.04em;
-    font-size: 0.9rem;
-    line-height: 1.1;
-    box-shadow: 3px 3px 0 var(--shadow-hard);
+    padding: 0.85rem 1.6rem;
+    border-radius: 999px;
+    font-weight: 600;
+    line-height: 1.2;
     transition:
-      transform 0.15s ease,
+      background-color 0.15s ease,
       box-shadow 0.15s ease,
-      background-color 0.15s ease;
-  }
-  .btn:hover {
-    transform: translate(-1px, -1px);
-    box-shadow: 4px 4px 0 var(--shadow-hard);
-  }
-  .btn:active {
-    transform: translate(2px, 2px);
-    box-shadow: 1px 1px 0 var(--shadow-hard);
+      color 0.15s ease;
   }
   .btn-primary {
     background: var(--accent);
-    color: var(--accent-ink);
+    color: var(--on-accent);
+  }
+  .btn-primary:hover {
+    background: var(--accent-hover);
   }
   .btn-secondary {
     background: var(--surface);
     color: var(--ink);
+    box-shadow: inset 0 0 0 1px var(--line-strong);
   }
-  .btn-yellow {
-    background: var(--sign-yellow);
-    color: var(--sign-yellow-ink);
+  .btn-secondary:hover {
+    box-shadow: inset 0 0 0 1px var(--accent);
   }
-  /* For coloured boards: the frame is the board's own lettering colour */
-  .btn-on-sign {
-    background: transparent;
+  /* For the blue CTA panel: white button, then an outline one */
+  .btn-inverse {
+    background: var(--on-accent);
+    color: var(--accent);
+  }
+  .btn-inverse:hover {
+    opacity: 0.9;
+  }
+  .btn-outline-inverse {
     color: inherit;
-    border-color: currentColor;
-    box-shadow: none;
+    box-shadow: inset 0 0 0 1px color-mix(in srgb, currentColor 50%, transparent);
   }
-  .btn-on-sign:hover,
-  .btn-on-sign:active {
-    box-shadow: none;
-    background: color-mix(in srgb, currentColor 12%, transparent);
+  .btn-outline-inverse:hover {
+    box-shadow: inset 0 0 0 1px currentColor;
   }
 
-  /* ---------- Awning: striped canopy with a scalloped edge ---------- */
-  /* --stripe is one stripe's width (and the scallop's diameter); --band is the
-     solid canopy above the scallops. .awning-sm shrinks both for small cards. */
-  .awning {
-    --stripe: 40px;
-    --band: 24px;
-    --awning-colour: var(--sign-red);
-    height: calc(var(--band) + var(--stripe) / 2);
-    background: repeating-linear-gradient(
-      90deg,
-      var(--awning-colour) 0 var(--stripe),
-      var(--awning-light) var(--stripe) calc(var(--stripe) * 2)
-    );
-    /* Solid top band, then one half-circle hanging under every stripe */
-    -webkit-mask:
-      linear-gradient(#000 0 0) top / 100% var(--band) no-repeat,
-      radial-gradient(circle calc(var(--stripe) / 2) at calc(var(--stripe) / 2) 0, #000 97%, transparent)
-        0 var(--band) / var(--stripe) calc(var(--stripe) / 2) repeat-x;
-    mask:
-      linear-gradient(#000 0 0) top / 100% var(--band) no-repeat,
-      radial-gradient(circle calc(var(--stripe) / 2) at calc(var(--stripe) / 2) 0, #000 97%, transparent)
-        0 var(--band) / var(--stripe) calc(var(--stripe) / 2) repeat-x;
-  }
-  .awning-sm {
-    --stripe: 24px;
-    --band: 12px;
-  }
-  .awning-green {
-    --awning-colour: var(--sign-green);
-  }
-
-  /* ---------- Roller shutter (footer, "closed for the night") ---------- */
-  .shutter {
-    background:
-      repeating-linear-gradient(
-        180deg,
-        rgba(255, 255, 255, 0.07) 0 2px,
-        transparent 2px 10px,
-        rgba(0, 0, 0, 0.25) 10px 12px
-      ),
-      #2a2620;
-  }
-
-  /* ---------- Thermal receipt with torn zigzag edges ---------- */
-  .receipt {
-    --tooth: 14px;
-    background: var(--paper);
-    color: var(--paper-ink);
-    font-family: var(--font-receipt);
-    padding: calc(var(--tooth) + 1.5rem) 1.75rem;
-    -webkit-mask:
-      conic-gradient(from 135deg at top, #0000, #000 1deg 89deg, #0000 90deg) top / var(--tooth) 51% repeat-x,
-      conic-gradient(from -45deg at bottom, #0000, #000 1deg 89deg, #0000 90deg) bottom / var(--tooth) 51% repeat-x;
-    mask:
-      conic-gradient(from 135deg at top, #0000, #000 1deg 89deg, #0000 90deg) top / var(--tooth) 51% repeat-x,
-      conic-gradient(from -45deg at bottom, #0000, #000 1deg 89deg, #0000 90deg) bottom / var(--tooth) 51% repeat-x;
-    filter: drop-shadow(0 10px 18px rgba(28, 24, 19, 0.18));
-  }
-
-  /* ---------- Kopitiam menu board: dotted leaders between item and price ---------- */
-  .menu-row {
-    display: flex;
-    align-items: baseline;
-    gap: 0.6rem;
-  }
-  .menu-leader {
-    flex: 1;
-    min-width: 1.5rem;
-    border-bottom: 3px dotted color-mix(in srgb, currentColor 45%, transparent);
-    transform: translateY(-0.3em);
-  }
-
-  /* ---------- Felt letter board (building directory) ---------- */
-  .letterboard {
-    background:
-      repeating-linear-gradient(180deg, #151412 0 7px, #1f1d1a 7px 9px);
-    color: #f6f1e6;
-    border: 10px solid #5b4430;
-    border-radius: var(--radius-board);
-    box-shadow:
-      inset 0 0 0 2px #3b2c1f,
-      4px 4px 0 var(--shadow-hard);
-  }
-  .dark .letterboard {
-    border-color: #3d2e21;
-  }
-
-  /* ---------- Brand lockup: the signboard logo in the nav ---------- */
+  /* ---------- Logo: the JPBC signboard ---------- */
+  /* JPBC in sand-gold sign lettering on a royal-blue board, descriptor spread to the
+     same width underneath. After dark the lettering glows like a lit sign. */
   .brand-board {
     display: inline-flex;
     flex-direction: column;
     align-items: stretch;
     padding: 0.45rem 0.7rem 0.4rem;
-    background: var(--sign-red);
-    color: var(--sign-red-ink);
-    border: 2px solid var(--frame);
-    border-radius: var(--radius-tag);
-    box-shadow: 3px 3px 0 var(--shadow-hard);
-    --sign-glow: var(--sign-red-ink);
+    border-radius: 0.5rem;
+    background: var(--logo-board);
+    color: var(--logo-ink);
+    box-shadow: 0 2px 6px -2px rgb(0 0 0 / 0.35);
   }
   .brand-board .brand-name {
     font-family: var(--font-sign);
     font-size: 1.85rem;
     line-height: 0.85;
+  }
+  .dark .brand-board .brand-name {
+    text-shadow:
+      0 0 6px color-mix(in srgb, var(--logo-ink) 55%, transparent),
+      0 0 18px color-mix(in srgb, var(--logo-ink) 30%, transparent);
   }
   .brand-board .brand-desc {
     display: flex;
@@ -390,7 +238,7 @@ body {
     font-weight: 800;
     letter-spacing: 0.06em;
     line-height: 1;
-    color: var(--sign-green-ink);
+    color: var(--logo-sub);
   }
   .brand-board .brand-desc > span:last-child {
     margin-right: -0.06em;
@@ -420,9 +268,9 @@ body {
     to {
       opacity: 1;
       text-shadow:
-        0 0 4px color-mix(in srgb, var(--accent) 85%, transparent),
-        0 0 12px color-mix(in srgb, var(--accent) 55%, transparent),
-        0 0 28px color-mix(in srgb, var(--accent) 35%, transparent);
+        0 0 4px color-mix(in srgb, var(--neon) 85%, transparent),
+        0 0 12px color-mix(in srgb, var(--neon) 55%, transparent),
+        0 0 28px color-mix(in srgb, var(--neon) 35%, transparent);
     }
   }
   @keyframes neon-on-flicker {
@@ -433,9 +281,9 @@ body {
     30%, 48%, 72%, 100% {
       opacity: 1;
       text-shadow:
-        0 0 4px color-mix(in srgb, var(--accent) 85%, transparent),
-        0 0 12px color-mix(in srgb, var(--accent) 55%, transparent),
-        0 0 28px color-mix(in srgb, var(--accent) 35%, transparent);
+        0 0 4px color-mix(in srgb, var(--neon) 85%, transparent),
+        0 0 12px color-mix(in srgb, var(--neon) 55%, transparent),
+        0 0 28px color-mix(in srgb, var(--neon) 35%, transparent);
     }
     38% {
       opacity: 0.12;
@@ -450,9 +298,9 @@ body {
     0%, 91%, 94.5% {
       opacity: 1;
       text-shadow:
-        0 0 4px color-mix(in srgb, var(--accent) 85%, transparent),
-        0 0 12px color-mix(in srgb, var(--accent) 55%, transparent),
-        0 0 28px color-mix(in srgb, var(--accent) 35%, transparent);
+        0 0 4px color-mix(in srgb, var(--neon) 85%, transparent),
+        0 0 12px color-mix(in srgb, var(--neon) 55%, transparent),
+        0 0 28px color-mix(in srgb, var(--neon) 35%, transparent);
     }
     88%, 93% {
       opacity: 0.18;
@@ -460,92 +308,88 @@ body {
     }
   }
 
-  /* ---------- Open/closed sign dot ---------- */
-  .open-dot {
-    width: 0.55rem;
-    height: 0.55rem;
-    border-radius: 999px;
-    background: #22c55e;
-    box-shadow: 0 0 0 3px rgba(34, 197, 94, 0.25);
-    animation: open-pulse 2.4s ease-in-out infinite;
+  /* ---------- Marquee (see components/Marquee.tsx) ---------- */
+  .marquee-track {
+    animation: marquee-slide linear infinite;
   }
-  .open-dot--closed {
-    background: #f59e0b;
-    box-shadow: 0 0 0 3px rgba(245, 158, 11, 0.25);
-    animation: none;
+  .marquee:hover .marquee-track {
+    animation-play-state: paused;
   }
-  @keyframes open-pulse {
-    50% { box-shadow: 0 0 0 6px rgba(34, 197, 94, 0); }
+  @keyframes marquee-slide {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .marquee-track { animation: none !important; }
+    .marquee { overflow-x: auto; }
   }
 
   /* ---------- Article body (blog posts) ---------- */
-  .prose-shop {
+  .prose-site {
     color: var(--ink);
     font-size: 1.075rem;
     line-height: 1.75;
   }
-  .prose-shop > * + * {
+  .prose-site > * + * {
     margin-top: 1.25em;
   }
-  .prose-shop h2 {
+  .prose-site h2 {
     margin-top: 2.2em;
-    font-family: var(--font-display);
     font-weight: 800;
-    font-variation-settings: "wdth" 110;
-    font-size: 1.65rem;
-    line-height: 1.15;
-    letter-spacing: -0.01em;
+    font-size: 1.6rem;
+    line-height: 1.2;
+    letter-spacing: -0.02em;
   }
-  .prose-shop h3 {
+  .prose-site h3 {
     margin-top: 1.8em;
-    font-weight: 800;
+    font-weight: 700;
     font-size: 1.2rem;
     line-height: 1.3;
   }
-  .prose-shop a {
-    color: var(--accent);
+  .prose-site a {
+    color: var(--accent-text);
     font-weight: 600;
     text-decoration: underline;
-    text-decoration-thickness: 2px;
+    text-decoration-thickness: 1px;
     text-underline-offset: 3px;
   }
-  .prose-shop strong {
+  .prose-site strong {
     font-weight: 700;
   }
-  .prose-shop ul,
-  .prose-shop ol {
+  .prose-site ul,
+  .prose-site ol {
     padding-left: 1.4em;
   }
-  .prose-shop ul {
-    list-style: square;
+  .prose-site ul {
+    list-style: disc;
   }
-  .prose-shop ol {
+  .prose-site ol {
     list-style: decimal;
   }
-  .prose-shop li + li {
+  .prose-site li + li {
     margin-top: 0.45em;
   }
-  .prose-shop li::marker {
-    color: var(--accent);
+  .prose-site li::marker {
+    color: var(--accent-text);
   }
-  .prose-shop table {
+  .prose-site table {
     width: 100%;
     border-collapse: collapse;
     font-size: 0.95rem;
   }
-  .prose-shop th,
-  .prose-shop td {
+  .prose-site th,
+  .prose-site td {
     padding: 0.6rem 0.75rem;
     border-bottom: 1px solid var(--line);
     text-align: left;
     vertical-align: top;
   }
-  .prose-shop th {
-    font-weight: 800;
-    border-bottom: 2px solid var(--frame);
+  .prose-site th {
+    font-weight: 700;
+    border-bottom: 2px solid var(--line-strong);
   }
-  .prose-shop blockquote {
-    border-left: 4px solid var(--sign-yellow);
+  .prose-site blockquote {
+    border-left: 3px solid var(--accent);
     padding: 0.25em 0 0.25em 1em;
     color: var(--muted);
   }
@@ -553,10 +397,10 @@ body {
 
 /* ---------- Sticky header ---------- */
 .site-header {
-  background-color: color-mix(in srgb, var(--bg) 92%, transparent);
+  background-color: color-mix(in srgb, var(--bg) 90%, transparent);
   -webkit-backdrop-filter: blur(10px);
   backdrop-filter: blur(10px);
-  border-bottom: 2px solid var(--frame);
+  border-bottom: 1px solid var(--line);
 }
 @supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
   .site-header {

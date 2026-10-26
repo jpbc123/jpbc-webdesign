@@ -17,7 +17,7 @@ export function termsMetadata(market: Market): Metadata {
 
 const h2 = "display text-2xl text-ink";
 const list = "mt-3 list-disc space-y-2 pl-6";
-const link = "font-semibold text-ink underline decoration-accent decoration-2 underline-offset-4 hover:text-accent";
+const link = "font-semibold text-accent-text underline underline-offset-4";
 
 export default function TermsPage({ market }: { market: Market }) {
   const { pricing, contact } = market;
@@ -26,15 +26,15 @@ export default function TermsPage({ market }: { market: Market }) {
   return (
     <>
       <section className="mx-auto max-w-3xl px-6 pb-4 pt-16">
-        <p className="plate mb-5">Legal</p>
-        <h1 className="display text-balance text-[2.6rem] text-ink sm:text-6xl lg:text-7xl">Terms of Service</h1>
+        <p className="eyebrow mb-3">Legal</p>
+        <h1 className="display text-[2.6rem] text-ink sm:text-5xl lg:text-6xl">Terms of Service</h1>
         {/* Answer-first for SEO/AEO */}
         <p className="mt-6 text-lg text-muted">
           The short version: JPBC Web Designs and its products, MY Swift Audit and MyResit, are run by {OPERATOR} (
           {OPERATOR_REG_NO}), a business registered in Malaysia. All sales are final — we do not offer refunds. Details
           below.
         </p>
-        <p className="mt-4 text-sm uppercase tracking-wider text-muted">Effective date: {TERMS_EFFECTIVE}</p>
+        <p className="mt-4 text-sm font-medium text-muted">Effective date: {TERMS_EFFECTIVE}</p>
       </section>
 
       <section className="mx-auto max-w-3xl space-y-10 px-6 py-10 text-muted">
@@ -126,7 +126,7 @@ export default function TermsPage({ market }: { market: Market }) {
           </p>
         </div>
 
-        <div id="no-refund" className="scroll-mt-24 board bg-surface p-8">
+        <div id="no-refund" className="scroll-mt-24 card p-8">
           <h2 className={h2}>6. No refund policy</h2>
           <p className="mt-4 font-semibold text-ink">
             All sales are final. We do not offer refunds, credits, or exchanges for any fees once payment has been
@@ -239,7 +239,7 @@ export default function TermsPage({ market }: { market: Market }) {
         market={market}
         heading="Questions about these terms?"
         sub="WhatsApp us — a real person replies, usually within the hour."
-        waMessage="Hi JPBC! I have a question about your terms."
+        waMessage="Hi JPBC Web Designs, I have a question about your terms."
       />
     </>
   );

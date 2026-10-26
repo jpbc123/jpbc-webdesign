@@ -4,12 +4,12 @@ import type { Market } from "@/config/markets/types";
 import { enabledMarkets, SHARED_PAGE_PATHS } from "@/config/markets";
 import { mpath, waLink } from "@/lib/market";
 import { OPERATOR, OPERATOR_REG_NO } from "@/lib/legal";
+import Logo from "./Logo";
 import MarketSwitcher from "./MarketSwitcher";
 
-const headingClass = "sign mb-4 text-sm tracking-wider text-sign-yellow";
-const linkClass = "text-[#e9e1d0] hover:text-sign-yellow";
+const headingClass = "mb-4 text-sm font-bold text-ink";
+const linkClass = "text-muted transition-colors hover:text-accent-text";
 
-/** Closing time: the shop's roller shutter comes half down over the footer. */
 export default function Footer({ market }: { market: Market }) {
   const switcherMarkets = enabledMarkets.map((m) => ({
     code: m.code,
@@ -20,22 +20,11 @@ export default function Footer({ market }: { market: Market }) {
   }));
 
   return (
-    <footer className="mt-24 bg-[#1c1813] text-[#e9e1d0]">
-      {/* Shutter band with its pull handle */}
-      <div className="shutter relative h-16 border-t-4 border-[#0e0c0a]" aria-hidden>
-        <div className="absolute bottom-0 left-1/2 h-3 w-20 -translate-x-1/2 rounded-t-sm bg-[#8f8a80]" />
-      </div>
-
+    <footer className="mt-24 border-t border-line bg-surface-2">
       <div className="mx-auto grid max-w-6xl gap-10 px-6 py-14 sm:grid-cols-2 lg:grid-cols-4">
         <div>
-          <span className="brand-board">
-            <span className="brand-name sign-lit">JPBC</span>
-            <span className="brand-desc">
-              <span>WEB</span>
-              <span>DESIGNS</span>
-            </span>
-          </span>
-          <p className="mt-5 max-w-xs text-sm text-[#bdb4a3]">{market.voice.footerBlurb}</p>
+          <Logo afterHours="always" />
+          <p className="mt-5 max-w-xs text-sm text-muted">{market.voice.footerBlurb}</p>
         </div>
 
         <div>
@@ -89,11 +78,11 @@ export default function Footer({ market }: { market: Market }) {
             <li><Link href={mpath(market, "/terms")} className={linkClass}>Terms of Service</Link></li>
             <li><Link href={mpath(market, "/privacy")} className={linkClass}>Privacy Policy</Link></li>
           </ul>
-          <p className="mt-4 text-xs text-[#bdb4a3]">{market.voice.footerHoursNote}</p>
+          <p className="mt-4 text-xs text-muted">{market.voice.footerHoursNote}</p>
         </div>
       </div>
 
-      <div className="border-t border-white/10 py-5 text-xs text-[#bdb4a3]">
+      <div className="border-t border-line py-5 text-xs text-muted">
         <div className="mx-auto flex max-w-6xl flex-col items-center gap-3 px-6 sm:flex-row sm:justify-between">
           <div className="text-center sm:text-left">
             <p>

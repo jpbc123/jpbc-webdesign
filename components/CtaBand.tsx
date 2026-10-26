@@ -3,7 +3,7 @@ import WhatsAppButton from "./WhatsAppButton";
 import type { Market } from "@/config/markets/types";
 import { mpath } from "@/lib/market";
 
-/** Final CTA at the bottom of most pages: one big red signboard. */
+/** Final CTA at the bottom of most pages: one rounded blue panel. */
 export default function CtaBand({
   market,
   heading = "Ready for a website that actually works?",
@@ -17,12 +17,12 @@ export default function CtaBand({
 }) {
   return (
     <section className="mx-auto mt-20 max-w-6xl px-4 sm:px-6">
-      <div className="board screws bg-sign-red px-6 py-14 text-center text-sign-red-ink [--sign-glow:var(--sign-red-ink)] sm:px-12">
-        <h2 className="display sign-lit mx-auto max-w-3xl text-balance text-4xl sm:text-6xl">{heading}</h2>
-        <p className="mx-auto mt-5 max-w-xl text-pretty text-lg text-[#fff3dc]">{sub ?? market.voice.ctaSub}</p>
-        <div className="mt-8 flex flex-wrap items-center justify-center gap-4">
-          <WhatsAppButton market={market} message={waMessage} variant="yellow" />
-          <Link href={mpath(market, "/get-started")} className="btn btn-on-sign">
+      <div className="rounded-3xl bg-accent px-6 py-14 text-center text-on-accent sm:px-14">
+        <h2 className="display mx-auto max-w-3xl text-3xl sm:text-4xl">{heading}</h2>
+        <p className="mx-auto mt-4 max-w-xl text-pretty text-lg opacity-85">{sub ?? market.voice.ctaSub}</p>
+        <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
+          <WhatsAppButton market={market} message={waMessage} variant="inverse" />
+          <Link href={mpath(market, "/get-started")} className="btn btn-outline-inverse">
             Get started online
           </Link>
         </div>

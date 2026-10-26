@@ -29,8 +29,8 @@ export default function FaqPage({ market }: { market: Market }) {
       <JsonLd data={faqJsonLd} />
 
       <section className="mx-auto max-w-3xl px-6 pb-4 pt-16">
-        <p className="plate mb-5">FAQ</p>
-        <h1 className="display text-balance text-[2.6rem] text-ink sm:text-6xl lg:text-7xl">Frequently asked questions</h1>
+        <p className="eyebrow mb-3">FAQ</p>
+        <h1 className="display text-[2.6rem] text-ink sm:text-5xl lg:text-6xl">Frequently asked questions</h1>
         {/* Answer-first for SEO/AEO */}
         <p className="mt-4 text-lg text-muted">
           {`The short version: ${price(market, market.pricing.setup)} down and ${price(market, market.pricing.monthly)}/month`} gets
@@ -47,7 +47,7 @@ export default function FaqPage({ market }: { market: Market }) {
         market={market}
         heading="Question not here?"
         sub="WhatsApp us — a real person replies, usually within the hour."
-        waMessage="Hi JPBC! I have a question that's not in your FAQ."
+        waMessage="Hi JPBC Web Designs, I have a question that's not in your FAQ."
       />
     </>
   );

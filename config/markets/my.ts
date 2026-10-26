@@ -35,17 +35,6 @@ export const my: Market = {
       "Based in Shah Alam, serving Kuala Lumpur and the whole Klang Valley — KL, PJ, Subang Jaya, Shah Alam, Puchong, Klang, and everywhere in between. Everything works over WhatsApp, so your exact location never slows us down.",
     hours: "Monday–Friday, 9am–6pm (MYT)",
     afterHoursNote: "WhatsApp anytime — we reply after hours more often than we should.",
-    timeZone: "Asia/Kuala_Lumpur",
-    openingHours: { days: [1, 2, 3, 4, 5], open: 9, close: 18 },
-  },
-
-  signage: {
-    open: "BUKA",
-    closed: "TUTUP",
-    closedNote: "WhatsApp masih on",
-    shopName: "BISNES ANDA",
-    shopSub: "Klinik · Restoran · Bengkel · Tuisyen · & lagi",
-    receiptThanks: "Terima kasih · Sila datang lagi",
   },
 
   phone: {
@@ -58,15 +47,15 @@ export const my: Market = {
   },
 
   heroCopy: {
-    badge: "{setup} down · {monthly}/month · Live in 7 days",
-    headlineLead: "Agency-quality websites, ",
-    headlineHighlight: "Malaysian prices",
+    badge: "Websites, web apps & AI automation · Shah Alam",
+    headlineLead: "Websites that make your business look ",
+    headlineHighlight: "as good as it is.",
     subheadline:
-      "We hand-code fast, custom websites for Malaysian small and medium businesses — {setup} down and {monthly}/month, including domain, hosting, and {editHours} of edits a month. No WordPress. No page builders. No RM10,000 agency quotes.",
+      "Custom, hand-coded websites, web apps and AI automation for businesses across Kuala Lumpur and Selangor. {setup} down and {monthly}/month, with domain, hosting and {editHours} of edits a month included.",
   },
 
   voice: {
-    waDefaultMessage: "Hi JPBC! I'm interested in a website for my business.",
+    waDefaultMessage: "Hi JPBC Web Designs, I would like to know more about your website services.",
     domainLine: ".com or .com.my",
     homeWhatWeDoDesign:
       "Custom design around your business — your services, your customers, your kawasan. No templates.",
@@ -79,7 +68,7 @@ export const my: Market = {
     businessDescription:
       "Web design studio in Shah Alam, Selangor, serving Kuala Lumpur and the Klang Valley. Hand-coded custom websites for small businesses — {setup} down, {monthly}/month.",
     workAnswerFirst:
-      "What kind of websites does JPBC build? Fast, hand-coded sites, web apps and AI implementation for everyday Malaysian businesses — aircon teams, klinik, restoran, renovation contractors, tuition centres, workshops, travel agencies. Our own products put AI to work too: MyResit reads receipts and MY Swift Audit helps prepare audit reports. Every project below is live; click through and see for yourself.",
+      "What kind of websites does JPBC build? Fast, hand-coded sites, web apps and AI automation for everyday Malaysian businesses — aircon teams, klinik, restoran, renovation contractors, tuition centres, workshops, travel agencies. Our own products run on AI automation too: MyResit reads receipts and MY Swift Audit helps prepare audit reports. Every project below is live; click through and see for yourself.",
     aboutH1: "A small studio that answers its own WhatsApp",
     aboutAnswerFirst:
       "Who is JPBC Web Designs? A founder-led web design studio in Shah Alam that hand-codes websites for Malaysian small businesses. No account managers, no ticket systems — you WhatsApp us, the person who built your site replies.",
@@ -119,7 +108,7 @@ export const my: Market = {
       body: "The page you're looking for doesn't exist — maybe the link is old, maybe it wandered off lepas kerja.",
       homeCta: "Back to home",
       reportCta: "Tell us what broke",
-      waMessage: "Hi JPBC! I found a broken link on your site.",
+      waMessage: "Hi JPBC Web Designs, I found a broken link on your site.",
     },
   },
 

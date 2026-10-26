@@ -25,7 +25,7 @@ export default function PreviewBanner({
         {businessName ? ` · disediakan untuk ${businessName}` : ""} · Prepared by JPBC Web Designs
       </span>
       <a
-        href={waLink(market, "Hi JPBC! I saw my preview site and I'd like to activate it.")}
+        href={waLink(market, "Hi JPBC Web Designs, I saw my preview site and I'd like to activate it.")}
         target="_blank"
         rel="noopener noreferrer"
         className="rounded-full bg-[#06b6d4] px-3 py-0.5 font-semibold text-[#04202a]"

@@ -1,30 +1,30 @@
 /**
- * Section heading with an enamel number plate above it ("No. 03"), like the
- * lot number screwed beside a shop door. Pass `as="h1"` for page headers.
+ * Section heading: a small accent kicker ("Pricing", "How we work") over a
+ * heavy headline. Pass `as="h1"` for page headers.
  */
 export default function SectionHeading({
-  no,
+  eyebrow,
   title,
   intro,
   as: Tag = "h2",
   className = "",
   center = false,
 }: {
-  /** Plate text, e.g. "No. 03" or "Pricing" */
-  no?: string;
+  /** Kicker text above the headline */
+  eyebrow?: string;
   title: React.ReactNode;
   intro?: React.ReactNode;
   as?: "h1" | "h2";
   className?: string;
   center?: boolean;
 }) {
-  const size = Tag === "h1" ? "text-[2.6rem] sm:text-6xl lg:text-7xl" : "text-4xl sm:text-5xl";
+  const size = Tag === "h1" ? "text-[2.6rem] sm:text-5xl lg:text-6xl" : "text-3xl sm:text-4xl";
   return (
     <div className={`${center ? "text-center" : ""} ${className}`}>
-      {no && <p className="plate mb-4">{no}</p>}
-      <Tag className={`display text-balance text-ink ${size}`}>{title}</Tag>
+      {eyebrow && <p className="eyebrow mb-3">{eyebrow}</p>}
+      <Tag className={`display text-ink ${size} ${center ? "mx-auto max-w-2xl" : "max-w-2xl"}`}>{title}</Tag>
       {intro && (
-        <p className={`mt-4 max-w-2xl text-pretty text-lg text-muted ${center ? "mx-auto" : ""}`}>{intro}</p>
+        <p className={`mt-4 max-w-2xl text-pretty text-lg leading-relaxed text-muted ${center ? "mx-auto" : ""}`}>{intro}</p>
       )}
     </div>
   );

@@ -3,14 +3,14 @@
     Filled badge (not a transparent glyph) so the mark reads on light and dark
     tab strips alike. Geometry is deliberately fat-stroked and gradient-free:
     the 9-unit stroke is 2.25px at 16x16, which survives downscaling.
-    Colours are the signboard pair from the site: yellow lettering on red. The
-    dark-scheme block adds a faint yellow rim so the badge stays crisp against
+    Colours are the signboard pair from the logo: sand-gold lettering on royal
+    blue. The dark-scheme block adds a faint sand rim so the badge stays crisp against
     dark browser chrome.
   -->
   <style>
-    .badge { fill: #c42a1c; }
-    .rim { fill: none; stroke: #ffd75e; stroke-opacity: 0; stroke-width: 2; }
-    .mark { fill: none; stroke: #ffd75e; stroke-width: 9; stroke-linecap: round; stroke-linejoin: round; }
+    .badge { fill: #1d4ed8; }
+    .rim { fill: none; stroke: #f6dfb2; stroke-opacity: 0; stroke-width: 2; }
+    .mark { fill: none; stroke: #f6dfb2; stroke-width: 9; stroke-linecap: round; stroke-linejoin: round; }
     @media (prefers-color-scheme: dark) {
       .rim { stroke-opacity: 0.4; }
     }

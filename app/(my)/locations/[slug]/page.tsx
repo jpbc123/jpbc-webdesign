@@ -76,8 +76,8 @@ export default async function LocationPage({ params }: Props) {
       <JsonLd data={faqJsonLd} />
 
       <section className="mx-auto max-w-4xl px-6 pb-4 pt-16">
-        <p className="plate mb-5">Serving {loc.name}</p>
-        <h1 className="display text-balance text-[2.6rem] text-ink sm:text-6xl lg:text-7xl">Web Designer in {loc.name}</h1>
+        <p className="eyebrow mb-3">Serving {loc.name}</p>
+        <h1 className="display text-[2.6rem] text-ink sm:text-5xl lg:text-6xl">Web Designer in {loc.name}</h1>
         {/* Answer-first for SEO/AEO */}
         <p className="mt-6 text-lg text-muted">{loc.answerFirst}</p>
         <p className="mt-4 text-muted">{loc.intro}</p>
@@ -85,14 +85,14 @@ export default async function LocationPage({ params }: Props) {
           <span className="font-semibold text-ink">Areas we serve in {loc.name}:</span> {loc.areas.join(" · ")}
         </p>
         <div className="mt-8">
-          <WhatsAppButton market={market} message={`Hi JPBC! I run a business in ${loc.name} and I'm interested in a website.`}>
+          <WhatsAppButton market={market} message={`Hi JPBC Web Designs, I run a business in ${loc.name} and I'm interested in a website.`}>
             WhatsApp us about your {loc.short ?? loc.name} business
           </WhatsAppButton>
         </div>
       </section>
 
       {/* Services block (interlinks to service pages) */}
-      <section className="border-y-2 border-frame bg-surface-2 py-16">
+      <section className="bg-surface-2 py-16">
         <div className="mx-auto max-w-6xl px-6">
           <h2 className="display text-3xl text-ink sm:text-4xl">What we do for {loc.name} businesses</h2>
           <div className="mt-8 grid gap-6 sm:grid-cols-3">
@@ -100,11 +100,11 @@ export default async function LocationPage({ params }: Props) {
               <Link
                 key={s.slug}
                 href={`/services/${s.slug}`}
-                className="board group bg-surface p-6"
+                className="card group p-6"
               >
                 <h3 className="display text-xl text-ink">{s.name}</h3>
                 <p className="mt-2 text-sm text-muted">{s.description}</p>
-                <span className="mt-3 inline-block text-sm font-bold text-accent">Learn more →</span>
+                <span className="mt-3 inline-block text-sm font-bold text-accent-text">Learn more →</span>
               </Link>
             ))}
           </div>
@@ -116,7 +116,7 @@ export default async function LocationPage({ params }: Props) {
         <h2 className="display text-3xl text-ink sm:text-4xl">Pricing for {loc.name} businesses</h2>
         <p className="mt-3 text-muted">
           Same honest pricing everywhere in the Klang Valley.{" "}
-          <Link href="/pricing" className="font-semibold text-accent hover:underline">
+          <Link href="/pricing" className="font-semibold text-accent-text hover:underline">
             See the full breakdown →
           </Link>
         </p>
@@ -141,7 +141,7 @@ export default async function LocationPage({ params }: Props) {
           .map((l, i) => (
             <span key={l.slug}>
               {i > 0 && " · "}
-              <Link href={`/locations/${l.slug}`} className="font-semibold text-accent hover:underline">
+              <Link href={`/locations/${l.slug}`} className="font-semibold text-accent-text hover:underline">
                 {l.name}
               </Link>
             </span>
@@ -151,7 +151,7 @@ export default async function LocationPage({ params }: Props) {
       <CtaBand
         market={market}
         heading={`Your ${loc.name} business, online in 7 days`}
-        waMessage={`Hi JPBC! I run a business in ${loc.name} and I'm interested in a website.`}
+        waMessage={`Hi JPBC Web Designs, I run a business in ${loc.name} and I'm interested in a website.`}
       />
     </>
   );

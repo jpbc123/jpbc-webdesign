@@ -52,8 +52,8 @@ export default async function ServicePage({ params }: Props) {
       <JsonLd data={serviceJsonLd} />
 
       <section className="mx-auto max-w-4xl px-6 pb-4 pt-16">
-        <p className="plate mb-5">Service</p>
-        <h1 className="display text-balance text-[2.6rem] text-ink sm:text-6xl lg:text-7xl">{service.name}</h1>
+        <p className="eyebrow mb-3">Service</p>
+        <h1 className="display text-[2.6rem] text-ink sm:text-5xl lg:text-6xl">{service.name}</h1>
         {/* Answer-first for SEO/AEO */}
         <p className="mt-6 text-lg text-muted">{service.answerFirst}</p>
       </section>
@@ -65,13 +65,13 @@ export default async function ServicePage({ params }: Props) {
       </section>
 
       {/* Approach */}
-      <section className="border-y-2 border-frame bg-surface-2 py-16">
+      <section className="bg-surface-2 py-16">
         <div className="mx-auto max-w-4xl px-6">
           <h2 className="display text-3xl text-ink sm:text-4xl">{service.approach.heading}</h2>
           <div className="mt-8 grid gap-6 sm:grid-cols-3">
             {service.approach.points.map((p, i) => (
-              <div key={p.title} className="board bg-surface p-6">
-                <span className="sign text-3xl text-accent">{String(i + 1).padStart(2, "0")}</span>
+              <div key={p.title} className="card p-6">
+                <span className="text-sm font-bold text-accent-text">{String(i + 1).padStart(2, "0")}</span>
                 <h3 className="mt-2 font-bold text-ink">{p.title}</h3>
                 <p className="mt-2 text-sm text-muted">{p.body}</p>
               </div>
@@ -88,11 +88,11 @@ export default async function ServicePage({ params }: Props) {
 
       {/* Malaysia angle */}
       <section className="mx-auto max-w-4xl px-6 pb-6">
-        <div className="board screws bg-sign-yellow p-8 text-sign-yellow-ink sm:p-10">
-          <h2 className="display text-2xl sm:text-3xl">{service.malaysiaAngle.heading}</h2>
-          <p className="mt-4">{service.malaysiaAngle.body}</p>
+        <div className="rounded-2xl bg-accent-soft p-8 sm:p-10">
+          <h2 className="display text-2xl text-ink sm:text-3xl">{service.malaysiaAngle.heading}</h2>
+          <p className="mt-4 text-muted">{service.malaysiaAngle.body}</p>
           <div className="mt-6">
-            <WhatsAppButton market={market} message={`Hi JPBC! I'd like to ask about ${service.name}.`}>
+            <WhatsAppButton market={market} message={`Hi JPBC Web Designs, I'd like to ask about ${service.name}.`}>
               {service.cta}
             </WhatsAppButton>
           </div>
@@ -107,18 +107,18 @@ export default async function ServicePage({ params }: Props) {
           .map((s, i) => (
             <span key={s.slug}>
               {i > 0 && " · "}
-              <Link href={`/services/${s.slug}`} className="font-semibold text-accent hover:underline">
+              <Link href={`/services/${s.slug}`} className="font-semibold text-accent-text hover:underline">
                 {s.name}
               </Link>
             </span>
           ))}
         {" · "}
-        <Link href="/pricing" className="font-semibold text-accent hover:underline">
+        <Link href="/pricing" className="font-semibold text-accent-text hover:underline">
           Pricing
         </Link>
       </section>
 
-      <CtaBand market={market} waMessage={`Hi JPBC! I'm interested in ${service.name}.`} />
+      <CtaBand market={market} waMessage={`Hi JPBC Web Designs, I'm interested in ${service.name}.`} />
     </>
   );
 }

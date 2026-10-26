@@ -193,7 +193,7 @@ export const post: Post = {
           vary too much to price blind.
         </p>
 
-        <AskUs market={market} message="Hi JPBC! I read your website cost article and have a question about a quote.">
+        <AskUs market={market} message="Hi JPBC Web Designs, I read your website cost article and have a question about a quote.">
           Got a quote from someone else and not sure if it&apos;s fair? Send it over and we&apos;ll tell you honestly
           what we think, even if you don&apos;t hire us.
         </AskUs>

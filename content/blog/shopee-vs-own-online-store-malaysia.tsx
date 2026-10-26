@@ -177,7 +177,7 @@ export const post: Post = {
         <To href="/blog/how-much-does-a-website-cost-in-malaysia">what a website costs in Malaysia</To>.
       </p>
 
-      <AskUs market={market} message="Hi JPBC! I sell on Shopee and I'm thinking about my own online store.">
+      <AskUs market={market} message="Hi JPBC Web Designs, I sell on Shopee and I'm thinking about my own online store.">
         We build simple online stores for Malaysian sellers: your catalogue, checkout and an admin you can run from
         your phone. Want to know if it makes sense for your numbers?
       </AskUs>

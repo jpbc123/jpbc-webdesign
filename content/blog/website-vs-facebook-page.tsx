@@ -119,7 +119,7 @@ export const post: Post = {
           <To href="/blog/how-much-does-a-website-cost-in-malaysia">how much a website costs in Malaysia</To>.
         </p>
 
-        <AskUs market={market} message="Hi JPBC! I only have a Facebook page right now. Would a website help my business?">
+        <AskUs market={market} message="Hi JPBC Web Designs, I only have a Facebook page right now. Would a website help my business?">
           Not sure if your business needs a website yet? Tell us what you do and we&apos;ll give you a straight
           answer.
         </AskUs>

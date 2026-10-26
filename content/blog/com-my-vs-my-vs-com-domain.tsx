@@ -141,7 +141,7 @@ export const post: Post = {
         yours even if you leave us. See what else is included on our <To href="/pricing">pricing page</To>.
       </p>
 
-      <AskUs market={market} message="Hi JPBC! Can you help me choose and register a domain for my business?">
+      <AskUs market={market} message="Hi JPBC Web Designs, can you help me choose and register a domain for my business?">
         Not sure which name to go for? Send us a few ideas and we&apos;ll check what&apos;s available.
       </AskUs>
     </>

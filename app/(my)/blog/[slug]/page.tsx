@@ -94,15 +94,15 @@ export default async function BlogPostPage({ params }: Props) {
       <article>
         <header className="mx-auto max-w-3xl px-6 pb-6 pt-14">
           <nav aria-label="Breadcrumb" className="text-sm font-semibold text-muted">
-            <Link href="/" className="hover:text-accent">Home</Link>
+            <Link href="/" className="hover:text-accent-text">Home</Link>
             <span aria-hidden> / </span>
-            <Link href="/blog" className="hover:text-accent">Blog</Link>
+            <Link href="/blog" className="hover:text-accent-text">Blog</Link>
           </nav>
-          <p className="plate mt-6">{post.tag}</p>
-          <h1 className="mt-4 text-balance text-4xl font-extrabold leading-[1.05] text-ink [font-variation-settings:'wdth'_112] sm:text-5xl">
+          <p className="pill mt-6">{post.tag}</p>
+          <h1 className="mt-4 text-balance text-4xl font-extrabold leading-[1.1] tracking-[-0.03em] text-ink sm:text-5xl">
             {post.title}
           </h1>
-          <p className="mt-5 text-sm font-bold uppercase tracking-wider text-muted">
+          <p className="mt-5 text-sm font-medium text-muted">
             By JPBC Web Designs · <time dateTime={post.date}>{formatPostDate(post.date)}</time>
             {post.updated && (
               <>
@@ -113,8 +113,8 @@ export default async function BlogPostPage({ params }: Props) {
           </p>
         </header>
 
-        <div className="mx-auto max-w-3xl border-t-2 border-frame px-6 pt-8">
-          <div className="prose-shop">
+        <div className="mx-auto max-w-3xl border-t border-line px-6 pt-8">
+          <div className="prose-site">
             <Body market={market} />
           </div>
         </div>
@@ -144,7 +144,7 @@ export default async function BlogPostPage({ params }: Props) {
         market={market}
         heading="Rather have us do it?"
         sub="Tell us about your business on WhatsApp. A real person replies, usually within the hour."
-        waMessage={`Hi JPBC! I just read "${post.title}" and have a question.`}
+        waMessage={`Hi JPBC Web Designs, I just read "${post.title}" and have a question.`}
       />
     </>
   );

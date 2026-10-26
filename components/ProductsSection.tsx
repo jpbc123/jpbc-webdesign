@@ -1,4 +1,6 @@
 import Link from "next/link";
+import KindTag from "./KindTag";
+import SectionHeading from "./SectionHeading";
 import { products } from "@/data/products";
 import type { Market } from "@/config/markets/types";
 import { mpath } from "@/lib/market";
@@ -7,22 +9,22 @@ import { OPERATOR } from "@/lib/legal";
 /** Our own software, with prices — the top of /work. */
 export default function ProductsSection({ market }: { market: Market }) {
   return (
-    <section id="products" className="mx-auto max-w-6xl scroll-mt-24 px-6 py-10">
-      <p className="plate mb-4">Made by us</p>
-      <h2 className="display text-4xl text-ink sm:text-5xl">Our products</h2>
-      <p className="mt-3 text-muted">
-        Software we build and run ourselves, for Malaysian businesses. Sold by {OPERATOR}, paid by card through Stripe.
-      </p>
+    <section id="products" className="mx-auto max-w-6xl scroll-mt-24 px-4 py-10 sm:px-6">
+      <SectionHeading
+        eyebrow="Made by us"
+        title="Our products"
+        intro={`Software we build and run ourselves, for Malaysian businesses. Sold by ${OPERATOR}, paid by card through Stripe.`}
+      />
 
       <div className="mt-10 grid gap-6 lg:grid-cols-2">
         {products.map((product) => (
-          <article key={product.slug} className="board flex flex-col overflow-hidden bg-surface">
-            <div className="border-b-2 border-frame bg-sign-black px-6 py-5 text-sign-black-ink [--sign-glow:var(--sign-yellow)]">
+          <article key={product.slug} className="card flex flex-col overflow-hidden">
+            <div className="border-b border-line bg-accent-soft px-6 py-5">
               <div className="flex flex-wrap items-center justify-between gap-2">
-                <span className="text-sm opacity-80">{product.tagline}</span>
-                <span className="plate !bg-sign-yellow !text-sign-yellow-ink">{product.status ?? "Our product"}</span>
+                <span className="text-sm text-muted">{product.tagline}</span>
+                {product.status ? <span className="pill !bg-surface">{product.status}</span> : <KindTag kind="Own product" />}
               </div>
-              <h3 className="sign sign-lit mt-3 text-3xl text-sign-yellow">{product.name}</h3>
+              <h3 className="mt-3 text-2xl font-extrabold tracking-tight text-ink">{product.name}</h3>
             </div>
             <div className="flex flex-1 flex-col p-6">
             <p className="text-muted">{product.blurb}</p>
@@ -48,7 +50,7 @@ export default function ProductsSection({ market }: { market: Market }) {
                   href={product.url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="btn btn-secondary !py-2 text-xs"
+                  className="btn btn-secondary !py-2 text-sm"
                 >
                   Visit {product.domain} →
                 </a>
@@ -63,7 +65,7 @@ export default function ProductsSection({ market }: { market: Market }) {
 
       <p className="mt-6 text-sm text-muted">
         Prices in Malaysian ringgit. All sales are final — see our{" "}
-        <Link href={`${mpath(market, "/terms")}#no-refund`} className="font-semibold text-ink underline decoration-accent decoration-2 underline-offset-4 hover:text-accent">
+        <Link href={`${mpath(market, "/terms")}#no-refund`} className="font-semibold text-accent-text underline underline-offset-4">
           Terms of Service
         </Link>
         .

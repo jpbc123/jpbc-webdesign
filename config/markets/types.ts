@@ -82,25 +82,6 @@ export type Market = {
     serviceAreaBody: string;
     hours: string;
     afterHoursNote: string;
-    /** IANA zone the hours below are in, e.g. "Asia/Kuala_Lumpur" */
-    timeZone: string;
-    /** Machine-readable hours for the open/closed sign: ISO weekdays (1 = Mon), 24h clock */
-    openingHours: { days: number[]; open: number; close: number };
-  };
-
-  /** Words painted on the shopfront signs (nav open/closed sign, hero fascia). */
-  signage: {
-    open: string;
-    closed: string;
-    /** Small line under the closed sign, e.g. "WhatsApp still on" */
-    closedNote: string;
-    /** The fascia board over the hero's window. Says "your business", not
-     *  "your shop": clinics, vets and tuition centres read it as theirs too. */
-    shopName: string;
-    /** Line under the fascia board: the kinds of business we build for */
-    shopSub: string;
-    /** Sign-off printed at the foot of the "how it works" receipt */
-    receiptThanks: string;
   };
 
   /** Phone entry + validation rules for the lead forms. */

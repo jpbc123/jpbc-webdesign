@@ -17,7 +17,7 @@ export function privacyMetadata(market: Market): Metadata {
 
 const h2 = "display text-2xl text-ink";
 const list = "mt-3 list-disc space-y-2 pl-6";
-const link = "font-semibold text-ink underline decoration-accent decoration-2 underline-offset-4 hover:text-accent";
+const link = "font-semibold text-accent-text underline underline-offset-4";
 
 export default function PrivacyPage({ market }: { market: Market }) {
   const email = market.contact.email;
@@ -25,15 +25,15 @@ export default function PrivacyPage({ market }: { market: Market }) {
   return (
     <>
       <section className="mx-auto max-w-3xl px-6 pb-4 pt-16">
-        <p className="plate mb-5">Legal</p>
-        <h1 className="display text-balance text-[2.6rem] text-ink sm:text-6xl lg:text-7xl">Privacy Policy</h1>
+        <p className="eyebrow mb-3">Legal</p>
+        <h1 className="display text-[2.6rem] text-ink sm:text-5xl lg:text-6xl">Privacy Policy</h1>
         {/* Answer-first for SEO/AEO */}
         <p className="mt-6 text-lg text-muted">
           The short version: we collect only what we need to reply to you and build your website, we never sell it, and
           you can ask us to see, correct or delete it at any time. Written for Malaysia&rsquo;s Personal Data Protection
           Act 2010 (PDPA).
         </p>
-        <p className="mt-4 text-sm uppercase tracking-wider text-muted">Effective date: {PRIVACY_EFFECTIVE}</p>
+        <p className="mt-4 text-sm font-medium text-muted">Effective date: {PRIVACY_EFFECTIVE}</p>
       </section>
 
       <section className="mx-auto max-w-3xl space-y-10 px-6 py-10 text-muted">
@@ -189,7 +189,7 @@ export default function PrivacyPage({ market }: { market: Market }) {
         market={market}
         heading="Questions about your data?"
         sub="WhatsApp us — a real person replies, usually within the hour."
-        waMessage="Hi JPBC! I have a question about my data."
+        waMessage="Hi JPBC Web Designs, I have a question about my data."
       />
     </>
   );

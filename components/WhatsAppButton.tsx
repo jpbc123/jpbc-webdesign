@@ -6,9 +6,9 @@ type Props = {
   market: Market;
   message?: string;
   children?: React.ReactNode;
-  /** "primary" = red sign button, "secondary" = plain board, "yellow" = for
-   *  red boards, "on-sign" = outline in the lettering colour, for coloured boards */
-  variant?: "primary" | "secondary" | "yellow" | "on-sign";
+  /** "primary" = blue fill, "secondary" = outlined, "inverse" = white, for
+   *  the blue CTA panel */
+  variant?: "primary" | "secondary" | "inverse";
   className?: string;
 };
 
@@ -19,7 +19,7 @@ export default function WhatsAppButton({
   variant = "primary",
   className = "",
 }: Props) {
-  const styles = { primary: "btn-primary", secondary: "btn-secondary", yellow: "btn-yellow", "on-sign": "btn-on-sign" }[variant];
+  const styles = { primary: "btn-primary", secondary: "btn-secondary", inverse: "btn-inverse" }[variant];
   return (
     <a
       href={waLink(market, message)}

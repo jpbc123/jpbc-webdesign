@@ -1,12 +1,12 @@
 import type { Metadata, Viewport } from "next";
-import { Archivo, Bungee, Yellowtail } from "next/font/google";
+import { Bungee, Plus_Jakarta_Sans, Yellowtail } from "next/font/google";
 import "./globals.css";
 import { SITE_URL, SITE_NAME } from "@/lib/site";
 import { Analytics } from "@vercel/analytics/next";
 
-// Archivo carries everything from body copy to the wide sign-painter headlines
-// (via its wdth axis). Bungee is the signboard lettering.
-const archivo = Archivo({ subsets: ["latin"], axes: ["wdth"], variable: "--font-archivo" });
+// One friendly sans for everything, headlines included. Bungee (sign
+// lettering) and Yellowtail (neon script) appear only in the logo lockup.
+const jakarta = Plus_Jakarta_Sans({ subsets: ["latin"], variable: "--font-jakarta" });
 const bungee = Bungee({ subsets: ["latin"], weight: "400", variable: "--font-bungee" });
 const yellowtail = Yellowtail({ subsets: ["latin"], weight: "400", variable: "--font-yellowtail" });
 
@@ -40,8 +40,8 @@ export const metadata: Metadata = {
 // Tints mobile browser chrome to match whichever palette is showing.
 export const viewport: Viewport = {
   themeColor: [
-    { media: "(prefers-color-scheme: light)", color: "#f3ead8" },
-    { media: "(prefers-color-scheme: dark)", color: "#13110e" },
+    { media: "(prefers-color-scheme: light)", color: "#f5efe6" },
+    { media: "(prefers-color-scheme: dark)", color: "#0f172a" },
   ],
 };
 
@@ -57,7 +57,7 @@ export default function RootLayout({
       suppressHydrationWarning
       // Font variables live on <html> (not <body>) because the theme tokens in
       // globals.css that reference them are resolved at :root.
-      className={`${archivo.variable} ${bungee.variable} ${yellowtail.variable}`}
+      className={`${jakarta.variable} ${bungee.variable} ${yellowtail.variable}`}
     >
       <head>
         <script dangerouslySetInnerHTML={{ __html: themeInit }} />

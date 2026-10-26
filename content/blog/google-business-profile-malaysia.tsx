@@ -193,7 +193,7 @@ export const post: Post = {
           <To href="/blog/website-vs-facebook-page">do I need a website if I have a Facebook page</To>.
         </p>
 
-        <AskUs market={market} message="Hi JPBC! I need help with my Google Business Profile.">
+        <AskUs market={market} message="Hi JPBC Web Designs, I need help with my Google Business Profile.">
           Stuck on verification, or would rather have it done for you? Our{" "}
           <To href="/services/google-business-profile">Google Business Profile service</To> is a one-time {gbp}: we
           set it up, handle verification and optimise every field.
