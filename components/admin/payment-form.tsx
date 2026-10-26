@@ -85,6 +85,7 @@ export function PaymentForm({
             Invoice no.
           </label>
           <input id="invoice_no" name="invoice_no" placeholder="INV-YYYYMMDD-NNN" className={inputCls} />
+          <p className="mt-1 text-xs text-muted">Leave blank to number it automatically when you create the invoice.</p>
         </div>
       </div>
       <div>
@@ -99,9 +100,29 @@ export function PaymentForm({
           className="block w-full text-sm text-muted file:mr-3 file:rounded-full file:border-0 file:bg-accent-soft file:px-4 file:py-2 file:font-semibold file:text-accent-text"
         />
       </div>
+      <details className="rounded-xl border border-line p-4">
+        <summary className="cursor-pointer text-sm font-semibold text-ink">Custom invoice line (optional)</summary>
+        <p className="mt-2 text-xs text-muted">
+          For one-off payments, or to change what the invoice says. Left blank, monthly payments use the client&apos;s plan and invoice line.
+        </p>
+        <div className="mt-3 grid gap-4 sm:grid-cols-2">
+          <div>
+            <label htmlFor="item_title" className={labelCls}>
+              Item title
+            </label>
+            <input id="item_title" name="item_title" placeholder="Website setup" className={inputCls} />
+          </div>
+          <div>
+            <label htmlFor="item_details" className={labelCls}>
+              Item details
+            </label>
+            <input id="item_details" name="item_details" placeholder="5-page website, domain and first year of hosting." className={inputCls} />
+          </div>
+        </div>
+      </details>
       <div>
         <label htmlFor="pay-notes" className={labelCls}>
-          Notes
+          Notes (private, not on the invoice)
         </label>
         <input id="pay-notes" name="notes" className={inputCls} />
       </div>

@@ -42,6 +42,9 @@ export async function saveClient(_prev: ClientFormState, fd: FormData): Promise<
     billing_start: billingStart ? monthKey(billingStart) : null,
     status,
     notes: text(fd, "notes"),
+    address: text(fd, "address"),
+    agreement_date: text(fd, "agreement_date"),
+    invoice_item: text(fd, "invoice_item"),
   };
 
   const { data, error } = id

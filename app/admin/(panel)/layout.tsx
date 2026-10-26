@@ -12,6 +12,7 @@ export default async function PanelLayout({ children }: { children: React.ReactN
     { href: adminHref(""), label: "Dashboard" },
     { href: adminHref("/clients"), label: "Clients" },
     { href: adminHref("/payments"), label: "Payments" },
+    { href: adminHref("/settings"), label: "Settings" },
   ];
 
   return (

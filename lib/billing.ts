@@ -18,6 +18,9 @@ export type Client = {
   billing_start: string | null;
   status: ClientStatus;
   notes: string | null;
+  address: string | null;
+  agreement_date: string | null;
+  invoice_item: string | null;
   created_at: string;
 };
 
@@ -32,7 +35,21 @@ export type Payment = {
   notes: string | null;
   receipt_path: string | null;
   invoice_path: string | null;
+  item_title: string | null;
+  item_details: string | null;
   created_at: string;
+};
+
+/** Seller details printed on every invoice (the single jpbc.settings row). */
+export type Settings = {
+  trading_name: string;
+  website: string | null;
+  operator_name: string | null;
+  reg_no: string | null;
+  address: string | null;
+  phone: string | null;
+  bank_details: string | null;
+  invoice_notes: string | null;
 };
 
 export const STATUSES: ClientStatus[] = ["lead", "active", "paused", "ended"];
@@ -72,6 +89,12 @@ export function monthLabel(key: string): string {
 export function dateLabel(date: string): string {
   const [y, m, d] = date.split("-").map(Number);
   return new Date(Date.UTC(y, m - 1, d)).toLocaleDateString("en-MY", { day: "numeric", month: "short", year: "numeric", timeZone: "UTC" });
+}
+
+/** "2026-11-15" → "15 November 2026". */
+export function longDateLabel(date: string): string {
+  const [y, m, d] = date.split("-").map(Number);
+  return new Date(Date.UTC(y, m - 1, d)).toLocaleDateString("en-GB", { day: "numeric", month: "long", year: "numeric", timeZone: "UTC" });
 }
 
 export function rm(amount: number | null | undefined): string {

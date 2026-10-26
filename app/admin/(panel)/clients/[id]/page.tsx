@@ -2,6 +2,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { AttachReceipt } from "@/components/admin/attach-receipt";
 import { ClientForm } from "@/components/admin/client-form";
+import { InvoiceButton } from "@/components/admin/invoice-button";
 import { PaymentForm } from "@/components/admin/payment-form";
 import { ConfirmButton } from "@/components/admin/ui";
 import { deleteClient } from "@/app/admin/_actions/clients";
@@ -26,13 +27,13 @@ export default async function ClientPage({ params, searchParams }: Props) {
   const today = todayKL();
   const owed = unpaidMonths(c, payments, today);
 
-  // Short-lived links to the private proofs; the bucket policy checks the owner.
-  const paths = payments.map((p) => p.receipt_path).filter((p): p is string => Boolean(p));
+  // Short-lived links to the private proofs and invoices; the bucket policy checks the owner.
+  const paths = payments.flatMap((p) => [p.receipt_path, p.invoice_path]).filter((p): p is string => Boolean(p));
   const { data: signed } = paths.length
     ? await supabase.storage.from(RECEIPTS_BUCKET).createSignedUrls(paths, 60 * 30)
     : { data: [] };
-  const receiptUrl = new Map<string, string>();
-  for (const s of signed ?? []) if (s.path && s.signedUrl) receiptUrl.set(s.path, s.signedUrl);
+  const fileUrl = new Map<string, string>();
+  for (const s of signed ?? []) if (s.path && s.signedUrl) fileUrl.set(s.path, s.signedUrl);
 
   return (
     <div className="space-y-8">
@@ -66,7 +67,7 @@ export default async function ClientPage({ params, searchParams }: Props) {
           <p className="text-sm text-muted">No payments recorded yet.</p>
         ) : (
           <div className="card overflow-x-auto">
-            <table className="w-full min-w-[640px] text-left text-sm">
+            <table className="w-full min-w-[760px] text-left text-sm">
               <thead className="border-b border-line text-muted">
                 <tr>
                   <th className="px-4 py-3 font-semibold">Paid on</th>
@@ -74,6 +75,7 @@ export default async function ClientPage({ params, searchParams }: Props) {
                   <th className="px-4 py-3 font-semibold">Covers</th>
                   <th className="px-4 py-3 font-semibold">Method / invoice</th>
                   <th className="px-4 py-3 font-semibold">Proof</th>
+                  <th className="px-4 py-3 font-semibold">Invoice</th>
                   <th className="px-4 py-3" />
                 </tr>
               </thead>
@@ -88,12 +90,20 @@ export default async function ClientPage({ params, searchParams }: Props) {
                       {p.notes && <span className="block text-xs">{p.notes}</span>}
                     </td>
                     <td className="space-x-3 whitespace-nowrap px-4 py-3">
-                      {p.receipt_path && receiptUrl.get(p.receipt_path) && (
-                        <a href={receiptUrl.get(p.receipt_path)} target="_blank" rel="noopener noreferrer" className="text-sm font-semibold text-accent-text hover:underline">
+                      {p.receipt_path && fileUrl.get(p.receipt_path) && (
+                        <a href={fileUrl.get(p.receipt_path)} target="_blank" rel="noopener noreferrer" className="text-sm font-semibold text-accent-text hover:underline">
                           View
                         </a>
                       )}
                       <AttachReceipt clientId={c.id} paymentId={p.id} label={p.receipt_path ? "Replace" : "Add proof"} />
+                    </td>
+                    <td className="space-x-3 whitespace-nowrap px-4 py-3">
+                      {p.invoice_path && fileUrl.get(p.invoice_path) && (
+                        <a href={fileUrl.get(p.invoice_path)} target="_blank" rel="noopener noreferrer" className="text-sm font-semibold text-accent-text hover:underline">
+                          PDF
+                        </a>
+                      )}
+                      <InvoiceButton paymentId={p.id} remake={Boolean(p.invoice_path)} />
                     </td>
                     <td className="px-4 py-3 text-right">
                       <ConfirmButton action={deletePayment.bind(null, p.id)} message={`Delete the ${rm(p.amount)} payment from ${dateLabel(p.paid_on)}?`}>

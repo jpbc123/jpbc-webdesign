@@ -33,6 +33,8 @@ export async function savePayment(_prev: PaymentFormState, fd: FormData): Promis
     method: String(fd.get("method") ?? "").trim() || null,
     invoice_no: invoiceNo,
     notes: String(fd.get("notes") ?? "").trim() || null,
+    item_title: String(fd.get("item_title") ?? "").trim() || null,
+    item_details: String(fd.get("item_details") ?? "").trim() || null,
     receipt_path: receiptPath,
   });
   if (error) {

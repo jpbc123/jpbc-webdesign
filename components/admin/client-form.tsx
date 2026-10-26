@@ -67,7 +67,7 @@ export function ClientForm({ client }: { client?: Client }) {
         <Field name="site_url" label="Live site URL" defaultValue={client?.site_url} type="url" placeholder="https://…" />
         <Field name="domains" label="Domain(s)" defaultValue={client?.domains} placeholder="example.com.my" />
         <Field name="hosting" label="Hosting" defaultValue={client?.hosting} placeholder="Cloudflare Worker, Supabase pvg-store…" />
-        <Field name="plan" label="Plan" defaultValue={client?.plan} placeholder="Monthly, e-commerce" />
+        <Field name="plan" label="Plan" defaultValue={client?.plan} placeholder="Website Starter Plan" hint="Printed on invoices, e.g. “Website Starter Plan: monthly fee”." />
         <Field name="monthly_fee" label="Monthly fee (RM)" defaultValue={client?.monthly_fee} type="number" />
         <Field
           name="billing_start"
@@ -76,6 +76,23 @@ export function ClientForm({ client }: { client?: Client }) {
           type="month"
           hint="Months from here to now count as due until a payment covers them."
         />
+      </div>
+
+      <div className="grid gap-4 border-t border-line pt-5 sm:grid-cols-2">
+        <div className="sm:col-span-2">
+          <label htmlFor="address" className={labelCls}>
+            Billing address
+          </label>
+          <textarea id="address" name="address" rows={2} defaultValue={client?.address ?? ""} className={inputCls} />
+          <p className="mt-1 text-xs text-muted">Printed under “Bill to”. Line breaks are kept.</p>
+        </div>
+        <Field
+          name="invoice_item"
+          label="Invoice line (monthly)"
+          defaultValue={client?.invoice_item}
+          placeholder="Online store example.com.my: hosting, maintenance and support."
+        />
+        <Field name="agreement_date" label="Agreement signed on" defaultValue={client?.agreement_date} type="date" />
       </div>
 
       <div>
