@@ -22,9 +22,9 @@ export default function SectionHeading({
   return (
     <div className={`${center ? "text-center" : ""} ${className}`}>
       {eyebrow && <p className="eyebrow mb-3">{eyebrow}</p>}
-      <Tag className={`display text-ink ${size} ${center ? "mx-auto max-w-2xl" : "max-w-2xl"}`}>{title}</Tag>
+      <Tag className={`display text-ink ${size} ${center ? "mx-auto max-w-3xl" : ""}`}>{title}</Tag>
       {intro && (
-        <p className={`mt-4 max-w-2xl text-pretty text-lg leading-relaxed text-muted ${center ? "mx-auto" : ""}`}>{intro}</p>
+        <p className={`mt-4 text-pretty text-lg leading-relaxed text-muted ${center ? "mx-auto max-w-3xl" : ""}`}>{intro}</p>
       )}
     </div>
   );

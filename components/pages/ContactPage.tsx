@@ -15,7 +15,7 @@ export default function ContactPage({ market }: { market: Market }) {
         <p className="eyebrow mb-3">Contact</p>
         <h1 className="display text-[2.6rem] text-ink sm:text-5xl lg:text-6xl">Contact us</h1>
         {/* Answer-first for SEO/AEO */}
-        <p className="mt-4 max-w-2xl text-lg text-muted">
+        <p className="mt-4 text-lg text-muted">
           The fastest way to reach JPBC Web Designs is WhatsApp — a real person replies, usually within the hour during
           business hours. Prefer a form? That works too.
         </p>

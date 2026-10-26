@@ -112,7 +112,7 @@ export default function WorkPage({ market }: { market: Market }) {
         <div className="mt-14 rounded-3xl bg-head p-6 sm:p-10">
           <p className="text-sm font-semibold uppercase tracking-wider text-head-ink/60">Save hours every week</p>
           <h3 className="mt-2 text-2xl font-bold text-head-ink sm:text-3xl">AI automation</h3>
-          <p className="mt-3 max-w-2xl leading-relaxed text-head-ink/75">
+          <p className="mt-3 leading-relaxed text-head-ink/75">
             Let AI automation handle the repetitive work, while you stay in control of anything that matters.
           </p>
           <ul className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
@@ -162,7 +162,7 @@ export default function WorkPage({ market }: { market: Market }) {
             intro="Live demo sites showing exactly what we build for your type of business. Explore one, then imagine it with your name on it — we'll build your free preview to prove it."
           />
           {market.workExamples.demosNote && (
-            <p className="mt-3 max-w-3xl text-sm text-muted">{market.workExamples.demosNote}</p>
+            <p className="mt-3 text-sm text-muted">{market.workExamples.demosNote}</p>
           )}
           <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {industryDemosFor(market).map((d) => (

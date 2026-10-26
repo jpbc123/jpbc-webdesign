@@ -75,9 +75,9 @@ export default function Page() {
       <section className="bg-gradient-to-b from-hero to-bg">
         <div className="mx-auto max-w-6xl px-4 pb-8 pt-16 sm:px-6 sm:pt-20">
           <p className="eyebrow mb-3">Free tool</p>
-          <h1 className="display max-w-3xl text-[2.6rem] text-ink sm:text-5xl lg:text-6xl">Website cost calculator</h1>
+          <h1 className="display text-[2.6rem] text-ink sm:text-5xl lg:text-6xl">Website cost calculator</h1>
           {/* Answer-first for SEO/AEO */}
-          <p className="mt-5 max-w-3xl text-pretty text-lg leading-relaxed text-muted">
+          <p className="mt-5 text-pretty text-lg leading-relaxed text-muted">
             How much does a website cost in Malaysia? Typically {p(typical.base[0])} to {p(typical.base[1])} to build,
             plus monthly hosting and maintenance. Answer three quick questions to see your price with JPBC next to a
             typical quote from other freelancers and agencies. No sign-up needed.
