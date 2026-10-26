@@ -83,11 +83,11 @@ export default function WorkPage({ market }: { market: Market }) {
         <h3 className="mt-12 text-2xl font-bold text-ink">Custom software</h3>
         <ul className="mt-6 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
           {customSoftware.map(([icon, name, body]) => (
-            <li key={name} className="card p-6">
-              <span className="grid size-11 place-items-center rounded-xl bg-accent-soft text-accent-text">
+            <li key={name} className="card group p-6 transition duration-300 ease-out motion-safe:hover:-translate-y-1 hover:shadow-[inset_0_0_0_1px_rgb(29_78_216/0.45),0_18px_40px_-20px_rgb(29_78_216/0.45)]">
+              <span className="grid size-11 place-items-center rounded-xl bg-accent-soft text-accent-text transition duration-300 group-hover:bg-accent group-hover:text-on-accent motion-safe:group-hover:-rotate-6 motion-safe:group-hover:scale-110">
                 <Icon name={icon} />
               </span>
-              <h4 className="mt-4 text-lg font-bold text-ink">{name}</h4>
+              <h4 className="mt-4 text-lg font-bold text-ink transition-colors group-hover:text-accent-text">{name}</h4>
               <p className="mt-1.5 leading-relaxed text-muted">{body}</p>
             </li>
           ))}
@@ -96,13 +96,15 @@ export default function WorkPage({ market }: { market: Market }) {
               href={waLink(market, "Hi JPBC Web Designs, I'd like to talk about custom software or AI automation for my business.")}
               target="_blank"
               rel="noopener noreferrer"
-              className="group flex h-full flex-col justify-center rounded-2xl border-2 border-dashed border-line-strong p-6 transition-colors hover:border-accent"
+              className="group flex h-full flex-col justify-center rounded-2xl border-2 border-dashed border-line-strong p-6 transition duration-300 ease-out motion-safe:hover:-translate-y-1 hover:border-accent hover:bg-accent-soft"
             >
-              <span className="grid size-11 place-items-center rounded-xl bg-accent text-on-accent">
+              <span className="grid size-11 place-items-center rounded-xl bg-accent text-on-accent transition duration-300 motion-safe:group-hover:rotate-90">
                 <Icon name="plus" />
               </span>
               <span className="mt-4 text-lg font-bold text-ink group-hover:text-accent-text">Something else in mind?</span>
-              <span className="mt-1.5 leading-relaxed text-muted">Tell us the problem on WhatsApp and we&apos;ll suggest the simplest fix. →</span>
+              <span className="mt-1.5 leading-relaxed text-muted">Tell us the problem on WhatsApp and we&apos;ll suggest the simplest fix.{" "}
+                <span className="inline-block transition-transform motion-safe:group-hover:translate-x-1">→</span>
+              </span>
             </a>
           </li>
         </ul>
@@ -115,8 +117,8 @@ export default function WorkPage({ market }: { market: Market }) {
           </p>
           <ul className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
             {aiAutomation.map(([icon, name, body]) => (
-              <li key={name} className="rounded-2xl bg-head-ink/[0.06] p-5 ring-1 ring-head-ink/10">
-                <span className="grid size-10 place-items-center rounded-xl bg-accent text-on-accent">
+              <li key={name} className="group rounded-2xl bg-head-ink/[0.06] p-5 ring-1 ring-head-ink/10 transition duration-300 ease-out motion-safe:hover:-translate-y-1 hover:bg-head-ink/[0.1] hover:ring-accent/70 hover:shadow-[0_18px_40px_-16px_rgb(29_78_216/0.55)]">
+                <span className="grid size-10 place-items-center rounded-xl bg-accent text-on-accent transition duration-300 motion-safe:group-hover:-rotate-6 motion-safe:group-hover:scale-110">
                   <Icon name={icon} />
                 </span>
                 <h4 className="mt-4 font-bold text-head-ink">{name}</h4>
@@ -128,10 +130,12 @@ export default function WorkPage({ market }: { market: Market }) {
                 href={waLink(market, "Hi JPBC Web Designs, I'd like to talk about custom software or AI automation for my business.")}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex h-full flex-col justify-center rounded-2xl bg-accent p-5 text-on-accent transition-colors hover:bg-accent-hover"
+                className="group flex h-full flex-col justify-center rounded-2xl bg-accent p-5 text-on-accent transition duration-300 ease-out motion-safe:hover:-translate-y-1 hover:bg-accent-hover hover:shadow-[0_18px_40px_-16px_rgb(29_78_216/0.7)]"
               >
                 <span className="font-bold">Not sure where AI automation fits?</span>
-                <span className="mt-1.5 text-sm leading-relaxed opacity-90">Tell us what eats your week, and we&apos;ll show you what can be automated. →</span>
+                <span className="mt-1.5 text-sm leading-relaxed opacity-90">Tell us what eats your week, and we&apos;ll show you what can be automated.{" "}
+                  <span className="inline-block transition-transform motion-safe:group-hover:translate-x-1">→</span>
+                </span>
               </a>
             </li>
           </ul>
