@@ -10,7 +10,7 @@ const hex = (h: string) => rgb(parseInt(h.slice(1, 3), 16) / 255, parseInt(h.sli
 const INK = hex("#1f2937");
 const MUTED = hex("#6b7280");
 const LINE = hex("#d1d5db");
-const ACCENT = hex("#1d4ed8");
+const ACCENT = hex("#0f766e"); // teal, as on the first invoice sent to Gary
 
 const MM = 72 / 25.4;
 const PAGE_W = 595.28;
