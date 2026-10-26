@@ -153,6 +153,7 @@ export async function buildInvoicePdf(input: InvoiceInput): Promise<Uint8Array> 
   if (s.reg_no) y = lines(`SSM Reg. No. ${s.reg_no}`, MARGIN, y, leftW, { size: SMALL, color: MUTED });
   if (s.address) y = lines(s.address, MARGIN, y, leftW, { size: SMALL, color: MUTED });
   if (s.phone) y = lines(`Tel: ${s.phone}`, MARGIN, y, leftW, { size: SMALL, color: MUTED });
+  if (s.email) y = lines(`Email: ${s.email}`, MARGIN, y, leftW, { size: SMALL, color: MUTED });
   const leftBottom = y;
 
   textRight("INVOICE", RIGHT, top - 20, { font: bold, size: 22, color: ACCENT });

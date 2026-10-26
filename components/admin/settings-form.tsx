@@ -10,13 +10,14 @@ const FIELDS: { name: keyof Settings; label: string; placeholder?: string; hint?
   { name: "operator_name", label: "Registered business", placeholder: "RYC Software and Web Solutions", hint: "Printed as “Operated by …”." },
   { name: "reg_no", label: "SSM reg. no.", placeholder: "202603276004 (RA0140571-V)" },
   { name: "phone", label: "Phone", placeholder: "019-551 3944" },
+  { name: "email", label: "Email", placeholder: "hello@jpbcwebdesigns.com" },
   {
     name: "bank_details",
     label: "Bank details",
     placeholder: "Public Bank, account holder …",
     hint: "Used in “Received in full … by bank transfer to <this>.”",
   },
-  { name: "address", label: "Business address", rows: 2, hint: "Line breaks are kept." },
+  { name: "address", label: "Business address", rows: 2, hint: "Line breaks are kept. Leave blank, or just the town and state, to keep your full address off invoices." },
   { name: "invoice_notes", label: "Notes on every invoice", rows: 3, hint: "One note per line. The next-due line is added automatically." },
 ];
 

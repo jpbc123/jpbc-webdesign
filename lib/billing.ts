@@ -48,6 +48,7 @@ export type Settings = {
   reg_no: string | null;
   address: string | null;
   phone: string | null;
+  email: string | null;
   bank_details: string | null;
   invoice_notes: string | null;
 };

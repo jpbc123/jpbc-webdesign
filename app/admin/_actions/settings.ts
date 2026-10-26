@@ -24,6 +24,7 @@ export async function saveSettings(_prev: SettingsFormState, fd: FormData): Prom
       reg_no: text(fd, "reg_no"),
       address: text(fd, "address"),
       phone: text(fd, "phone"),
+      email: text(fd, "email"),
       bank_details: text(fd, "bank_details"),
       invoice_notes: text(fd, "invoice_notes"),
     })
