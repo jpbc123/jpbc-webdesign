@@ -30,9 +30,9 @@ export const my: Market = {
     whatsapp: "60195513944",
     phoneDisplay: "+60 19-551 3944",
     email: "hello@jpbcwebdesigns.com", // TODO: confirm email
-    serviceArea: "Klang Valley, Malaysia",
+    serviceArea: "All of Malaysia (based in Shah Alam)",
     serviceAreaBody:
-      "Based in Shah Alam, serving Kuala Lumpur and the whole Klang Valley — KL, PJ, Subang Jaya, Shah Alam, Puchong, Klang, and everywhere in between. Everything works over WhatsApp, so your exact location never slows us down.",
+      "Based in Shah Alam, serving businesses all over Malaysia: Kuala Lumpur and the Klang Valley, Penang, Johor, Perak, Sabah, Sarawak and everywhere in between. Everything works over WhatsApp, so your location never slows us down.",
     hours: "Monday–Friday, 9am–6pm (MYT)",
     afterHoursNote: "WhatsApp anytime — we reply after hours more often than we should.",
   },
