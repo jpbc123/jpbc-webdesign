@@ -232,16 +232,17 @@ body {
   }
   .brand-board .brand-desc {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
+    gap: 0.4em;
     margin-top: 0.2rem;
     font-size: 0.5rem;
     font-weight: 800;
-    letter-spacing: 0.06em;
+    letter-spacing: 0.1em;
     line-height: 1;
     color: var(--logo-sub);
   }
   .brand-board .brand-desc > span:last-child {
-    margin-right: -0.06em;
+    margin-right: -0.1em;
   }
 
   /* ---------- Neon "after hours" tag: letters warm up like a neon sign ---------- */
