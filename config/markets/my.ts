@@ -68,7 +68,7 @@ export const my: Market = {
     businessDescription:
       "Web design studio in Shah Alam, Selangor, serving Kuala Lumpur and the Klang Valley. Hand-coded custom websites for small businesses — {setup} down, {monthly}/month.",
     workAnswerFirst:
-      "What kind of websites does JPBC build? Fast, hand-coded sites, web apps and AI automation for everyday Malaysian businesses — aircon teams, klinik, restoran, renovation contractors, tuition centres, workshops, travel agencies. Our own products run on AI automation too: MyResit reads receipts and MY Swift Audit helps prepare audit reports. Every project below is live; click through and see for yourself.",
+      "What kind of websites does JPBC build? Fast, hand-coded sites, web apps and AI automation for everyday Malaysian businesses — aircon teams, klinik, restoran, renovation contractors, tuition centres, workshops, travel agencies. Our own products, MyResit and MY Swift Audit, run on AI automation too. Every project below is live; click through and see for yourself.",
     aboutH1: "A small studio that answers its own WhatsApp",
     aboutAnswerFirst:
       "Who is JPBC Web Designs? A founder-led web design studio in Shah Alam that hand-codes websites for Malaysian small businesses. No account managers, no ticket systems — you WhatsApp us, the person who built your site replies.",

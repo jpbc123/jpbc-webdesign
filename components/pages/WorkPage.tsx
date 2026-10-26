@@ -14,6 +14,31 @@ export function workMetadata(market: Market): Metadata {
   return marketMetadata(market, "work", "/work");
 }
 
+const beyondWebsites: { title: string; items: [string, string][] }[] = [
+  {
+    title: "Custom software",
+    items: [
+      ["Web apps and client portals", "built to fit how your business works, like our own MY Swift Audit and MyResit."],
+      ["Online stores", "a product catalogue, cart and orders you manage from your own private admin."],
+      ["Booking and ordering systems", "customers book or order online, and you see everything in one place."],
+      ["Dashboards and internal tools", "sales, stock, jobs or payments at a glance, instead of scattered spreadsheets."],
+      ["Integrations", "connect the tools you already use, such as Google Sheets, email and accounting software."],
+    ],
+  },
+  {
+    title: "AI automation",
+    items: [
+      ["AI customer chat", "an assistant on your website or WhatsApp Business number that answers common questions any time and hands real leads to you."],
+      ["Lead follow-up", "new enquiries get an instant reply and are sorted and logged in a sheet or CRM, so none slip through."],
+      ["Quotes and reports", "drafted from your own templates and data, ready for you to check and send."],
+      ["Google review replies", "polite, on-brand replies drafted for every review."],
+      ["Staff assistant", "an internal helper that answers questions from your SOPs, price lists and policies."],
+      ["Content and translation", "product descriptions, posts and translations drafted for you to approve."],
+      ["Workflow automation", "repetitive admin such as reminders, data entry and file sorting, done automatically."],
+    ],
+  },
+];
+
 export default function WorkPage({ market }: { market: Market }) {
   const projects = portfolioFor(market);
 
@@ -24,19 +49,37 @@ export default function WorkPage({ market }: { market: Market }) {
         <h1 className="display text-[2.6rem] text-ink sm:text-5xl lg:text-6xl">Our work</h1>
         {/* Answer-first for SEO/AEO */}
         <p className="mt-4 text-lg text-muted">{market.voice.workAnswerFirst}</p>
-        <p className="mt-4 text-lg text-muted">
-          We also build custom software: web apps like our own MY Swift Audit and MyResit, AI chatbots for your website
-          or WhatsApp, AI that reads receipts, invoices and statements into clean data, online stores, booking and
-          ordering systems, dashboards and internal tools, and automations that connect the tools you already use.{" "}
-          <a
-            href={waLink(market, "Hi JPBC Web Designs, I'd like to talk about custom software for my business.")}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="font-semibold text-accent-text underline underline-offset-2"
-          >
-            Tell us what you need on WhatsApp →
-          </a>
-        </p>
+      </section>
+
+      {/* ---------- BEYOND WEBSITES (question heading + lists for AEO) ---------- */}
+      <section className="mx-auto max-w-6xl px-6 py-10">
+        <SectionHeading
+          eyebrow="Beyond websites"
+          title="What else does JPBC build?"
+          intro="Custom software and AI automation for small businesses: tools that save your team hours of admin each week. Our own products, MyResit and MY Swift Audit, run on the same technology."
+        />
+        <div className="mt-8 grid gap-6 md:grid-cols-2">
+          {beyondWebsites.map((group) => (
+            <div key={group.title} className="card p-6 sm:p-8">
+              <h3 className="text-xl font-bold text-ink">{group.title}</h3>
+              <ul className="mt-4 space-y-3">
+                {group.items.map(([name, body]) => (
+                  <li key={name} className="text-muted">
+                    <strong className="font-semibold text-ink">{name}:</strong> {body}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))}
+        </div>
+        <a
+          href={waLink(market, "Hi JPBC Web Designs, I'd like to talk about custom software or AI automation for my business.")}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="mt-6 inline-block font-semibold text-accent-text underline underline-offset-2"
+        >
+          Tell us what you need on WhatsApp →
+        </a>
       </section>
 
       <ProductsSection market={market} />

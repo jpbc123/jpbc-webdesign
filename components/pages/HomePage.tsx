@@ -106,7 +106,7 @@ export default function HomePage({ market }: { market: Market }) {
     },
     {
       title: "AI automation",
-      body: "AI that reads documents, answers customers or handles admin for you, proven in our own MyResit and MY Swift Audit.",
+      body: "Customer chat on your website or WhatsApp, lead follow-up, quotes, reports and admin, handled automatically. Our own MyResit and MY Swift Audit run on it.",
       price: "Quoted per project",
       href: mpath(market, "/work"),
     },
