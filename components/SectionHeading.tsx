@@ -9,6 +9,7 @@ export default function SectionHeading({
   as: Tag = "h2",
   className = "",
   center = false,
+  introSize = "text-lg",
 }: {
   /** Kicker text above the headline */
   eyebrow?: string;
@@ -17,6 +18,8 @@ export default function SectionHeading({
   as?: "h1" | "h2";
   className?: string;
   center?: boolean;
+  /** Font size class for the intro paragraph */
+  introSize?: string;
 }) {
   const size = Tag === "h1" ? "text-[2.6rem] sm:text-5xl lg:text-6xl" : "text-3xl sm:text-4xl";
   return (
@@ -24,7 +27,7 @@ export default function SectionHeading({
       {eyebrow && <p className="eyebrow mb-3">{eyebrow}</p>}
       <Tag className={`display text-ink ${size} ${center ? "mx-auto max-w-3xl" : ""}`}>{title}</Tag>
       {intro && (
-        <p className={`mt-4 text-pretty text-lg leading-relaxed text-muted ${center ? "mx-auto max-w-3xl" : ""}`}>{intro}</p>
+        <p className={`mt-4 text-pretty ${introSize} leading-relaxed text-muted ${center ? "mx-auto max-w-3xl" : ""}`}>{intro}</p>
       )}
     </div>
   );

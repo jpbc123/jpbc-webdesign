@@ -18,7 +18,7 @@ export default function BlogPage({ market }: { market: Market }) {
   return (
     <>
       <section className="mx-auto max-w-6xl px-6 pb-4 pt-16">
-        <SectionHeading as="h1" eyebrow="Blog" title="Blog" intro={market.voice.blogIntro} />
+        <SectionHeading as="h1" eyebrow="Blog" title="Blog" intro={market.voice.blogIntro} introSize="text-base" />
       </section>
 
       <section className="mx-auto max-w-6xl px-6 py-10">

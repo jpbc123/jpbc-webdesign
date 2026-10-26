@@ -18,7 +18,7 @@ export default function AboutPage({ market }: { market: Market }) {
         <p className="mt-6 text-lg text-muted">{market.voice.aboutAnswerFirst}</p>
       </section>
 
-      <section className="mx-auto max-w-3xl space-y-6 px-6 py-10 text-muted">
+      <section className="mx-auto max-w-3xl space-y-6 px-6 pb-10 pt-2 text-muted">
         {market.voice.aboutStory.map((paragraph) => (
           <p key={paragraph.slice(0, 40)}>{paragraph}</p>
         ))}
