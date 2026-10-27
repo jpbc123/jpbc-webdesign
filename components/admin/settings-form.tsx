@@ -11,12 +11,9 @@ const FIELDS: { name: keyof Settings; label: string; placeholder?: string; hint?
   { name: "reg_no", label: "SSM reg. no.", placeholder: "202603276004 (RA0140571-V)" },
   { name: "phone", label: "Phone", placeholder: "019-551 3944" },
   { name: "email", label: "Email", placeholder: "hello@jpbcwebdesigns.com" },
-  {
-    name: "bank_details",
-    label: "Bank details",
-    placeholder: "Public Bank, account holder …",
-    hint: "Used in “Received in full … by bank transfer to <this>.”",
-  },
+  { name: "bank_name", label: "Bank", placeholder: "Public Bank", hint: "Bank details are printed on unpaid invoices only, never on receipts." },
+  { name: "bank_account_name", label: "Beneficiary name", placeholder: "Account holder's name" },
+  { name: "bank_account_no", label: "Account no." },
   { name: "address", label: "Business address", rows: 2, hint: "Line breaks are kept. Leave blank, or just the town and state, to keep your full address off invoices." },
   { name: "invoice_notes", label: "Notes on every invoice", rows: 3, hint: "One note per line. The next-due line is added automatically." },
 ];

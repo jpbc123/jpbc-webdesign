@@ -28,13 +28,18 @@ export type Payment = {
   id: string;
   client_id: string;
   amount: number;
-  paid_on: string;
+  /** Null while awaiting payment (an invoice has been issued). */
+  paid_on: string | null;
+  issued_on: string;
+  due_on: string | null;
   months: string[];
   method: string | null;
   invoice_no: string | null;
   notes: string | null;
   receipt_path: string | null;
   invoice_path: string | null;
+  receipt_no: string | null;
+  receipt_pdf_path: string | null;
   item_title: string | null;
   item_details: string | null;
   created_at: string;
@@ -50,6 +55,9 @@ export type Settings = {
   phone: string | null;
   email: string | null;
   bank_details: string | null;
+  bank_name: string | null;
+  bank_account_name: string | null;
+  bank_account_no: string | null;
   invoice_notes: string | null;
 };
 
@@ -86,6 +94,12 @@ export function monthLabel(key: string): string {
   return new Date(Date.UTC(y, m - 1, 1)).toLocaleDateString("en-MY", { month: "short", year: "numeric", timeZone: "UTC" });
 }
 
+/** Adds n days to a YYYY-MM-DD date. */
+export function addDays(date: string, n: number): string {
+  const [y, m, d] = date.split("-").map(Number);
+  return new Date(Date.UTC(y, m - 1, d + n)).toISOString().slice(0, 10);
+}
+
 /** "2026-11-15" → "15 Nov 2026". */
 export function dateLabel(date: string): string {
   const [y, m, d] = date.split("-").map(Number);
@@ -104,18 +118,22 @@ export function rm(amount: number | null | undefined): string {
 
 /**
  * Months an active client should have paid by now (from billing_start up to
- * this month) that no payment covers yet.
+ * this month) that no paid record covers yet. Invoiced but unpaid still owes.
  */
 export function unpaidMonths(client: Client, payments: Payment[], today = todayKL()): string[] {
   if (client.status !== "active" || !client.billing_start || !client.monthly_fee) return [];
-  const paid = new Set(payments.filter((p) => p.client_id === client.id).flatMap((p) => p.months.map(monthKey)));
+  const paid = new Set(payments.filter((p) => p.client_id === client.id && p.paid_on).flatMap((p) => p.months.map(monthKey)));
   return monthRange(client.billing_start, today).filter((k) => !paid.has(k));
 }
 
-/** First month not yet covered: the default "from" month for a new payment. */
+/**
+ * First month no record (paid or invoiced) covers yet: the default "from"
+ * month for a new record, so an invoiced month isn't billed twice.
+ */
 export function nextUnpaidMonth(client: Client, payments: Payment[], today = todayKL()): string {
-  const owed = unpaidMonths(client, payments, today);
-  if (owed.length) return owed[0];
-  const covered = payments.filter((p) => p.client_id === client.id).flatMap((p) => p.months.map(monthKey)).sort();
-  return covered.length ? addMonths(covered[covered.length - 1], 1) : monthKey(client.billing_start ?? today);
+  const billed = new Set(payments.filter((p) => p.client_id === client.id).flatMap((p) => p.months.map(monthKey)));
+  const gap = unpaidMonths(client, payments, today).find((k) => !billed.has(k));
+  if (gap) return gap;
+  const last = [...billed].sort().pop();
+  return last ? addMonths(last, 1) : monthKey(client.billing_start ?? today);
 }

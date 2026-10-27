@@ -15,7 +15,7 @@ export default async function ClientsPage() {
   const { supabase } = await requireOwner();
   const [{ data: clients }, { data: payments }] = await Promise.all([
     supabase.from("clients").select("*").order("business_name"),
-    supabase.from("payments").select("id, client_id, months"),
+    supabase.from("payments").select("id, client_id, months, paid_on"),
   ]);
   const allPayments = (payments ?? []) as Payment[];
 

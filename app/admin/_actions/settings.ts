@@ -25,7 +25,9 @@ export async function saveSettings(_prev: SettingsFormState, fd: FormData): Prom
       address: text(fd, "address"),
       phone: text(fd, "phone"),
       email: text(fd, "email"),
-      bank_details: text(fd, "bank_details"),
+      bank_name: text(fd, "bank_name"),
+      bank_account_name: text(fd, "bank_account_name"),
+      bank_account_no: text(fd, "bank_account_no"),
       invoice_notes: text(fd, "invoice_notes"),
     })
     .eq("id", 1);

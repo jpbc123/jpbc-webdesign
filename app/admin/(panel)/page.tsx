@@ -8,10 +8,11 @@ export default async function Dashboard() {
   const { supabase } = await requireOwner();
   const [{ data: clients }, { data: payments }] = await Promise.all([
     supabase.from("clients").select("*").order("business_name"),
-    supabase.from("payments").select("*").order("paid_on", { ascending: false }),
+    supabase.from("payments").select("*").order("paid_on", { ascending: false, nullsFirst: false }),
   ]);
   const allClients = (clients ?? []) as Client[];
   const allPayments = (payments ?? []) as Payment[];
+  const received = allPayments.filter((p) => p.paid_on);
   const today = todayKL();
   const thisMonth = today.slice(0, 7);
   const thisYear = today.slice(0, 4);
@@ -20,15 +21,15 @@ export default async function Dashboard() {
     .map((c) => ({ client: c, months: unpaidMonths(c, allPayments, today) }))
     .filter((o) => o.months.length > 0);
   const totalOwed = owing.reduce((sum, o) => sum + o.months.length * Number(o.client.monthly_fee), 0);
-  const sumWhere = (pred: (p: Payment) => boolean) => allPayments.filter(pred).reduce((s, p) => s + Number(p.amount), 0);
+  const sumWhere = (pred: (p: Payment) => boolean) => received.filter(pred).reduce((s, p) => s + Number(p.amount), 0);
   const active = allClients.filter((c) => c.status === "active");
   const monthlyRun = active.reduce((s, c) => s + Number(c.monthly_fee ?? 0), 0);
   const names = new Map(allClients.map((c) => [c.id, c.business_name]));
 
   const stats = [
     { label: "Owed now", value: rm(totalOwed), tone: totalOwed > 0 ? "text-red-600 dark:text-red-400" : "text-ink" },
-    { label: "Received this month", value: rm(sumWhere((p) => p.paid_on.startsWith(thisMonth))), tone: "text-ink" },
-    { label: `Received in ${thisYear}`, value: rm(sumWhere((p) => p.paid_on.startsWith(thisYear))), tone: "text-ink" },
+    { label: "Received this month", value: rm(sumWhere((p) => p.paid_on!.startsWith(thisMonth))), tone: "text-ink" },
+    { label: `Received in ${thisYear}`, value: rm(sumWhere((p) => p.paid_on!.startsWith(thisYear))), tone: "text-ink" },
     { label: `${active.length} active client${active.length === 1 ? "" : "s"}`, value: `${rm(monthlyRun)}/mo`, tone: "text-ink" },
   ];
 
@@ -71,16 +72,16 @@ export default async function Dashboard() {
             All payments
           </Link>
         </div>
-        {allPayments.length === 0 ? (
+        {received.length === 0 ? (
           <p className="mt-3 text-sm text-muted">No payments recorded yet.</p>
         ) : (
           <ul className="card mt-3 divide-y divide-line">
-            {allPayments.slice(0, 5).map((p) => (
+            {received.slice(0, 5).map((p) => (
               <li key={p.id} className="flex flex-wrap items-baseline justify-between gap-2 px-5 py-3 text-sm">
                 <Link href={adminHref(`/clients/${p.client_id}`)} className="font-semibold text-ink hover:text-accent-text">
                   {names.get(p.client_id) ?? "Unknown client"}
                 </Link>
-                <span className="text-muted">{dateLabel(p.paid_on)}</span>
+                <span className="text-muted">{dateLabel(p.paid_on!)}</span>
                 <span className="font-bold text-ink">{rm(p.amount)}</span>
               </li>
             ))}
