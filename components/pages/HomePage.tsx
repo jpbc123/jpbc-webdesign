@@ -6,6 +6,7 @@ import Marquee from "@/components/Marquee";
 import SectionHeading from "@/components/SectionHeading";
 import PostCard from "@/components/PostCard";
 import CtaBand from "@/components/CtaBand";
+import NightSky from "@/components/NightSky";
 import FaqAccordion from "@/components/FaqAccordion";
 import JsonLd from "@/components/JsonLd";
 import { sectors, showcaseFor, type ShowcaseItem } from "@/data/showcase";
@@ -205,8 +206,9 @@ export default function HomePage({ market }: { market: Market }) {
       <JsonLd data={localBusinessJsonLd} />
 
       {/* ---------- HERO, centred, with the work marquee under it ---------- */}
-      <section className="bg-gradient-to-b from-hero to-bg">
-        <div className="mx-auto max-w-6xl px-4 pb-10 pt-16 text-center sm:px-6 sm:pt-24">
+      <section className="relative overflow-hidden bg-gradient-to-b from-hero to-bg">
+        <NightSky />
+        <div className="relative mx-auto max-w-6xl px-4 pb-10 pt-16 text-center sm:px-6 sm:pt-24">
           <p className="mx-auto w-fit rounded-full bg-surface px-4 py-1.5 text-sm font-semibold text-accent-text shadow-sm ring-1 ring-line">
             {market.heroCopy.badge}
           </p>
@@ -243,7 +245,7 @@ export default function HomePage({ market }: { market: Market }) {
             ))}
           </dl>
         </div>
-        <div className="pb-16 pt-4">
+        <div className="relative pb-16 pt-4">
           <Marquee seconds={55} gap="1.25rem">
             {/* Short lists repeat so the track is always wider than the screen */}
             {(work.length < 5 ? [...work, ...work] : work).map((item, i) => (
@@ -270,8 +272,9 @@ export default function HomePage({ market }: { market: Market }) {
         <SectionHeading eyebrow="What we do" title="Everything you need to get found and get enquiries" center />
         <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
           {services.map((s) => (
-            <Link key={s.title} href={s.href} className="card group flex flex-col p-7">
-              <span className="grid size-10 place-items-center rounded-xl bg-accent-soft text-accent-text">
+            <Link key={s.title} href={s.href} className="card night-card group flex flex-col p-7">
+              <span className="card-meteor" aria-hidden />
+              <span className="card-icon grid size-10 place-items-center rounded-xl bg-accent-soft text-accent-text">
                 <Check />
               </span>
               <h3 className="mt-5 text-lg font-bold text-ink group-hover:text-accent-text">{s.title}</h3>
