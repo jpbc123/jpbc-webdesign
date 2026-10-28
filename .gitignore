@@ -34,3 +34,9 @@ instructions.txt
 /*.webp
 /*.txt
 /*.md
+
+# lead lists (business contacts for outreach) — private, never commit
+/leads/
+/*.csv
+/*.xlsx
+/*.xls
