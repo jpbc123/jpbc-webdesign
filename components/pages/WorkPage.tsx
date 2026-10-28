@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import type { ReactNode } from "react";
 import WorkGrid from "@/components/WorkGrid";
 import CtaBand from "@/components/CtaBand";
 import KindTag from "@/components/KindTag";
@@ -39,6 +40,77 @@ function Icon({ name }: { name: IconName }) {
     </svg>
   );
 }
+
+// Mini UI mockups that slide into the top-right of the custom software cards on hover.
+// Drawn with theme tokens so they follow light/dark mode; illustrative only, not client screenshots.
+const box = "fill-surface stroke-line-strong";
+const bar = "fill-line-strong";
+const peeks: Partial<Record<IconName, ReactNode>> = {
+  app: (
+    <>
+      <rect x="1" y="1" width="142" height="94" rx="8" className={box} />
+      <path d="M1 16h142" className="stroke-line-strong" />
+      <circle cx="10" cy="8.5" r="2.5" className="fill-accent" /><circle cx="18" cy="8.5" r="2.5" className={bar} /><circle cx="26" cy="8.5" r="2.5" className={bar} />
+      <rect x="8" y="23" width="30" height="65" rx="4" className="fill-accent-soft" />
+      <rect x="13" y="30" width="20" height="4" rx="2" className="fill-accent" />
+      <rect x="13" y="40" width="16" height="4" rx="2" className={bar} /><rect x="13" y="50" width="18" height="4" rx="2" className={bar} />
+      <rect x="46" y="23" width="90" height="10" rx="3" className={bar} />
+      <rect x="46" y="39" width="42" height="49" rx="4" className="fill-accent-soft" /><rect x="94" y="39" width="42" height="49" rx="4" className="fill-accent-soft" />
+      <rect x="52" y="76" width="30" height="6" rx="3" className="fill-accent" /><rect x="100" y="76" width="22" height="6" rx="3" className={bar} />
+    </>
+  ),
+  store: (
+    <>
+      {[4, 52, 100].map((x, i) => (
+        <g key={x}>
+          <rect x={x} y="6" width="40" height="84" rx="6" className={box} />
+          <rect x={x + 5} y="11" width="30" height="34" rx="4" className="fill-accent-soft" />
+          <rect x={x + 5} y="52" width="24" height="4" rx="2" className={bar} />
+          <rect x={x + 5} y="61" width="14" height="4" rx="2" className="fill-accent" />
+          <rect x={x + 5} y="72" width="30" height="11" rx="3" className={i === 1 ? "fill-accent" : bar} />
+        </g>
+      ))}
+      <circle cx="132" cy="10" r="8" className="fill-accent" />
+      <text x="132" y="13.5" textAnchor="middle" fontSize="10" fontWeight="700" className="fill-on-accent">3</text>
+    </>
+  ),
+  calendar: (
+    <>
+      <rect x="1" y="1" width="142" height="94" rx="8" className={box} />
+      <rect x="10" y="9" width="44" height="6" rx="3" className="fill-ink/70" />
+      {Array.from({ length: 21 }, (_, i) => {
+        const booked = [3, 9, 10, 16].includes(i);
+        return <rect key={i} x={10 + (i % 7) * 18} y={24 + Math.floor(i / 7) * 22} width="14" height="16" rx="3" className={booked ? "fill-accent" : i === 12 ? "fill-accent-soft stroke-accent" : "fill-accent-soft"} />;
+      })}
+    </>
+  ),
+  chart: (
+    <>
+      <rect x="1" y="1" width="142" height="94" rx="8" className={box} />
+      <rect x="10" y="10" width="38" height="20" rx="4" className="fill-accent-soft" /><rect x="14" y="15" width="22" height="5" rx="2" className="fill-accent" />
+      <rect x="54" y="10" width="38" height="20" rx="4" className="fill-accent-soft" /><rect x="58" y="15" width="16" height="5" rx="2" className={bar} />
+      {[52, 44, 58, 38, 30].map((y, i) => (
+        <rect key={i} x={14 + i * 18} y={y} width="10" height={86 - y} rx="2" className={i === 4 ? "fill-accent" : "fill-accent-soft"} />
+      ))}
+      <path d="M19 56 37 48 55 60 73 42 91 34 128 22" fill="none" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="stroke-accent" />
+      <circle cx="128" cy="22" r="3.5" className="fill-accent" />
+    </>
+  ),
+  link: (
+    <>
+      <path d="M30 22 72 48M30 74 72 48M72 48h42" fill="none" strokeWidth="2" strokeDasharray="4 4" className="stroke-accent" />
+      {[[16, 22], [16, 74], [128, 48]].map(([cx, cy]) => (
+        <g key={cx + cy}>
+          <rect x={cx - 15} y={cy - 13} width="30" height="26" rx="6" className={box} />
+          <rect x={cx - 8} y={cy - 5} width="16" height="3" rx="1.5" className={bar} />
+          <rect x={cx - 8} y={cy + 2} width="11" height="3" rx="1.5" className={bar} />
+        </g>
+      ))}
+      <circle cx="72" cy="48" r="15" className="fill-accent" />
+      <path d="m66 48 4 4 8-8" fill="none" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="stroke-on-accent" />
+    </>
+  ),
+};
 
 type Offer = [IconName, string, string];
 
@@ -83,7 +155,16 @@ export default function WorkPage({ market }: { market: Market }) {
         <h3 className="mt-12 text-2xl font-bold text-ink">Custom software</h3>
         <ul className="mt-6 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
           {customSoftware.map(([icon, name, body]) => (
-            <li key={name} className="card group p-6 transition duration-300 ease-out motion-safe:hover:-translate-y-1 hover:shadow-[inset_0_0_0_1px_rgb(29_78_216/0.45),0_18px_40px_-20px_rgb(29_78_216/0.45)]">
+            <li key={name} className="card group relative overflow-hidden p-6 transition duration-300 ease-out motion-safe:hover:-translate-y-1 hover:shadow-[inset_0_0_0_1px_rgb(29_78_216/0.45),0_18px_40px_-20px_rgb(29_78_216/0.45)]">
+              {peeks[icon] && (
+                <svg
+                  viewBox="0 0 144 96"
+                  aria-hidden
+                  className="pointer-events-none absolute right-4 top-4 hidden w-24 opacity-0 transition duration-500 ease-out sm:block motion-safe:translate-x-3 motion-safe:-rotate-2 group-hover:opacity-100 motion-safe:group-hover:translate-x-0 motion-safe:group-hover:rotate-0 [@media(hover:none)]:opacity-60"
+                >
+                  {peeks[icon]}
+                </svg>
+              )}
               <span className="grid size-11 place-items-center rounded-xl bg-accent-soft text-accent-text transition duration-300 group-hover:bg-accent group-hover:text-on-accent motion-safe:group-hover:-rotate-6 motion-safe:group-hover:scale-110">
                 <Icon name={icon} />
               </span>
