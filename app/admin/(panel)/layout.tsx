@@ -1,6 +1,5 @@
 import Link from "next/link";
 import Logo from "@/components/Logo";
-import ThemeToggle from "@/components/ThemeToggle";
 import { AdminNav } from "@/components/admin/shell";
 import { adminHref, requireOwner } from "@/lib/admin";
 import { signOut } from "../_actions/auth";
@@ -28,7 +27,6 @@ export default async function PanelLayout({ children }: { children: React.ReactN
               View site ↗
             </a>
             <span className="hidden text-sm text-muted md:inline">{user.email}</span>
-            <ThemeToggle />
             <form action={signOut}>
               <button className="rounded-full px-3 py-1.5 text-sm font-semibold text-ink hover:bg-surface-2">Sign out</button>
             </form>

@@ -139,7 +139,7 @@ export type Market = {
     formThanks: string;
     /** Intake form success heading; {business} is replaced at runtime */
     intakeThanks: string;
-    /** Payment-methods FAQ answer (FPX in MY, other rails elsewhere) */
+    /** Payment-methods FAQ answer (bank transfer in MY, other rails elsewhere) */
     faqPayment: string;
     /** Languages FAQ — the question itself differs per market */
     faqLanguages: { q: string; a: string };

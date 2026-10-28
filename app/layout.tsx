@@ -37,16 +37,10 @@ export const metadata: Metadata = {
   manifest: "/site.webmanifest",
 };
 
-// Tints mobile browser chrome to match whichever palette is showing.
+// Tints mobile browser chrome to the Deep Navy page.
 export const viewport: Viewport = {
-  themeColor: [
-    { media: "(prefers-color-scheme: light)", color: "#f5efe6" },
-    { media: "(prefers-color-scheme: dark)", color: "#0f172a" },
-  ],
+  themeColor: "#0f172a",
 };
-
-// Runs before paint: applies saved theme (or system preference) to avoid a flash.
-const themeInit = `(function(){try{var t=localStorage.getItem("theme");var d=t?t==="dark":window.matchMedia("(prefers-color-scheme: dark)").matches;if(d)document.documentElement.classList.add("dark")}catch(e){}})();`;
 
 export default function RootLayout({
   children,
@@ -55,12 +49,12 @@ export default function RootLayout({
     <html
       lang="en"
       suppressHydrationWarning
-      // Font variables live on <html> (not <body>) because the theme tokens in
-      // globals.css that reference them are resolved at :root.
-      className={`${jakarta.variable} ${bungee.variable} ${yellowtail.variable}`}
+      // The site is dark-only: .dark is always on. Font variables live on
+      // <html> (not <body>) because the theme tokens in globals.css that
+      // reference them are resolved at :root.
+      className={`dark ${jakarta.variable} ${bungee.variable} ${yellowtail.variable}`}
     >
       <head>
-        <script dangerouslySetInnerHTML={{ __html: themeInit }} />
         {/* TODO: Paste your analytics snippet here (e.g. Plausible/GA4) */}
       </head>
       {/* Nav/main/footer come from the market layouts (components/MarketShell),

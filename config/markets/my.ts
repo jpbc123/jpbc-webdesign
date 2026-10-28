@@ -97,7 +97,7 @@ export const my: Market = {
     formThanks: "Message received — terima kasih! We'll get back to you within one business day.",
     intakeThanks: "Terima kasih, {business}! 🎉",
     faqPayment:
-      "FPX online banking. We invoice monthly and send a receipt with every payment for your records.",
+      "Bank transfer. We send an invoice each month, and an official receipt once your payment is in, for your records.",
     faqLanguages: {
       q: "Can you build the site in Bahasa Melayu or Chinese?",
       a: "Yes — we build in BM, English, Chinese, or any combination. We write natural copy in each language, not machine translation.",

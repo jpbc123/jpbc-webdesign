@@ -4,7 +4,6 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import Logo from "./Logo";
-import ThemeToggle from "./ThemeToggle";
 import type { Market } from "@/config/markets/types";
 import { mpath, waLink } from "@/lib/market";
 
@@ -101,7 +100,6 @@ export default function Nav({ market }: { market: Market }) {
         </div>
 
         <div className="flex items-center gap-2 justify-self-end">
-          <ThemeToggle />
           <a
             href={waLink(market)}
             target="_blank"

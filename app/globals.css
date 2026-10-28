@@ -1,6 +1,7 @@
 @import "tailwindcss";
 
-/* Class-based dark mode: .dark on <html>, set by the theme script/toggle */
+/* Dark-only site: .dark is always on <html> (app/layout.tsx). The :root
+   tokens below are the base that .dark overrides. */
 @custom-variant dark (&:where(.dark, .dark *));
 
 /*
@@ -247,9 +248,8 @@ body {
 
   /* ---------- Neon "after hours" tag: letters warm up like a neon sign ---------- */
   /*
-   * Each letter is a span with a staggered --d delay (set in Nav.tsx). The
-   * warm-up replays every time dark mode is toggled on, because the tag going
-   * display:none -> inline restarts its CSS animations. Once lit, each letter
+   * Each letter is a span with a staggered --d delay (set in AfterHoursSign).
+   * The warm-up plays when the sign mounts (6pm to 6am). Once lit, each letter
    * blinks off/on on its own --fdur/--fdel cycle so the sign twinkles out of sync.
    */
   .neon-letter {
