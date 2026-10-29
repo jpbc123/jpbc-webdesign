@@ -181,6 +181,7 @@ export default function HomePage({ market }: { market: Market }) {
       "@type": market.schema.areaServed.type,
       name,
     })),
+    ...(market.schema.sameAs?.length ? { sameAs: market.schema.sameAs } : {}),
     priceRange: `${market.currency.symbol}${market.pricing.monthly} - ${market.currency.symbol}${market.pricing.lumpSum}`,
     makesOffer: [
       {

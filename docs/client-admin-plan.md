@@ -1,4 +1,16 @@
-# Plan: private client admin (idea, not started)
+# Plan: private client admin
+
+## Status (2026-10-29)
+
+- **Built and live** on jpbcwebdesigns.com since 2026-10-26, at the secret `ADMIN_PATH`.
+- **Done:** clients, payments, uploads, an invoice PDF (`lib/invoice-pdf.ts`), and the
+  invoice → official receipt flow. An unpaid record gives `INV-YYYYMMDD-NNN`; once marked
+  paid it gives `OR-YYYYMMDD-NNN`.
+- **Still to do:**
+  - confirm migration `supabase/migrations/0004_jpbc_invoice_receipt.sql` has been run in Supabase;
+  - fill in the bank fields in Settings;
+  - import the existing records (list at the bottom);
+  - add a daily backup (no workflow exists yet).
 
 Noted 2026-10-25. A private admin area on this site, built like the one in the Gary
 store (`C:\Users\User\client-one-ecommerce-simple`), but for running JPBC Webdesigns
@@ -34,14 +46,14 @@ clients never see it.
 
 - **Database** (decided 2026-10-25): share the `pvg-store` Supabase project (it's in the
   owner's account; saves cost and avoids juggling DBs), but kept apart from the store:
-  - tables in their own `jpbc` schema, not exposed to the public API;
+  - tables in their own `jpbc` schema. It is exposed to the API, so access relies on RLS
+    against `jpbc.admins`;
   - own `jpbc.admins` table holding only the owner's user. NEVER reuse the store's
     `public.is_admin()`, because Gary is a store admin and could read the data with it;
   - own private `jpbc-receipts` bucket, policies checked against `jpbc.admins`;
   - keep it easy to move `jpbc` into its own project later if needed.
-- **Next version**: this site is on Next 15, the Gary store on Next 16. Next 15 calls the
-  file `middleware.ts` (Next 16 renamed it `proxy.ts`), so copied code needs small changes,
-  or upgrade first.
+- **Next version**: resolved. This site was upgraded to Next 16 on 2026-10-26, the same
+  version as the Gary store (both use `proxy.ts`).
 - **Privacy**: client details and receipts are personal data (PDPA). Keep the bucket private,
   never put IC numbers in it, and keep the admin path out of the code and the sitemap/robots.
 - **Backups**: a daily backup like the Gary store's GitHub Action, since this becomes the

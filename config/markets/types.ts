@@ -182,5 +182,7 @@ export type Market = {
   schema: {
     address?: { locality: string; region: string; country: string };
     areaServed: { type: "City" | "Country" | "AdministrativeArea"; names: string[] };
+    /** Profiles of the same business elsewhere (e.g. Google Business Profile), emitted as schema.org sameAs. */
+    sameAs?: string[];
   };
 };

@@ -29,7 +29,7 @@ export const my: Market = {
   contact: {
     whatsapp: "60195513944",
     phoneDisplay: "+60 19-551 3944",
-    email: "hello@jpbcwebdesigns.com", // TODO: confirm email
+    email: "hello@jpbcwebdesigns.com",
     serviceArea: "All of Malaysia (based in Shah Alam)",
     serviceAreaBody:
       "Based in Shah Alam, serving businesses all over Malaysia: Kuala Lumpur and the Klang Valley, Penang, Johor, Perak, Sabah, Sarawak and everywhere in between. Everything works over WhatsApp, so your location never slows us down.",
@@ -165,5 +165,7 @@ export const my: Market = {
   schema: {
     address: { locality: "Shah Alam", region: "Selangor", country: "MY" },
     areaServed: { type: "City", names: locations.map((l) => l.name) },
+    // Google Business Profile "JPBC Web Designs" (verified 2026-10-29)
+    sameAs: ["https://g.page/r/CaSaur_nAal4EBM"],
   },
 };

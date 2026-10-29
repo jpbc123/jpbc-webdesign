@@ -40,3 +40,6 @@ instructions.txt
 /*.csv
 /*.xlsx
 /*.xls
+
+# Google Business Profile photo uploads (generated, not site assets)
+/google-profile-photos/
